@@ -1,4 +1,35 @@
+<?php
 
+    include_once('../AutoLoader.php');
+    AutoLoader::registerDirectory('../src/classes');
+
+    require("config.php");
+    require("MailFiles/PHPMailerAutoload.php");
+
+    // Initialize error messages to blank.
+    $r = new Register();
+
+    if(!empty($_POST)) {
+        // Ensure that the user fills out fields.
+        if ($r->checkNoFormErrors($_POST, $db)) {
+            $hash = md5(rand(0,2147483647));
+            // check if the email exists
+            $r->checkEmailExists($_POST['email'], $db);
+
+            // If the email is not registered yet, send them a confirmation email
+            // and add it to the database.
+            if (empty($r->registeredEmail)) {
+                $link = "http://wal-engproject.rhcloud.com/src/verify.php?email=" . $_POST['email'] . "&hash=" . $hash;
+                if(!$r->sendRegistrationEmail($_POST['email'], $link)) {
+                    $r->registrationFailure = "Verification email could not be sent.";
+                } else {
+                    $r->registrationSuccess = "A confirmation email has been sent to the email address that you provided";
+                    $r->saveRegistration($_POST, $hash, $db);
+                }
+            }
+        }
+    } 
+?>
 
 <!doctype html>
 <html lang="en">
@@ -38,29 +69,6 @@
 
 <div class="container hero-unit">
     <h1>Register</h1> <br/><br/>
-    <form action="register.php" method="post">
-        User type:<br/>
-        <select name="user_type_id">
-            
-        </select><br/>
-        Access Code (not applicable for patients):<br/>
-        <input type="text" name="access_code"  />
-        <span class="error"></span><br/>
-        Email:<br/>
-        <input type="text" name="email"  />
-        <span class="error"> * </span><br/>
-        Password:<br/>
-        <input type="password" name="password" value="" />
-        <span class="error"> * </span><br/>
-        Confirm Password:<br/>
-        <input type="password" name="confirmPassword" value="" />
-        <span class="error"> * </span><br/>
-        <span class="error"></span><br/>
-        <span class="success"></span>
-        <span class="error"></span>
-        <input type="submit" class="btn btn-info" value="Register" /><br/><br/>
-        <p>Password must have at least one number and letter, and must be 20 characters long or fewer.</p> 
-    </form>
 </div>
 
 </body>
