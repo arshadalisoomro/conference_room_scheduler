@@ -58,7 +58,7 @@
         <span class="icon-bar"></span>
       </a>
       <a href="src/home.php" class="brand">Conference Room Scheduler</a>
-      <div class="nav-collapse collapse">
+      <div class="nav-collapse">
         <ul class="nav pull-right">
           <li><a href="../index.php">Login</a></li>
         </ul>
@@ -79,7 +79,7 @@
              * This database holds the different types of users, including: patient, doctor, nurse, administrator
              */
 
-            /*$query = "
+            $query = "
                 SELECT *
                 FROM user_types
             ";
@@ -104,7 +104,7 @@
             } catch(Exception $e) {
                 die("Failed to gather user type information. " . $e->getMessage());
             }
-*/
+
             ?>
         </select><br/>
         Access Code (not applicable for patients):<br/>
