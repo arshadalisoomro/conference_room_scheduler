@@ -42,9 +42,9 @@
     <meta name="author" content="Team 6">
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-    <script src="assets/bootstrap.min.js"></script>
-    <link href="assets/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link href="assets/styles.css" rel="stylesheet" type="text/css">
+    <script src="../assets/bootstrap.min.js"></script>
+    <link href="../assets/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="../assets/styles.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -57,7 +57,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </a>
-      <a href="src/home.php" class="brand">Conference Room Scheduler</a>
+      <a href="home.php" class="brand">Conference Room Scheduler</a>
       <div class="nav-collapse">
         <ul class="nav pull-right">
           <li><a href="../index.php">Login</a></li>
@@ -69,6 +69,62 @@
 
 <div class="container hero-unit">
     <h1>Register</h1> <br/><br/>
+    <form action="register.php" method="post">
+        User type:<br/>
+        <select name="user_type_id">
+            <?php
+
+            /**
+             * This code is used to fill the spinner from the database user_types.
+             * This database holds the different types of users, including: patient, doctor, nurse, administrator
+             */
+
+            $query = "
+                SELECT *
+                FROM user_types
+            ";
+
+            // execute the statement
+            try {
+                $stmt = $db->prepare($query);
+                $result = $stmt->execute();
+
+                $i = 0;
+
+                // loop through, adding the options to the spinner
+                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    if ($i == 0) {
+                        echo "<option value=\"" . $row["id"] . "\" selected=\"selected\">" . $row["type_name"] . "</option>";
+                    } else {
+                        echo "<option value=\"" . $row["id"] . "\">" . $row["type_name"] . "</option>";
+                    }
+
+                    $i = $i + 1;
+                }
+            } catch(Exception $e) {
+                die("Failed to gather user type information. " . $e->getMessage());
+            }
+
+            ?>
+        </select><br/>
+        Access Code (not applicable for patients):<br/>
+        <input type="text" name="access_code" value="<?php echo htmlspecialchars($_POST['access_code'])?>" />
+        <span class="error"><?php echo $r->noAccessCode; ?></span><br/>
+        Email:<br/>
+        <input type="text" name="email" value="<?php echo htmlspecialchars($_POST['email'])?>" />
+        <span class="error"> * <?php echo $r->noEmail; echo $r->incorrectEmail; echo $r->registeredEmail;?></span><br/>
+        Password:<br/>
+        <input type="password" name="password" value="" />
+        <span class="error"> * <?php echo $r->noPassword; echo $r->badPassword; ?></span><br/>
+        Confirm Password:<br/>
+        <input type="password" name="confirmPassword" value="" />
+        <span class="error"> * <?php echo $r->noConfirmPassword;?></span><br/>
+        <span class="error"><?php echo $r->noPasswordMatch;?></span><br/>
+        <span class="success"><?php echo $r->registrationSuccess;?></span>
+        <span class="error"><?php echo $r->registrationFailure;?></span>
+        <input type="submit" class="btn btn-info" value="Register" /><br/><br/>
+        <p>Password must have at least one number and letter, and must be 20 characters long or fewer.</p> 
+    </form>
 </div>
 
 </body>

@@ -21,9 +21,9 @@
     <meta name="author" content="Team 6">
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-    <script src="assets/bootstrap.min.js"></script>
-    <link href="assets/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link href="assets/styles.css" rel="stylesheet" type="text/css">
+    <script src="../assets/bootstrap.min.js"></script>
+    <link href="../assets/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="../assets/styles.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -37,7 +37,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </a>
-      <a href="src/home.php" class="brand">Conference Room Scheduler</a>
+      <a href="home.php" class="brand">Conference Room Scheduler</a>
       <div class="nav-collapse collapse">
         <ul class="nav pull-right">
           <li><a href="../index.php">Login</a></li>
