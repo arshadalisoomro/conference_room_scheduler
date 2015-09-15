@@ -72,7 +72,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
-            <a href="home.php" class="brand">Hospital Management</a>
+            <a href="src/home.php" class="brand">Conference Room Scheduler</a>
             <div class="nav-collapse">
                 <ul class="nav pull-right">
                     <?php AccountDropdownBuilder::buildDropdown($db, $_SESSION) ?>

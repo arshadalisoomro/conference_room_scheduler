@@ -76,6 +76,7 @@
 <html lang="en">
 <head>
     <style>.error {color: #FF0000;}</style>
+    <style>.success {color: #00FF00;}</style>
     <meta charset="utf-8">
     <title>Conference Room</title>
     <meta name="description" content="Conference room management system for Database Systems">
