@@ -12,7 +12,7 @@ After I have added you to the project (just send me your email you made the acco
 5.) Add your SSH keys to your account. (If you have them on github, just copy and paste, otherwise you will have to generate them. Easy on linux/mac.. not sure how to do it on windows though..)
 
 5.) Checkout the project:
-	git clone ssh://54f76b1a5973ca4c6c000062@wal-engproject.rhcloud.com/~/git/wal.git/
+	git clone ssh://55f8a0097628e15a780000a0@dbsystems-engproject.rhcloud.com/~/git/dbsystems.git/
 
 6.) To send your commits to the repo:
 	git add --all // to add any files you made
@@ -24,21 +24,16 @@ After I have added you to the project (just send me your email you made the acco
 	git fetch
 	git rebase
 
-8.) Visit the site: http://wal-engproject.rhcloud.com/
+8.) Visit the site: http://dbsystems-engproject.rhcloud.com/
 
 9.) To look at the log output (fatal errors), you will need to ssh into the project:
 
-	ssh 54f76b1a5973ca4c6c000062@wal-engproject.rhcloud.com
+	ssh 55f8a0097628e15a780000a0@dbsystems-engproject.rhcloud.com
 	cd $OPENSHIFT_LOG_DIR
 	vi php.log
 
-10.) To view/edit/add to databases, go here: https://wal-engproject.rhcloud.com/phpmyadmin/
+10.) To view/edit/add to databases, go here: https://dbsystems-engproject.rhcloud.com/phpmyadmin/
 
-	username: adminpc6LFKv
-	password: u5RAJUHT1tgU
-
-11.) Jenkins build server: https://jenkins-engproject.rhcloud.com/job/wal-build/
-
-	User: admin
-   	Password: 5GnY8gd4mzjQ
+	username: adminYnwEUMx
+	password: 7besRxmX2EF8
 
