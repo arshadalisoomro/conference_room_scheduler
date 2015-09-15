@@ -79,7 +79,7 @@
              * This database holds the different types of users, including: patient, doctor, nurse, administrator
              */
 
-            $query = "
+            /*$query = "
                 SELECT *
                 FROM user_types
             ";
@@ -104,7 +104,7 @@
             } catch(Exception $e) {
                 die("Failed to gather user type information. " . $e->getMessage());
             }
-
+*/
             ?>
         </select><br/>
         Access Code (not applicable for patients):<br/>
