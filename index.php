@@ -77,9 +77,9 @@
 <head>
     <style>.error {color: #FF0000;}</style>
     <meta charset="utf-8">
-    <title>Hospital Management</title>
-    <meta name="description" content="Hospital management system for Intro to Software Engineering">
-    <meta name="author" content="WAL Consulting">
+    <title>Conference Room</title>
+    <meta name="description" content="Conference room management system for Database Systems">
+    <meta name="author" content="Team 6">
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
     <script src="assets/bootstrap.min.js"></script>
@@ -98,7 +98,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </a>
-      <a href="src/home.php" class="brand">Hospital Management</a>
+      <a href="src/home.php" class="brand">Conference Room Scheduler</a>
       <div class="nav-collapse collapse">
         <ul class="nav pull-right">
           <li><a href="src/register.php">Register</a></li>

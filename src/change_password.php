@@ -50,17 +50,17 @@
 <html lang="en">
 <head>
     <style>.error {color: #FF0000;}</style>
-    <style>.success {color: #00FF00;}</style>
     <meta charset="utf-8">
-    <title>Hospital Management</title>
-    <meta name="description" content="Hospital management system for Intro to Software Engineering">
-    <meta name="author" content="WAL Consulting">
+    <title>Conference Room</title>
+    <meta name="description" content="Conference room management system for Database Systems">
+    <meta name="author" content="Team 6">
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-    <script src="../assets/bootstrap.min.js"></script>
-    <link href="../assets/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link href="../assets/styles.css" rel="stylesheet" type="text/css">
+    <script src="assets/bootstrap.min.js"></script>
+    <link href="assets/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="assets/styles.css" rel="stylesheet" type="text/css">
 </head>
+
 
 <body>
 
