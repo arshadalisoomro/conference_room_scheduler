@@ -69,42 +69,7 @@
 
 <div class="container hero-unit">
     <h1>Password Retrieval</h1> <br />
-    <form action="forgot_password.php" method="post" id="mainForm">
-        <label>Email:</label>
-        <input type="text" name="email" value="<?php echo htmlspecialchars($_POST['email'])?>" onblur="update()" /><br/>
-        <span class="error"><?php echo $fp->noEmail;?></span><br/>
-        <?php
-            if(!empty($_POST['email'])) {
-                $entry = $fp->checkEmail($_POST['email'], $db);
-                if ($entry != NULL && $entry['challenge_question_answer'] != NULL) {
-                    $query = "
-                        SELECT *
-                        FROM challenge_question
-                        WHERE
-                            id = " . $entry['challenge_question_id'];
-                        try {
-                            $stmt = $db->prepare($query);
-                            $stmt->execute();
-                        } catch(PDOException $ex) {
-                            die("Failed to run query: " . $ex->getMessage());
-                        }
-                        $row = $stmt->fetch();
-                        echo "Challenge question:<br/><br/>";
-                        echo "<label>" . $row['question'] . "</label>";
-                        echo '<input type="password" name="challenge_question_answer" "value="' . htmlspecialchars($_POST['challenge_question_answer']) . '"/><br/><br/>';
-                        echo '<span class="error">' . $fp->wrongAnswer . '</span><br/>';
-                }
-                echo '<input type="submit" class="btn btn-info" value="Retrieve Password" /><br/><br/>';
-            }
-        ?>
-        <span class = "success"><?php echo $fp->success;?></span>
-        <span class = "error"><?php echo $fp->regisrationFailure;?></span>
-        <script>
-        function update() {
-            document.getElementById("mainForm").submit();  
-        }
-        </script>
-    </form>
+    
 </div>
 
 </body>
