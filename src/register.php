@@ -58,7 +58,7 @@
         <span class="icon-bar"></span>
       </a>
       <a href="src/home.php" class="brand">Conference Room Scheduler</a>
-      <div class="nav-collapse">
+      <div class="nav-collapse collapse">
         <ul class="nav pull-right">
           <li><a href="../index.php">Login</a></li>
         </ul>
