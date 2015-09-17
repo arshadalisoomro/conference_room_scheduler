@@ -92,7 +92,7 @@ class Register {
         }
     }
 
-    function saveRegistration($post, $hash, $db) {
+    function saveRegistration($post, $db) {
         // Store the results into the users table.
         $query = "
                     INSERT INTO user (
