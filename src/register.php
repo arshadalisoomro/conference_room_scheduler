@@ -19,6 +19,9 @@
             // and add it to the database.
             if (empty($r->registeredEmail)) {
                 $r->saveRegistration($_POST, $db);
+                
+                header("Location: ../index.php");
+                die("Redirecting to: ../index.php");
             }
         }
     } 

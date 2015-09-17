@@ -20,7 +20,7 @@ class AccountDropdownBuilder {
 
         $query = "
                 SELECT picture_url
-                FROM users
+                FROM user
                 WHERE
                     id = :id
                 ";
