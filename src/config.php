@@ -10,7 +10,7 @@
 	$dbport = constant("DB_PORT"); // Host port
 	$dbusername = constant("DB_USER"); // Mysql username 
 	$dbpassword = constant("DB_PASS"); // Mysql password 
-	$db_name = "wal";//"constant("DB_NAME")"; // Database name 
+	$db_name = "dbsystems";//"constant("DB_NAME")"; // Database name 
 
 	$options = array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'); 
 

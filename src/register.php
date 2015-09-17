@@ -68,9 +68,9 @@
         <input type="text" name="access_code" value="<?php echo htmlspecialchars($_POST['access_code'])?>" />  
         <span class="error"><?php echo $r->noAccessCode; ?></span><br/>
         First Name:<br/>
-        <input type="text" name="first_name" value="<?php echo htmlspecialchars($_POST['first_name'])?>" />
+        <input type="text" name="first_name" value="<?php echo htmlspecialchars($_POST['first_name'])?>" /><br/>
         Last Name:<br/>
-        <input type="text" name="last_name" value="<?php echo htmlspecialchars($_POST['last_name'])?>" />
+        <input type="text" name="last_name" value="<?php echo htmlspecialchars($_POST['last_name'])?>" /><br/>
         Email:<br/>
         <input type="text" name="email" value="<?php echo htmlspecialchars($_POST['email'])?>" />
         <span class="error"> * <?php echo $r->noEmail; echo $r->incorrectEmail; echo $r->registeredEmail;?></span><br/>
