@@ -51,8 +51,15 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <style>.error {color: #FF0000;}</style>
-    <style>.success {color: #00FF00;}</style>
+    <style>
+        #content {
+            text-align: center;
+        }
+        #forgot_password {
+            margin-top: 10px;
+            margin-bottom: 15px;
+        }
+    </style>
     <meta charset="utf-8">
     <title>Conference Room</title>
     <meta name="description" content="Conference room management system for Database Systems">
