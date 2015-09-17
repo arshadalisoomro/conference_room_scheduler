@@ -26,7 +26,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <style>.padding_left_class {padding-left: 10px;}</style>
+    <style>.padding_left_class {padding-left: 20px;}</style>
     <meta charset="utf-8">
     <title>Conference Room</title>
     <meta name="description" content="Conference room management system for Database Systems">
