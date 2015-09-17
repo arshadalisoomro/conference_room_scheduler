@@ -1,0 +1,9 @@
+Not working:
+	- change password
+	- forgot password
+	- user profile page
+
+Convert to MDL:
+	- Registration page
+	- photo upload page
+	- user profile page

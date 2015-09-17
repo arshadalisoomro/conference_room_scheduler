@@ -80,15 +80,15 @@
                 <div id="content" class="mdl-card__supporting-text">
                     <form action="change_password.php" method="post">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" id="current_password" name="current_password" />
+                            <input class="mdl-textfield__input" type="password" id="current_password" name="current_password" />
                             <label class="mdl-textfield__label" for="current_password">Current Password...</label>
                         </div><br/>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" id="new_password" name="new_password" />
+                            <input class="mdl-textfield__input" type="password" id="new_password" name="new_password" />
                             <label class="mdl-textfield__label" for="new_password">New Password...</label>
                         </div><br/>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" id="confirm_password" name="confirm_password" />
+                            <input class="mdl-textfield__input" type="password" id="confirm_password" name="confirm_password" />
                             <label class="mdl-textfield__label" for="confirm_password">Confirm New Password...</label>
                         </div><br/>
                         <span class="error"><?php echo $changer->errorMessage;?></span>
