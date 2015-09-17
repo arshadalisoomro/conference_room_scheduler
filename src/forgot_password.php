@@ -33,79 +33,79 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <style>.error {color: #FF0000;}</style>
-    <style>.success {color: #00FF00;}</style>
     <meta charset="utf-8">
     <title>Conference Room</title>
     <meta name="description" content="Conference room management system for Database Systems">
     <meta name="author" content="Team 6">
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-    <script src="../assets/bootstrap.min.js"></script>
-    <link href="../assets/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link href="../assets/styles.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.indigo-pink.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href="../main.css" rel="stylesheet" type="text/css">
 </head>
 
-
-<body>
-
-<div class="navbar navbar-fixed-top navbar-inverse">
-  <div class="navbar-inner">
-    <div class="container">
-      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </a>
-      <a href="home.php" class="brand">Conference Room Scheduler</a>
-      <div class="nav-collapse">
-        <ul class="nav pull-right">
-            <li><a href="../index.php">Login</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="container hero-unit">
-    <h1>Password Retrieval</h1> <br />
-    <form action="forgot_password.php" method="post" id="mainForm">
-        <label>Email:</label>
-        <input type="text" name="email" value="<?php echo htmlspecialchars($_POST['email'])?>" onblur="update()" /><br/>
-        <span class="error"><?php echo $fp->noEmail;?></span><br/>
-        <?php
-            if(!empty($_POST['email'])) {
-                $entry = $fp->checkEmail($_POST['email'], $db);
-                if ($entry != NULL && $entry['challenge_question_answer'] != NULL) {
-                    $query = "
-                        SELECT *
-                        FROM challenge_question
-                        WHERE
-                            id = " . $entry['challenge_question_id'];
-                        try {
-                            $stmt = $db->prepare($query);
-                            $stmt->execute();
-                        } catch(PDOException $ex) {
-                            die("Failed to run query: " . $ex->getMessage());
+<body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <header class="mdl-layout__header mdl-layout__header--waterfall">
+            <div class="mdl-layout__header-row">
+                <span class="mdl-layout-title">Home</span>
+            </div>
+        </header>
+        <div class="mdl-layout__drawer">
+            <span class="mdl-layout-title">Scheduler</span>
+            <nav class="mdl-navigation">
+                <a class="mdl-navigation__link" href="../index.php">Login</a>
+            </nav>
+        </div>
+        <main class="mdl-layout__content">
+            <br/>
+            <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+              <div class="mdl-card mdl-cell mdl-cell--12-col">
+                <div class="mdl-card__supporting-text">
+                    <h1>Password Retrieval</h1> <br />
+                    <form action="forgot_password.php" method="post" id="mainForm">
+                        <label>Email:</label>
+                        <input type="text" name="email" value="<?php echo htmlspecialchars($_POST['email'])?>" onblur="update()" /><br/>
+                        <span class="error"><?php echo $fp->noEmail;?></span><br/>
+                        <?php
+                            if(!empty($_POST['email'])) {
+                                $entry = $fp->checkEmail($_POST['email'], $db);
+                                if ($entry != NULL && $entry['challenge_question_answer'] != NULL) {
+                                    $query = "
+                                        SELECT *
+                                        FROM challenge_question
+                                        WHERE
+                                            id = " . $entry['challenge_question_id'];
+                                        try {
+                                            $stmt = $db->prepare($query);
+                                            $stmt->execute();
+                                        } catch(PDOException $ex) {
+                                            die("Failed to run query: " . $ex->getMessage());
+                                        }
+                                        $row = $stmt->fetch();
+                                        echo "Challenge question:<br/><br/>";
+                                        echo "<label>" . $row['question'] . "</label>";
+                                        echo '<input type="password" name="challenge_question_answer" "value="' . htmlspecialchars($_POST['challenge_question_answer']) . '"/><br/><br/>';
+                                        echo '<span class="error">' . $fp->wrongAnswer . '</span><br/>';
+                                }
+                                echo '<input type="submit" class="btn btn-info" value="Retrieve Password" /><br/><br/>';
+                            }
+                        ?>
+                        <span class = "success"><?php echo $fp->success;?></span>
+                        <span class = "error"><?php echo $fp->regisrationFailure;?></span>
+                        <script>
+                        function update() {
+                            document.getElementById("mainForm").submit();  
                         }
-                        $row = $stmt->fetch();
-                        echo "Challenge question:<br/><br/>";
-                        echo "<label>" . $row['question'] . "</label>";
-                        echo '<input type="password" name="challenge_question_answer" "value="' . htmlspecialchars($_POST['challenge_question_answer']) . '"/><br/><br/>';
-                        echo '<span class="error">' . $fp->wrongAnswer . '</span><br/>';
-                }
-                echo '<input type="submit" class="btn btn-info" value="Retrieve Password" /><br/><br/>';
-            }
-        ?>
-        <span class = "success"><?php echo $fp->success;?></span>
-        <span class = "error"><?php echo $fp->regisrationFailure;?></span>
-        <script>
-        function update() {
-            document.getElementById("mainForm").submit();  
-        }
-        </script>
-    </form>
-</div>
-
+                        </script>
+                    </form>
+                </div>
+              </div>
+            </section>
+            <br/>
+        </main>
+    </div>
+    
+    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.min.js"></script>
 </body>
+
 </html>
