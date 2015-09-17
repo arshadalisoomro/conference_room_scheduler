@@ -81,7 +81,7 @@
             SET
                 picture_url = :url
             WHERE
-                id = :id
+                _id = :id
         ";
 
             $query_params = array(
