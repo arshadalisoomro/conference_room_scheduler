@@ -10,17 +10,14 @@
         die("Redirecting to index.php"); 
     } else {
         switch($_SESSION['user']['user_type_id']) {
-                            case 3: // nurse
-                                $userType = "nurse";
+                            case 3: // user
+                                $userType = "user";
                                 break;
-                            case 2: // doctor
-                                $userType = "doctor";
+                            case 2: // manager
+                                $userType = "manager";
                                 break;
-                            case 4: // admin
-                                $userType = "administrator";
-                                break;
-                            default:
-                                $userType = "patient";
+                            case 1: // admin
+                                $userType = "admin";
                                 break;
                         }
     }
@@ -55,20 +52,8 @@
       </a>
       <a href="home.php" class="brand">Conference Room Scheduler</a>
       <div class="nav-collapse">
-
-          <?php
-          $searchText = "";
-          $showAdvanced = false;
-          if ($userType == "patient") {
-              $searchText = "Search All Doctors";
-              $showAdvanced = true;
-          } else {
-              $searchText = "Search All Users";
-          }
-          ?>
-
           <form class="navbar-search pull-left" action="search.php" method="GET" >
-              <input type="text" class="search-query" name="search" placeholder="<?php echo $searchText ?>" >
+              <input type="text" class="search-query" name="search" placeholder="Search" >
           </form>
         <ul class="nav pull-right">
             <?php AccountDropdownBuilder::buildDropdown($db, $_SESSION) ?>
@@ -82,18 +67,13 @@
 <div class="container hero-unit">
     <h2>Welcome!</h2>
     <?php
-        if ($userType == "patient") {
-            echo "<a href=\"advanced_doctor_search.php\">Advanced Doctor Search</a><br/>";
-            echo "<a href=\"schedule_appointment.php\">Schedule an Appointment</a><br/>";
-            echo "<a href=\"view_bills.php\">View Bills</a><br/>";   
-            echo "<a href=\"view_appointments.php\">View Current Appointments Scheduled</a>";
-        } else if ($userType == "doctor") {
-            echo "<a href=\"advanced_user_search.php\">Advanced User Search</a><br/>";
-            echo "<a href=\"view_checks.php\">View checks</a><br/>";          
-            echo "<a href=\"view_appointments.php\">View Current Appointments Scheduled</a>";
-        } else if ($userType == "administrator") {
-            echo "<a href=\"release_bills.php\">Release Bills</a><br/>";
-            echo "<a href=\"release_checks.php\">Release Checks</a><br/>";
+        if ($userType == "user") {
+            //echo "<a href=\"advanced_doctor_search.php\">Advanced Doctor Search</a><br/>";
+            
+        } else if ($userType == "manager") {
+
+        } else if ($userType == "admin") {
+
         }
 
     ?>
@@ -117,7 +97,7 @@
 
                             $row = $stmt->fetch();
                             if ($row) {
-                                echo $row['type_name'];
+                                echo $row['description'];
                             }
                     ?>
 
