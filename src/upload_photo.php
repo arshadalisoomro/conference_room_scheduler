@@ -7,21 +7,6 @@
     if(empty($_SESSION['user'])) {
         header("Location: ../index.php");
         die("Redirecting to index.php");
-    } else {
-        switch($_SESSION['user']['user_type_id']) {
-            case 3: // nurse
-                $userType = "nurse";
-                break;
-            case 2: // doctor
-                $userType = "doctor";
-                break;
-            case 4: // admin
-                $userType = "administrator";
-                break;
-            default:
-                $userType = "patient";
-                break;
-        }
     }
 
 ?>
@@ -92,7 +77,7 @@
             $image_url = "http://walphotobucket.s3.amazonaws.com/" . $fileName;
 
             $query = "
-            UPDATE users
+            UPDATE user
             SET
                 picture_url = :url
             WHERE
