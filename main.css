@@ -104,7 +104,7 @@ html, body {
 }
 
 .mdl-demo section.section--center {
-    max-width: 400px;
+    max-width: 860px;
 }
 
 .mdl-demo #features section.section--center {
@@ -254,6 +254,18 @@ html, body {
     margin: 0 auto;
     height: 100%;
     width: auto;
+}
+
+.hero-unit { 
+	background-color: #fff; 
+}
+
+@media (min-width: 800px) {
+	.hero-unit { 
+		background-color: #fff;
+		width: 50%;
+		margin: 0 auto;
+	}
 }
 
 .center { 

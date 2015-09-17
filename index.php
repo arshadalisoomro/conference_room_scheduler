@@ -57,7 +57,7 @@
         }
         #forgot_password {
             margin-top: 10px;
-            margin-bottom: 15px;
+            margin-bottom: 8px;
         }
     </style>
     <meta charset="utf-8">
@@ -92,11 +92,11 @@
                 <div id="content" class="mdl-card__supporting-text">
                     <form action="index.php" method="post">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" id="email" name="email" value="<?php echo $email?>" />
+                            <input class="mdl-textfield__input" type="text" id="email" name="email" />
                             <label class="mdl-textfield__label" for="email">Email...</label>
                         </div><br/>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="password" id="password" name="password" value="" />
+                            <input class="mdl-textfield__input" type="password" id="password" name="password" />
                             <label class="mdl-textfield__label" for="password">Password...</label>
                         </div><br/>
                         <span class="error"><?php echo $message;?></span>
