@@ -59,45 +59,47 @@
     <meta name="author" content="Team 6">
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-    <script src="assets/bootstrap.min.js"></script>
-    <link href="assets/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link href="assets/styles.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.indigo-pink.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href="main.css" rel="stylesheet" type="text/css">
 </head>
 
-<body>
-
-
-<div class="navbar navbar-fixed-top navbar-inverse">
-  <div class="navbar-inner">
-    <div class="container">
-      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </a>
-      <a href="src/home.php" class="brand">Conference Room Scheduler</a>
-      <div class="nav-collapse collapse">
-        <ul class="nav pull-right">
-          <li><a href="src/register.php">Register Administrator</a></li>
-        </ul>
-      </div>
+<body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <header class="mdl-layout__header mdl-layout__header--waterfall">
+            <div class="mdl-layout__header-row">
+                <a href="src/home.php" class="brand">Login</a>
+            </div>
+        </header>
+        <div class="mdl-layout__drawer">
+            <span class="mdl-layout-title">Conference Scheduler</span>
+            <nav class="mdl-navigation">
+                <a class="mdl-navigation__link" href="src/register.php">Register as Administrator</a>
+            </nav>
+        </div>
+        <main class="mdl-layout__content">
+            <br/>
+            <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+              <div class="mdl-card mdl-cell mdl-cell--12-col">
+                <div class="mdl-card__supporting-text">
+                    <h1>Login</h1> <br />
+                    <form action="index.php" method="post">
+                        Email:<br/>
+                        <input type="text" name="email" value="<?php echo $email?>" /><br/>
+                        Password:<br/>
+                        <input type="password" name="password" value="" /><br/>
+                        <span class="error"><?php echo $message;?></span>
+                        <br/> 
+                        <input type="submit" class="btn btn-info" value="Login" />
+                    </form> 
+                    <a href="src/forgot_password.php">Forgot Password?</a>
+                </div>
+              </div>
+            </section>
+            <br/>
+        </main>
     </div>
-  </div>
-</div>
-
-<div class="container hero-unit">
-    <h1>Login</h1> <br />
-    <form action="index.php" method="post">
-        Email:<br/>
-        <input type="text" name="email" value="<?php echo $email?>" /><br/>
-        Password:<br/>
-        <input type="password" name="password" value="" /><br/>
-        <span class="error"><?php echo $message;?></span>
-        <br/> 
-        <input type="submit" class="btn btn-info" value="Login" />
-    </form> 
-    <a href="src/forgot_password.php">Forgot Password?</a>
-</div>
-
+    
+    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.min.js"></script>
 </body>
 </html>
