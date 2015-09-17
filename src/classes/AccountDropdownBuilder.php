@@ -25,18 +25,13 @@ class AccountDropdownBuilder {
 
         $profileLink = "http://dbsystems-engproject.rhcloud.com/src/user_page.php?id=" . $session['user']['_id'];
 
-        echo "<li class=\"dropdown\">";
-        echo "<a class=\"dropdown-toggle\" href=\"#\" data-toggle=\"dropdown\">Account  <strong class=\"caret\"></strong></a>";
-        echo "<div class=\"dropdown-menu\" style=\"padding: 15px; padding-bottom: 0px;\">";
         echo "<a href=\"" . $profileLink . "\">";
         echo "<div class=\"center_image_dropdown\"><img src='" . $pictureUrl . "' /></div>";
         echo "</a>";
         echo "<b>" . $session['user']['first_name'] . " " . $session['user']['last_name'] . "</b><br/><br/>";
-        echo "<a class=\"mdl-navigation__link\" href=\"change_password.php\">Change Password</a><br/>";
-        echo "<a class=\"mdl-navigation__link\" href=\"delete_account.php\">Delete Account</a><br/><br/>";
-        echo "<a class=\"mdl-navigation__link\" href=\"upload_photo.php\">Upload Photo</a><br/><br/>";
-        echo "</div>";
-        echo "</li>";
+        echo "<a class=\"mdl-navigation__link\" href=\"change_password.php\">Change Password</a>";
+        echo "<a class=\"mdl-navigation__link\" href=\"delete_account.php\">Delete Account</a>";
+        echo "<a class=\"mdl-navigation__link\" href=\"upload_photo.php\">Upload Photo</a>";
     }
 
 }

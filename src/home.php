@@ -103,29 +103,4 @@
     
     <script src="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.min.js"></script>
 </body>
-<body>
-
-<div class="navbar navbar-fixed-top navbar-inverse">
-  <div class="navbar-inner">
-    <div class="container">
-      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </a>
-      <a href="home.php" class="brand">Conference Room Scheduler</a>
-      <div class="nav-collapse">
-          <form class="navbar-search pull-left" action="search.php" method="GET" >
-              <input type="text" class="search-query" name="search" placeholder="Search" >
-          </form>
-        <ul class="nav pull-right">
-            <?php AccountDropdownBuilder::buildDropdown($db, $_SESSION) ?>
-            <li><a href="logout.php">Log Out</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
-
-</body>
 </html>
