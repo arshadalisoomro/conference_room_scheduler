@@ -82,7 +82,7 @@
                                     SELECT *
                                     FROM user_type
                                     WHERE
-                                        id = :id
+                                        _id = :id
                                     ";
                             $query_params = array(
                                 ':id' => $_SESSION['user']['user_type_id']
