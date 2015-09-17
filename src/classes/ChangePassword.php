@@ -19,11 +19,11 @@ class ChangePassword {
 
     function makePasswordChange($db, $newPassword, $salt, $id) {
         $query = "
-            UPDATE users
+            UPDATE user
             SET
                 password = :password
             WHERE
-                id = :id
+                _id = :id
         ";
 
         $query_params = array(

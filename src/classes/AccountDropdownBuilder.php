@@ -23,7 +23,7 @@ class AccountDropdownBuilder {
         $row = $stmt->fetch();
         $pictureUrl = $row['picture_url'];
 
-        $profileLink = "http://dbsystems-engproject.rhcloud.com/src/user_page.php?id=" . $session['user']['id'];
+        $profileLink = "http://dbsystems-engproject.rhcloud.com/src/user_page.php?id=" . $session['user']['_id'];
 
         echo "<li class=\"dropdown\">";
         echo "<a class=\"dropdown-toggle\" href=\"#\" data-toggle=\"dropdown\">Account  <strong class=\"caret\"></strong></a>";

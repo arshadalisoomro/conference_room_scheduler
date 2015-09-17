@@ -12,7 +12,7 @@ class SendEmail {
         $mail->Username = 'postmaster@sandboxb958ed499fee4346ba3efcec39208a74.mailgun.org';
         $mail->Password = 'f285bbdde02a408823b9283cdd8d6958';                           
         $mail->From = 'postmaster@sandboxb958ed499fee4346ba3efcec39208a74.mailgun.org';
-        $mail->FromName = 'No-reply Wal Consulting';
+        $mail->FromName = 'Conference Room Scheduler';
         $mail->addAddress($to);
         if ($attachment) {
             $mail->AddAttachment($this->attachmentPath);
@@ -32,7 +32,7 @@ class SendEmail {
         $mail->Username = 'postmaster@sandboxb958ed499fee4346ba3efcec39208a74.mailgun.org';
         $mail->Password = 'f285bbdde02a408823b9283cdd8d6958';
         $mail->From = 'postmaster@sandboxb958ed499fee4346ba3efcec39208a74.mailgun.org';
-        $mail->FromName = 'No-reply Wal Consulting';
+        $mail->FromName = 'Conference Room Scheduler';
         foreach ($to as $value) {
             $mail->addAddress($value);
         }
