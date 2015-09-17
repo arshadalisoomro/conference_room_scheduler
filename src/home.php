@@ -49,7 +49,6 @@
             <span class="mdl-layout-title">Scheduler</span>
             <nav class="mdl-navigation">
                 <?php AccountDropdownBuilder::buildDropdown($db, $_SESSION) ?>
-                <a class="mdl-navigation__link" href="logout.php">Log Out</a>
             </nav>
         </div>
         <main class="mdl-layout__content">

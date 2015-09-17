@@ -30,7 +30,8 @@ class AccountDropdownBuilder {
         echo "</a>";
         echo "<b class=\"padding_left_class\">" . $session['user']['first_name'] . " " . $session['user']['last_name'] . "</b>";
         echo "<a class=\"mdl-navigation__link\" href=\"change_password.php\">Change Password</a>";
-        echo "<a class=\"mdl-navigation__link\" href=\"upload_photo.php\">Upload Photo</a><br/>";
+        echo "<a class=\"mdl-navigation__link\" href=\"upload_photo.php\">Upload Photo</a>";
+        echo "<a class=\"mdl-navigation__link\" href=\"logout.php\">Log Out</a>";
     }
 
 }
