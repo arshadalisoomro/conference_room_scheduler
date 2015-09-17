@@ -65,6 +65,7 @@
 </head>
 
 <body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
+<body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
         <header class="mdl-layout__header mdl-layout__header--waterfall">
             <div class="mdl-layout__header-row">
@@ -81,22 +82,35 @@
             <br/>
             <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
               <div class="mdl-card mdl-cell mdl-cell--12-col">
-                <div class="mdl-card__supporting-text">
+                <div id="content" class="mdl-card__supporting-text">
                     <form action="index.php" method="post">
-                        Email: <input type="text" name="email" value="<?php echo $email?>" /><br/>
-                        Password: <input type="password" name="password" value="" /><br/>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="text" id="email" name="email" value="<?php echo $email?>" />
+                            <label class="mdl-textfield__label" for="email">Email...</label>
+                        </div><br/>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="password" id="password" name="password" value="" />
+                            <label class="mdl-textfield__label" for="password">Password...</label>
+                        </div><br/>
                         <span class="error"><?php echo $message;?></span>
                         <br/> 
-                        <input type="submit" class="btn btn-info" value="Login" />
+                        <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                          Login
+                        </button>
                     </form> 
-                    <a href="src/forgot_password.php">Forgot Password?</a>
+                    <form action="src/forgot_password.php" method="post">
+                        <button id="forgot_password" type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                          Forgot Password
+                        </button>
+                    </form> 
+                    
                 </div>
               </div>
             </section>
             <br/>
         </main>
     </div>
-
+    
     <script src="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.min.js"></script>
 </body>
 </html>
