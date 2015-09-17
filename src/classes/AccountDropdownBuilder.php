@@ -32,9 +32,9 @@ class AccountDropdownBuilder {
         echo "<div class=\"center_image_dropdown\"><img src='" . $pictureUrl . "' /></div>";
         echo "</a>";
         echo "<b>" . $session['user']['first_name'] . " " . $session['user']['last_name'] . "</b><br/><br/>";
-        echo "<a href=\"change_password.php\">Change Password</a><br/>";
-        echo "<a href=\"delete_account.php\">Delete Account</a><br/><br/>";
-        echo "<a href=\"upload_photo.php\">Upload Photo</a><br/><br/>";
+        echo "<a class=\"mdl-navigation__link\" href=\"change_password.php\">Change Password</a><br/>";
+        echo "<a class=\"mdl-navigation__link\" href=\"delete_account.php\">Delete Account</a><br/><br/>";
+        echo "<a class=\"mdl-navigation__link\" href=\"upload_photo.php\">Upload Photo</a><br/><br/>";
         echo "</div>";
         echo "</li>";
     }
