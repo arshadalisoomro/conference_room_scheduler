@@ -45,7 +45,7 @@
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
         <header class="mdl-layout__header mdl-layout__header--waterfall">
             <div class="mdl-layout__header-row">
-                <span class="mdl-layout-title">Home</span>
+                <span class="mdl-layout-title">Reset Password</span>
             </div>
         </header>
         <div class="mdl-layout__drawer">
@@ -59,12 +59,13 @@
             <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
               <div class="mdl-card mdl-cell mdl-cell--12-col">
                 <div class="mdl-card__supporting-text">
-                    <h1>Password Retrieval</h1> <br />
                     <form action="forgot_password.php" method="post" id="mainForm">
                         <label>Email:</label>
                         <input type="text" name="email" value="<?php echo htmlspecialchars($_POST['email'])?>" onblur="update()" /><br/>
                         <span class="error"><?php echo $fp->noEmail;?></span><br/>
-                        <input type="submit" class="btn btn-info" value="Retrieve Password" /><br/><br/>;
+                        <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                          Reset Password
+                        </button>
                         <span class = "success"><?php echo $fp->success;?></span>
                         <span class = "error"><?php echo $fp->regisrationFailure;?></span>
                     </form>
