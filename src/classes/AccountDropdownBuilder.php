@@ -22,7 +22,7 @@ class AccountDropdownBuilder {
                 SELECT picture_url
                 FROM user
                 WHERE
-                    id = :id
+                    _id = :id
                 ";
         $query_params = array(
             ':id' => $session['user']['id']
