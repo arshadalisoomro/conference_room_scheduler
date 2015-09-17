@@ -35,59 +35,69 @@
     <meta name="description" content="Conference room management system for Database Systems">
     <meta name="author" content="Team 6">
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-    <script src="../assets/bootstrap.min.js"></script>
-    <link href="../assets/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link href="../assets/styles.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.indigo-pink.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href="../main.css" rel="stylesheet" type="text/css">
 </head>
 
-<body>
-
-<div class="navbar navbar-fixed-top navbar-inverse">
-  <div class="navbar-inner">
-    <div class="container">
-      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </a>
-      <a href="home.php" class="brand">Conference Room Scheduler</a>
-      <div class="nav-collapse">
-        <ul class="nav pull-right">
-          <li><a href="../index.php">Login</a></li>
-        </ul>
-      </div>
+<body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <header class="mdl-layout__header mdl-layout__header--waterfall">
+            <div class="mdl-layout__header-row">
+                <span class="mdl-layout-title">Reset Password</span>
+            </div>
+        </header>
+        <div class="mdl-layout__drawer">
+            <span class="mdl-layout-title">Scheduler</span>
+            <nav class="mdl-navigation">
+                <a class="mdl-navigation__link" href="../index.php">Login</a>
+            </nav>
+        </div>
+        <main class="mdl-layout__content">
+            <br/>
+            <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+              <div class="mdl-card mdl-cell mdl-cell--12-col">
+                <div id="content" class="mdl-card__supporting-text">
+                    <form action="register.php" method="post">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="text" id="access_code" name="access_code" />
+                            <label class="mdl-textfield__label" for="access_code">Access Code...</label>
+                        </div> <span class="error"><?php echo $r->noAccessCode; ?></span><br/>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="text" id="first_name" name="first_name" />
+                            <label class="mdl-textfield__label" for="first_name">First Name...</label>
+                        </div><br/>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="text" id="last_name" name="last_name" />
+                            <label class="mdl-textfield__label" for="last_name">Last Name...</label>
+                        </div><br/>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="text" id="email" name="email" />
+                            <label class="mdl-textfield__label" for="email">Email...</label>
+                        </div> <span class="error"> * <?php echo $r->noEmail; echo $r->incorrectEmail; echo $r->registeredEmail;?></span><br/>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="password" id="password" name="password" />
+                            <label class="mdl-textfield__label" for="password">Password...</label>
+                        </div> <span class="error"> * <?php echo $r->noPassword; echo $r->badPassword; ?></span><br/>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="password" id="confirmPassword" name="confirmPassword" />
+                            <label class="mdl-textfield__label" for="confirmPassword">Confirm Password...</label>
+                        </div> <span class="error"> * <?php echo $r->noConfirmPassword;?></span><br/>
+                        <span class="error"><?php echo $r->noPasswordMatch;?></span><br/>
+                        <span class="success"><?php echo $r->registrationSuccess;?></span>
+                        <span class="error"><?php echo $r->registrationFailure;?></span>
+                        <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                          Register
+                        </button><br/><br/>
+                        <p>Password must have at least one number and letter, and must be less than 20 characters.</p> 
+                    </form>
+                </div>
+              </div>
+            </section>
+            <br/>
+        </main>
     </div>
-  </div>
-</div>
-
-<div class="container hero-unit">
-    <h1>Register</h1> <br/><br/>
-    <form action="register.php" method="post">
-        </select><br/>
-        Access Code:<br/>
-        <input type="text" name="access_code" value="<?php echo htmlspecialchars($_POST['access_code'])?>" />  
-        <span class="error"><?php echo $r->noAccessCode; ?></span><br/>
-        First Name:<br/>
-        <input type="text" name="first_name" value="<?php echo htmlspecialchars($_POST['first_name'])?>" /><br/>
-        Last Name:<br/>
-        <input type="text" name="last_name" value="<?php echo htmlspecialchars($_POST['last_name'])?>" /><br/>
-        Email:<br/>
-        <input type="text" name="email" value="<?php echo htmlspecialchars($_POST['email'])?>" />
-        <span class="error"> * <?php echo $r->noEmail; echo $r->incorrectEmail; echo $r->registeredEmail;?></span><br/>
-        Password:<br/>
-        <input type="password" name="password" value="" />
-        <span class="error"> * <?php echo $r->noPassword; echo $r->badPassword; ?></span><br/>
-        Confirm Password:<br/>
-        <input type="password" name="confirmPassword" value="" />
-        <span class="error"> * <?php echo $r->noConfirmPassword;?></span><br/>
-        <span class="error"><?php echo $r->noPasswordMatch;?></span><br/>
-        <span class="success"><?php echo $r->registrationSuccess;?></span>
-        <span class="error"><?php echo $r->registrationFailure;?></span>
-        <input type="submit" class="btn btn-info" value="Register" /><br/><br/>
-        <p>Password must have at least one number and letter, and must be less than 20 characters.</p> 
-    </form>
-</div>
-
+    
+    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.min.js"></script>
 </body>
 </html>
