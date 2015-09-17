@@ -46,15 +46,6 @@ class ForgotPassword {
         }
     }
     
-    function checkAnswer($answer) {
-        if(strtolower($answer) == strtolower($this->userInfo['challenge_question_answer'])) {
-            return true;
-        } else {
-            $this->wrongAnswer = "Incorrect answer.";
-            return false;
-        }
-    }
-    
     function sendNewPassword($newPassword) {
         $mail = new PHPMailer();
         $mail->isSMTP();                  
@@ -63,16 +54,16 @@ class ForgotPassword {
         $mail->Username = 'postmaster@sandboxb958ed499fee4346ba3efcec39208a74.mailgun.org';
         $mail->Password = 'f285bbdde02a408823b9283cdd8d6958';                           
         $mail->From = 'postmaster@sandboxb958ed499fee4346ba3efcec39208a74.mailgun.org';
-        $mail->FromName = 'No-reply Wal Consulting';
+        $mail->FromName = 'Conference Room Scheduler';
         $mail->addAddress($this->email);
         $mail->isHTML(true);
         $mail->WordWrap = 70;
-        $mail->Subject = "Password Retrieval";
+        $mail->Subject = "Password Reset";
         $mail->Body    = 'Hello!<br/><br/>'
-                . 'You recently requested a password retrieval.<br/><br/>'
+                . 'You recently requested a password reset.<br/><br/>'
                 . 'Here is a new password use it to login.<br/><br/>'
                 . 'Password: '. $newPassword
-                . '<br/><br/>Thank you,<br/>Wal Consulting';
+                . '<br/><br/>Thank you';
         return $mail->send();
     }
     
@@ -81,7 +72,7 @@ class ForgotPassword {
             UPDATE user
             SET 
                 password = :password,
-                salt = :salt
+                password_salt = :salt
             WHERE
                 email = :email
         ";
