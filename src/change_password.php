@@ -14,7 +14,7 @@
     } else if (!empty($_POST) && $changer->checkFieldsCorrect($_POST)) {
         $query = "
                     SELECT *
-                    FROM users
+                    FROM user
                     WHERE
                         email = :email
                 ";
@@ -55,48 +55,55 @@
     <meta name="description" content="Conference room management system for Database Systems">
     <meta name="author" content="Team 6">
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-    <script src="../assets/bootstrap.min.js"></script>
-    <link href="../assets/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link href="../assets/styles.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.indigo-pink.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href="../main.css" rel="stylesheet" type="text/css">
 </head>
 
-
-<body>
-
-<div class="navbar navbar-fixed-top navbar-inverse">
-    <div class="navbar-inner">
-        <div class="container">
-            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </a>
-            <a href="home.php" class="brand">Conference Room Scheduler</a>
-            <div class="nav-collapse">
-                <ul class="nav pull-right">
-                    <?php AccountDropdownBuilder::buildDropdown($db, $_SESSION) ?>
-                    <li><a href="logout.php">Log Out</a></li>
-                </ul>
+<body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <header class="mdl-layout__header mdl-layout__header--waterfall">
+            <div class="mdl-layout__header-row">
+                <span class="mdl-layout-title">Change Password</span>
             </div>
+        </header>
+        <div class="mdl-layout__drawer">
+            <span class="mdl-layout-title">Scheduler</span>
+            <nav class="mdl-navigation">
+                <?php AccountDropdownBuilder::buildDropdown($db, $_SESSION) ?>
+            </nav>
         </div>
+        <main class="mdl-layout__content">
+            <br/>
+            <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+              <div class="mdl-card mdl-cell mdl-cell--12-col">
+                <div class="mdl-card__supporting-text">
+                    <form action="change_password.php" method="post">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="text" id="current_password" name="current_password" />
+                            <label class="mdl-textfield__label" for="current_password">Current Password...</label>
+                        </div><br/>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="text" id="new_password" name="new_password" />
+                            <label class="mdl-textfield__label" for="new_password">New Password...</label>
+                        </div><br/>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="text" id="confirm_password" name="confirm_password" />
+                            <label class="mdl-textfield__label" for="confirm_password">Confirm New Password...</label>
+                        </div><br/>
+                        <span class="error"><?php echo $changer->errorMessage;?></span>
+                        <span class="success"><?php echo $changer->success;?></span><br/>
+                        <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                          Change Password
+                        </button>
+                    </form>
+                </div>
+              </div>
+            </section>
+            <br/>
+        </main>
     </div>
-</div>
-
-<div class="container hero-unit">
-    <h1>Change Password</h1> <br />
-    <form action="change_password.php" method="post">
-        <label>Current Password:</label>
-        <input type="password" name="current_password" value="<?php echo htmlspecialchars($_POST['current_password']);?>" />
-        <label>New Password:</label>
-        <input type="password" name="new_password" value="" /><br/>
-        <label>Confirm New Password:</label>
-        <input type="password" name="confirm_password" value="" /><br/>
-        <span class="error"><?php echo $changer->errorMessage;?></span>
-        <span class="success"><?php echo $changer->success;?></span><br/>
-        <input type="submit" class="btn btn-info" value="Change Password" />
-    </form>
-</div>
-
+    
+    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.min.js"></script>
 </body>
 </html>
