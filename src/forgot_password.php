@@ -31,11 +31,6 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <style>
-        #content {
-            text-align: center;
-        }
-    </style>
     <meta charset="utf-8">
     <title>Conference Room</title>
     <meta name="description" content="Conference room management system for Database Systems">

@@ -52,9 +52,6 @@
 <html lang="en">
 <head>
     <style>
-        #content {
-            text-align: center;
-        }
         #forgot_password {
             margin-top: 10px;
             margin-bottom: 8px;

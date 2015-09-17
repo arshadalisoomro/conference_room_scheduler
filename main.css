@@ -293,5 +293,9 @@ html, body {
     width: 300px;
 }
 
+#content {
+    text-align: center;
+}
+        
 .error {color: #FF0000;}
 .success {color: #00FF00;}
