@@ -36,7 +36,7 @@
             if (PasswordUtils::checkMatchingPasswords($check_password, $row['password'])) {
                 $changer->errorMessage = PasswordUtils::testPassword($_POST['new_password']);
                 if(empty($changer->errorMessage)) {
-                    $changer->makePasswordChange($db, $_POST['new_password'], $row['salt'], $row['id']);
+                    $changer->makePasswordChange($db, $_POST['new_password'], $row['salt'], $row['_id']);
                     $changer->success = "Password changed successfully.";
                 }
             } else {

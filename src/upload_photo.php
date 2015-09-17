@@ -86,7 +86,7 @@
 
             $query_params = array(
                 ':url' => $image_url,
-                ':id' => $_SESSION['user']['id']
+                ':id' => $_SESSION['user']['_id']
             );
 
             try {

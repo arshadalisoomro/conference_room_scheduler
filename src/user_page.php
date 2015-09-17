@@ -11,7 +11,7 @@ if(empty($_SESSION['user'])) {
 } else if (isset($_GET['to_delete_id'])) {
     $query = "
         DELETE
-        FROM users
+        FROM user
         WHERE
           id = :id
     ";
@@ -32,12 +32,12 @@ if(empty($_SESSION['user'])) {
 
     $query = "
         SELECT *
-        FROM users
+        FROM user
         WHERE
-          id = :id
+          _id = :id
     ";
     $query_params = array(
-        ':id' => $_GET['id']
+        ':id' => $_GET['_id']
     );
 
     try {

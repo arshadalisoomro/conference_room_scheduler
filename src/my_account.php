@@ -10,17 +10,14 @@
         die("Redirecting to index.php");
     } else {
         switch($_SESSION['user']['user_type_id']) {
-                            case 3: // nurse
-                                $userType = "nurse";
+                            case 3: // user
+                                $userType = "user";
                                 break;
-                            case 2: // doctor
-                                $userType = "doctor";
+                            case 2: // manager
+                                $userType = "manager";
                                 break;
-                            case 4: // admin
-                                $userType = "administrator";
-                                break;
-                            default:
-                                $userType = "patient";
+                            case 1: // admin
+                                $userType = "admin";
                                 break;
                         }
     }
