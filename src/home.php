@@ -80,7 +80,7 @@
     <br>User Type:      <?php
                             $query = "
                                     SELECT *
-                                    FROM user_types
+                                    FROM user_type
                                     WHERE
                                         id = :id
                                     ";
