@@ -52,8 +52,7 @@ class Register {
         $this->emailError($post['email']);
         $this->passwordError($post['password'], $post['confirmPassword']);
 
-        $accessCode = "10101";
-        $this->accessCodeError($post['access_code'], $accessCode);
+        $this->accessCodeError($post['access_code'], '10101');
 
         return empty($this->noEmail) && empty($this->incorrectEmail) && empty($this->noPassword) &&
                 empty($this->noConfirmPassword) && empty($this->noPasswordMatch) &&
