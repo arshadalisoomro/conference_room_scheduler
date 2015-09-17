@@ -25,10 +25,10 @@ class AccountDropdownBuilder {
 
         $profileLink = "http://dbsystems-engproject.rhcloud.com/src/user_page.php?id=" . $session['user']['_id'];
 
-        echo "<a href=\"" . $profileLink . "\">";
+        echo "<a class=\"padding_left_class\" href=\"" . $profileLink . "\">";
         echo "<div class=\"center_image_dropdown\"><img src='" . $pictureUrl . "' /></div>";
         echo "</a>";
-        echo "<b>" . $session['user']['first_name'] . " " . $session['user']['last_name'] . "</b><br/><br/>";
+        echo "<b class=\"padding_left_class\">" . $session['user']['first_name'] . " " . $session['user']['last_name'] . "</b><br/><br/>";
         echo "<a class=\"mdl-navigation__link\" href=\"change_password.php\">Change Password</a>";
         echo "<a class=\"mdl-navigation__link\" href=\"delete_account.php\">Delete Account</a>";
         echo "<a class=\"mdl-navigation__link\" href=\"upload_photo.php\">Upload Photo</a>";

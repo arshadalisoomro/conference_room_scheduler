@@ -26,8 +26,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <style>.error {color: #FF0000;}</style>
-    <style>.success {color: #00FF00;}</style>
+    <style>.padding_left_class {padding-left: 10px;}</style>
     <meta charset="utf-8">
     <title>Conference Room</title>
     <meta name="description" content="Conference room management system for Database Systems">
@@ -43,7 +42,7 @@
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
         <header class="mdl-layout__header mdl-layout__header--waterfall">
             <div class="mdl-layout__header-row">
-                <span class="mdl-layout-title">Login</span>
+                <span class="mdl-layout-title">Home</span>
             </div>
         </header>
         <div class="mdl-layout__drawer">
