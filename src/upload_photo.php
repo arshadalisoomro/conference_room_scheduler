@@ -93,12 +93,8 @@
                     <h1>Upload a file</h1>
                     <p>Please select a file by clicking the 'Browse' button and press 'Upload' to start uploading your file.</p>
                     <form action="" method="post" enctype="multipart/form-data" name="form1" id="form1">
-                      <button name="theFile" type="file" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
-                          Choose File
-                        </button>
-                      <button name="Submit" type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
-                          Upload
-                        </button>
+                      <input name="theFile" type="file" />
+                      <input name="Submit" type="submit" value="Upload">
                     </form>
                 </div>
               </div>
