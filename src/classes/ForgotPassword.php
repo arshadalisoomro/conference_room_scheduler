@@ -20,7 +20,7 @@ class ForgotPassword {
         // Check if the email is in the database.
         $query = "
             SELECT *
-            FROM users
+            FROM user
             WHERE
                 email = :email
         ";
@@ -78,7 +78,7 @@ class ForgotPassword {
     
     function updateTables($password, $salt) {
         $query = "
-            UPDATE users
+            UPDATE user
             SET 
                 password = :password,
                 salt = :salt
