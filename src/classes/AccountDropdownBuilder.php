@@ -25,6 +25,7 @@ class AccountDropdownBuilder {
 
         $profileLink = "http://dbsystems-engproject.rhcloud.com/src/user_page.php?id=" . $session['user']['_id'];
 
+        echo "<a class=\"mdl-navigation__link\" href=\"home.php\">Home</a>";
         echo "<a class=\"padding_left_class\" href=\"" . $profileLink . "\">";
         echo "<div class=\"center_image_dropdown\"><img src='" . $pictureUrl . "' /></div>";
         echo "</a>";
