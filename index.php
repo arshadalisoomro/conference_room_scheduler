@@ -12,7 +12,7 @@
 
       $query = "
             SELECT *
-            FROM users
+            FROM user
             WHERE
                 email = :email
         ";
@@ -29,40 +29,16 @@
 
         $row = $stmt->fetch();
         if ($row) {
-            $check_password = PasswordUtils::hashPassword($_POST['password'], $row['salt']);
+            $check_password = PasswordUtils::hashPassword($_POST['password'], $row['password_salt']);
             
             if($check_password == $row['password']) {
-                if ($row['active_user'] == 0) {
-                    $message = "You must activate your account first.";
-                } else {
-                    unset($row['salt']);
-                    unset($row['password']);
-                    $_SESSION['user'] = $row;
+                unset($row['salt']);
+                unset($row['password']);
 
-                    if ($row['info_added'] == 0) {
-                        switch($row['user_type_id']) {
-                            case 3: // nurse
-                                header("Location: src/nurse_info.php");
-                                die("Redirecting to: src/nurse_info.php");
-                                break;
-                            case 2: // doctor
-                                header("Location: src/doctor_info.php");
-                                die("Redirecting to: src/doctor_info.php");
-                                break;
-                            case 4: // admin
-                                header("Location: src/administrator_info.php");
-                                die("Redirecting to: src/administrator_info.php");
-                                break;
-                            default:
-                                header("Location: src/patient_info.php");
-                                die("Redirecting to: src/patient_info.php");
-                                break;
-                        }
-                    } else {
-                        header("Location: src/home.php");
-                        die("Redirecting to: home.php");
-                    }
-                }
+                $_SESSION['user'] = $row;
+
+                header("Location: src/home.php");
+                die("Redirecting to: home.php");
             } else {
                 $message = "Invalid Password.";
             }
@@ -102,7 +78,7 @@
       <a href="src/home.php" class="brand">Conference Room Scheduler</a>
       <div class="nav-collapse collapse">
         <ul class="nav pull-right">
-          <li><a href="src/register.php">Register</a></li>
+          <li><a href="src/register.php">Register Administrator</a></li>
         </ul>
       </div>
     </div>

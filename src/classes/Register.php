@@ -27,7 +27,7 @@ class Register {
     function checkEmailExists($email, $db) {
         $query = "
                 SELECT *
-                FROM users
+                FROM user
                 WHERE
                     email = :email
             ";
@@ -52,8 +52,8 @@ class Register {
         $this->emailError($post['email']);
         $this->passwordError($post['password'], $post['confirmPassword']);
 
-        $accessCode = $this->getAccessCode($post['user_type_id'], $db);
-        $this->userTypeError($post['user_type_id'], $post['access_code'], $accessCode);
+        $accessCode = "10101";
+        $this->accessCodeError($post['access_code'], $accessCode);
 
         return empty($this->noEmail) && empty($this->incorrectEmail) && empty($this->noPassword) &&
                 empty($this->noConfirmPassword) && empty($this->noPasswordMatch) &&
@@ -84,60 +84,35 @@ class Register {
         }
     }
 
-    function userTypeError($typeId, $userAccessCode, $dbAccessCode) {
-        if ($typeId != 1) {
-            if (empty($userAccessCode)) {
-                $this->noAccessCode = "Enter an access code.";
-            }
-            if ($dbAccessCode != $userAccessCode) {
-                $this->noAccessCode = "Invalid access code";
-            }
+    function accessCodeError($userAccessCode, $dbAccessCode) {
+        if (empty($userAccessCode)) {
+            $this->noAccessCode = "Enter an access code.";
         }
-
-    }
-
-    function getAccessCode($typeId, $db) {
-        $query = "
-                SELECT *
-                FROM user_types
-                WHERE
-                  id = :type_id
-            ";
-
-        $query_params = array(
-            ':type_id' => $typeId
-        );
-
-        try {
-            $stmt = $db->prepare($query);
-            $result = $stmt->execute($query_params);
-        } catch(PDOException $ex) {
-            die("Failed to run query: " . $ex->getMessage());
+        if ($dbAccessCode != $userAccessCode) {
+            $this->noAccessCode = "Invalid access code";
         }
-        $row = $stmt->fetch();
-
-        return $row['access_code'];
     }
 
     function saveRegistration($post, $hash, $db) {
         // Store the results into the users table.
         $query = "
-                    INSERT INTO users (
+                    INSERT INTO user (
                         email,
                         password,
-                        salt,
+                        password_salt,
+                        first_name,
+                        last_name,
                         user_type_id,
-                        hash,
                         picture_url
                     ) VALUES (
                         :email,
                         :password,
                         :salt,
+                        :first_name,
+                        :last_name,
                         :user_type_id,
-                        :hash,
                         :picture_url
-                    )
-                    ";
+                    )";
 
         // Security measures
         $salt = PasswordUtils::generatePasswordSalt();
@@ -147,8 +122,9 @@ class Register {
             ':email' => $post['email'],
             ':password' => $password,
             ':salt' => $salt,
-            ':user_type_id' => $post['user_type_id'],
-            ':hash' => $hash,
+            ':first_name' => $post['first_name'],
+            ':last_name' => $post['last_name'],
+            ':user_type_id' => '1',
             ':picture_url' => 'http://walphotobucket.s3.amazonaws.com/default.jpg'
         );
 
@@ -158,16 +134,5 @@ class Register {
         } catch(PDOException $ex) {
             die("Failed to run query: " . $ex->getMessage());
         }
-    }
-
-    function sendRegistrationEmail($userEmail, $link) {
-        $message = 'Hello!<br/><br/>'
-            . 'Thanks for registering for an account through our Hospital'
-            . ' Management System! Please click <a href='.$link.'>here</a> to verify your account.'
-            . '<p>If you are having trouble with the link, paste the link below directly into your'
-            . ' browser:<br/><br/>'.$link.'<br/><br/>Thank you,<br/>Wal Consulting';
-
-        $email = new SendEmail();
-        return $email->SendEmail($userEmail,"Account verification request",$message,false);
     }
 }

@@ -12,20 +12,13 @@
     if(!empty($_POST)) {
         // Ensure that the user fills out fields.
         if ($r->checkNoFormErrors($_POST, $db)) {
-            $hash = md5(rand(0,2147483647));
             // check if the email exists
             $r->checkEmailExists($_POST['email'], $db);
 
             // If the email is not registered yet, send them a confirmation email
             // and add it to the database.
             if (empty($r->registeredEmail)) {
-                $link = "http://wal-engproject.rhcloud.com/src/verify.php?email=" . $_POST['email'] . "&hash=" . $hash;
-                if(!$r->sendRegistrationEmail($_POST['email'], $link)) {
-                    $r->registrationFailure = "Verification email could not be sent.";
-                } else {
-                    $r->registrationSuccess = "A confirmation email has been sent to the email address that you provided";
-                    $r->saveRegistration($_POST, $hash, $db);
-                }
+                $r->saveRegistration($_POST, $db);
             }
         }
     } 
@@ -70,46 +63,14 @@
 <div class="container hero-unit">
     <h1>Register</h1> <br/><br/>
     <form action="register.php" method="post">
-        User type:<br/>
-        <select name="user_type_id">
-            <?php
-
-            /**
-             * This code is used to fill the spinner from the database user_types.
-             * This database holds the different types of users, including: patient, doctor, nurse, administrator
-             */
-
-            $query = "
-                SELECT *
-                FROM user_types
-            ";
-
-            // execute the statement
-            try {
-                $stmt = $db->prepare($query);
-                $result = $stmt->execute();
-
-                $i = 0;
-
-                // loop through, adding the options to the spinner
-                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    if ($i == 0) {
-                        echo "<option value=\"" . $row["id"] . "\" selected=\"selected\">" . $row["type_name"] . "</option>";
-                    } else {
-                        echo "<option value=\"" . $row["id"] . "\">" . $row["type_name"] . "</option>";
-                    }
-
-                    $i = $i + 1;
-                }
-            } catch(Exception $e) {
-                die("Failed to gather user type information. " . $e->getMessage());
-            }
-
-            ?>
         </select><br/>
-        Access Code (not applicable for patients):<br/>
-        <input type="text" name="access_code" value="<?php echo htmlspecialchars($_POST['access_code'])?>" />
+        Access Code:<br/>
+        <input type="text" name="access_code" value="<?php echo htmlspecialchars($_POST['access_code'])?>" />  
         <span class="error"><?php echo $r->noAccessCode; ?></span><br/>
+        First Name:<br/>
+        <input type="text" name="first_name" value="<?php echo htmlspecialchars($_POST['first_name'])?>" />
+        Last Name:<br/>
+        <input type="text" name="last_name" value="<?php echo htmlspecialchars($_POST['last_name'])?>" />
         Email:<br/>
         <input type="text" name="email" value="<?php echo htmlspecialchars($_POST['email'])?>" />
         <span class="error"> * <?php echo $r->noEmail; echo $r->incorrectEmail; echo $r->registeredEmail;?></span><br/>
@@ -123,7 +84,7 @@
         <span class="success"><?php echo $r->registrationSuccess;?></span>
         <span class="error"><?php echo $r->registrationFailure;?></span>
         <input type="submit" class="btn btn-info" value="Register" /><br/><br/>
-        <p>Password must have at least one number and letter, and must be 20 characters long or fewer.</p> 
+        <p>Password must have at least one number and letter, and must be less than 20 characters.</p> 
     </form>
 </div>
 
