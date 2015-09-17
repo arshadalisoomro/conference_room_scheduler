@@ -31,6 +31,11 @@
 <!doctype html>
 <html lang="en">
 <head>
+    <style>
+        #content {
+            text-align: center;
+        }
+    </style>
     <meta charset="utf-8">
     <title>Conference Room</title>
     <meta name="description" content="Conference room management system for Database Systems">
@@ -58,10 +63,12 @@
             <br/>
             <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
               <div class="mdl-card mdl-cell mdl-cell--12-col">
-                <div class="mdl-card__supporting-text">
-                    <form action="forgot_password.php" method="post" id="mainForm">
-                        <label>Email:</label>
-                        <input type="text" name="email" value="<?php echo htmlspecialchars($_POST['email'])?>" onblur="update()" /><br/>
+                <div id="content" class="mdl-card__supporting-text">
+                    <form action="forgot_password.php" method="post">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="text" id="email" name="email" />
+                            <label class="mdl-textfield__label" for="email">Email...</label>
+                        </div><br/>
                         <span class="error"><?php echo $fp->noEmail;?></span><br/>
                         <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
                           Reset Password
