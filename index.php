@@ -68,11 +68,11 @@
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
         <header class="mdl-layout__header mdl-layout__header--waterfall">
             <div class="mdl-layout__header-row">
-                <a href="src/home.php" class="brand">Login</a>
+                <span class="mdl-layout-title">Login</span>
             </div>
         </header>
         <div class="mdl-layout__drawer">
-            <span class="mdl-layout-title">Conference Scheduler</span>
+            <span class="mdl-layout-title">Scheduler</span>
             <nav class="mdl-navigation">
                 <a class="mdl-navigation__link" href="src/register.php">Register as Administrator</a>
             </nav>
@@ -82,12 +82,9 @@
             <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
               <div class="mdl-card mdl-cell mdl-cell--12-col">
                 <div class="mdl-card__supporting-text">
-                    <h1>Login</h1> <br />
                     <form action="index.php" method="post">
-                        Email:<br/>
-                        <input type="text" name="email" value="<?php echo $email?>" /><br/>
-                        Password:<br/>
-                        <input type="password" name="password" value="" /><br/>
+                        Email: <input type="text" name="email" value="<?php echo $email?>" /><br/>
+                        Password: <input type="password" name="password" value="" /><br/>
                         <span class="error"><?php echo $message;?></span>
                         <br/> 
                         <input type="submit" class="btn btn-info" value="Login" />
@@ -99,7 +96,7 @@
             <br/>
         </main>
     </div>
-    
+
     <script src="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.min.js"></script>
 </body>
 </html>
