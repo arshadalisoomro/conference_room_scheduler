@@ -297,6 +297,10 @@ html, body {
     text-align: center;
 }
 
+.home_page_link {
+    font-size: 20px;
+}
+
 .padding_left_class {
     padding-left: 20px;
 }
