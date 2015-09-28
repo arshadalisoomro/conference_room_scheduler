@@ -74,7 +74,7 @@
 
                         $row = $stmt->fetch();
                         if ($row) {
-                            echo "<h2>Welcome " . $row['description'] . "!";
+                            echo "<h2>Welcome " . $row['description'] . "!</h2>";
                         }
                     ?>
                     What would you like to do?<br/><br/>
