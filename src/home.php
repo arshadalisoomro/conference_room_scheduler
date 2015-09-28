@@ -55,23 +55,25 @@
             <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
               <div class="mdl-card mdl-cell mdl-cell--12-col">
                 <div class="mdl-card__supporting-text">
-                    <h2>Welcome! What would you like to do?</h2>
+                    <h2>Welcome!</h2>
+                    What would you like to do?
+
                     <?php
                         if ($userType == "user") {
                             echo "<a href='schedule_meeting.php'>Schedule New Meeting</a><br/>";
-                            echo "<a href='dbsystems-engproject.rhcloud.com/src/view_meetings.php?type=me'>View Your Meetings</a><br/>";
+                            echo "<a href='http://dbsystems-engproject.rhcloud.com/src/view_meetings.php?type=me'>View Your Meetings</a><br/>";
                         } else if ($userType == "manager") {
-                            echo "<a href='schedule_meeting.php'>Schedule New Meeting</a><br/>";
-                            echo "<a href='dbsystems-engproject.rhcloud.com/src/view_meetings.php?type=me'>View Your Meetings</a><br/>";
-                            echo "<a href='dbsystems-engproject.rhcloud.com/src/view_meetings.php?type=users'>View Created Users' Meetings</a><br/><br/>";
+                            echo "<a href='http://schedule_meeting.php'>Schedule New Meeting</a><br/>";
+                            echo "<a href='http://dbsystems-engproject.rhcloud.com/src/view_meetings.php?type=me'>View Your Meetings</a><br/>";
+                            echo "<a href='http://dbsystems-engproject.rhcloud.com/src/view_meetings.php?type=users'>View Created Users' Meetings</a><br/><br/>";
                             
-                            echo "<a href='dbsystems-engproject.rhcloud.com/src/add_user.php?type=user'>Add a New User</a><br/>";
+                            echo "<a href='http://dbsystems-engproject.rhcloud.com/src/add_user.php?type=user'>Add a New User</a><br/>";
                         } else if ($userType == "admin") {
                             echo "<a href='schedule_meeting.php'>Schedule New Meeting</a><br/>";
-                            echo "<a href='dbsystems-engproject.rhcloud.com/src/view_meetings.php?type=me'>View Your Meetings</a><br/>";
-                            echo "<a href='dbsystems-engproject.rhcloud.com/src/view_meetings.php?type=all'>View All Meetings</a><br/><br/>";
+                            echo "<a href='http://dbsystems-engproject.rhcloud.com/src/view_meetings.php?type=me'>View Your Meetings</a><br/>";
+                            echo "<a href='http://dbsystems-engproject.rhcloud.com/src/view_meetings.php?type=all'>View All Meetings</a><br/><br/>";
                             
-                            echo "<a href='dbsystems-engproject.rhcloud.com/src/add_user.php?type=manager'>Add a New Manager</a><br/>";
+                            echo "<a href='http://dbsystems-engproject.rhcloud.com/src/add_user.php?type=manager'>Add a New Manager</a><br/>";
                             echo "<a href='edit_resources.php'>Edit Conference Room Resources</a><br/>";
                         }
 
