@@ -54,8 +54,29 @@
             <br/>
             <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
               <div class="mdl-card mdl-cell mdl-cell--12-col">
-                <div class="mdl-card__supporting-text">
-                    <h2>Welcome!</h2>
+                <div class="mdl-card__supporting-text"><?php
+                        $query = "
+                                SELECT *
+                                FROM user_type
+                                WHERE
+                                    _id = :id
+                                ";
+                        $query_params = array(
+                            ':id' => $_SESSION['user']['user_type_id']
+                        );
+
+                        try {
+                            $stmt = $db->prepare($query);
+                            $result = $stmt->execute($query_params);
+                        } catch(PDOException $ex) {
+                            die("Failed to run query: " . $ex->getMessage());
+                        }
+
+                        $row = $stmt->fetch();
+                        if ($row) {
+                            echo "<h2>Welcome " . $row['description'] . "!";
+                        }
+                    ?>
                     What would you like to do?<br/><br/>
 
                     <?php
@@ -77,31 +98,8 @@
                             echo "<a class='home_page_link' href='edit_resources.php'>Edit Conference Room Resources</a><br/>";
                         }
 
-                    ?>
-                    <br>User Type:      
-                    <?php
-                        $query = "
-                                SELECT *
-                                FROM user_type
-                                WHERE
-                                    _id = :id
-                                ";
-                        $query_params = array(
-                            ':id' => $_SESSION['user']['user_type_id']
-                        );
-
-                        try {
-                            $stmt = $db->prepare($query);
-                            $result = $stmt->execute($query_params);
-                        } catch(PDOException $ex) {
-                            die("Failed to run query: " . $ex->getMessage());
-                        }
-
-                        $row = $stmt->fetch();
-                        if ($row) {
-                            echo $row['description'];
-                        }
-                    ?>
+                    ?> 
+                    
                 </div>
               </div>
             </section>
