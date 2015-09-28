@@ -65,162 +65,63 @@ if(empty($_SESSION['user'])) {
     <meta name="description" content="Conference room management system for Database Systems">
     <meta name="author" content="Team 6">
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-    <script src="../assets/bootstrap.min.js"></script>
-    <link href="../assets/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link href="../assets/styles.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.indigo-pink.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href="../main.css" rel="stylesheet" type="text/css">
 </head>
 
-<body>
-
-<div class="navbar navbar-fixed-top navbar-inverse">
-    <div class="navbar-inner">
-        <div class="container">
-            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </a>
-            <a href="home.php" class="brand">Conference Room Scheduler</a>
-            <div class="nav-collapse">
-                <ul class="nav pull-right">
-                    <?php AccountDropdownBuilder::buildDropdown($db, $_SESSION) ?>
-                    <li><a href="logout.php">Log Out</a></li>
-                </ul>
+<body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <header class="mdl-layout__header mdl-layout__header--waterfall">
+            <div class="mdl-layout__header-row">
+                <span class="mdl-layout-title">Upload Picture</span>
             </div>
+        </header>
+        <div class="mdl-layout__drawer">
+            <span class="mdl-layout-title">Scheduler</span>
+            <nav class="mdl-navigation">
+                <?php AccountDropdownBuilder::buildDropdown($db, $_SESSION) ?>
+            </nav>
         </div>
+        <main class="mdl-layout__content">
+            <br/>
+            <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+              <div class="mdl-card mdl-cell mdl-cell--12-col">
+                <div class="mdl-card__supporting-text">
+                    <h1><?php echo $userProfile['first_name'] . " " . $userProfile['last_name'] ?></h1> <br/>
+                    <?php echo "<b>Email:</b> " . $userProfile['email'] . "<br/>"; ?>
+                    <br><b>User Type: </b>
+                    <?php
+                        $query = "
+                                SELECT *
+                                FROM user_type
+                                WHERE
+                                    _id = :id
+                                ";
+                        $query_params = array(
+                            ':id' => $_SESSION['user']['user_type_id']
+                        );
+
+                        try {
+                            $stmt = $db->prepare($query);
+                            $result = $stmt->execute($query_params);
+                        } catch(PDOException $ex) {
+                            die("Failed to run query: " . $ex->getMessage());
+                        }
+
+                        $row = $stmt->fetch();
+                        if ($row) {
+                            echo $row['description'];
+                        }
+                    ?>
+                </div>
+              </div>
+            </section>
+            <br/>
+        </main>
     </div>
-</div>
-
-<div class="container hero-unit">
-    <h1><?php echo $userProfile['first_name'] . " " . $userProfile['last_name'] ?></h1> <br/>
-
-    <?php
-
-    if ($_SESSION['user']['user_type_id'] == 4) {
-        $link = "http://wal-engproject.rhcloud.com/src/user_page.php?to_delete_id=" . $userProfile['id'];
-        echo '<a href="' . $link . '" class="confirmation">Delete User</a>';
-    }
-
-    ?>
-    <div class="center_image_profile">
-        <img src="<?php echo $userProfile['picture_url'] ?>" />
-    </div><br/><br/>
-    <?php
-    $query = "
-        SELECT *
-        FROM insurance
-        WHERE
-          id = :id
-    ";
-    $query_params = array(
-        ':id' => $userProfile['insurance_id']
-    );
-
-    try {
-        $stmt = $db->prepare($query);
-        $result = $stmt->execute($query_params);
-
-        $row = $stmt->fetch();
-        if ($row) {
-            $insurance_company = $row['insurance_company'];
-        }
-
-    } catch(PDOException $ex) {
-        die("Failed to run query: " . $ex->getMessage());
-    }
-    ?>
-
-    <h2>Contact Info:</h2>
-    <?php
-    echo "<b>Email:</b> " . $userProfile['email'] . "<br/>";
-    if (!empty($userProfile['phone'])) {
-        echo "<b>Phone:</b> " . $userProfile['phone'] . "<br/>";
-    }
-    if (!empty($userProfile['address']) && !empty($userProfile['city']) && !empty($userProfile['state']) && !empty($userProfile['zip'])) {
-        echo "<b>Address:</b> " . $userProfile['address'] . "<br/>&nbsp;" . $userProfile['city'] . ", " . $userProfile['state'] . " " . $userProfile['zip']. "<br/>";
-    }
-    ?>
-
-    <?php
-        switch($userProfile['user_type_id']) {
-            case 1: // patient (sex, age, dob, marital status, insurance provider, insurance begin, insurance end, allergies, diseases, previous surgeries, other medical history)
-                echo "<h2>Patient Info:</h2>";
-                $info = array( 
-                    "Sex" => "sex",
-                    "Age" => "age",
-                    "Date of Birth" => "dob",
-                    "Marital Status" => "marital_status",
-                   // "Insurance Provider" => $insurance_company,
-                    "Insurance Begin Date" => "insurance_begin",
-                    "Insurance End Date" => "insurance_end",
-                    "Allergies" => "allergies",
-                    "Disease" => "diseases",
-                    "Previous Surgeries" => "previous_surgeries",
-                    "Other Medical History" => "other_medical_history"
-                    );
-                break;
-            case 2: // doctor (sex, degree, years of experience, specialization, shift)
-                echo "<h2>Doctor Info:</h2>";
-                $info = array( 
-                    "Sex" => "sex",
-                    "Degree" => "degree",
-                    "Years of Experience" => "years_of_experience",
-                    "Specialization" => "specialization",
-                    "Shift" => "shift"
-                    );
-                break;
-            case 3: // nurse (sex, department, years of experience, shift)
-                echo "<h2>Nurse Info:</h2>";
-                $info = array( 
-                    "Sex" => "sex",
-                    "Department" => "department",
-                    "Years of Experience" => "years_of_experience",
-                    "Shift" => "shift"
-                    );
-                break;
-            case 4: // admin (sex)
-                echo "<h2>Admin Info:</h2>";
-                $info = array("Sex" => "sex");
-                break;
-        }
-        
-        foreach($info as $key => $value) {
-            if(!empty($userProfile[$value])) {     
-                echo "<b>" . $key . ":</b> " . $userProfile[$value] . "<br/>";
-            }
-        }
-        if(!empty($insurance_company)){
-        echo "<b>" . 'Insurance Provider' . ":</b> " . $insurance_company . "<br/>";
-        }
-
-        if ($_SESSION['user']['user_type_id'] == 4 && $userProfile['user_type_id'] != 4) {
-            // admins should be able to the users past appointments
-            echo "<h2>Appointments:</h2>";
-            $tableBuilder = new AppointmentTableBuilder();
-            $tableBuilder->showAppointments($userProfile, $db, true);
-        } else {
-
-        }
-        // Only patients can schedule appointments with doctors.
-        if($userProfile['user_type_id'] == 2 && $_SESSION['user']['user_type_id'] == 1) {
-            $link = "http://wal-engproject.rhcloud.com/src/schedule_appointment.php?id=" . $userProfile['id'];
-            echo "<a href=\"" . $link . "\">Schedule an appointment</a><br/>";
-        }
-        
-    ?>
-
-    <script type="text/javascript">
-        var elems = document.getElementsByClassName('confirmation');
-        var confirmIt = function (e) {
-            if (!confirm('Are you sure?')) e.preventDefault();
-        };
-        for (var i = 0, l = elems.length; i < l; i++) {
-            elems[i].addEventListener('click', confirmIt, false);
-        }
-    </script>
-
-</div>
-
+    
+    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.min.js"></script>
 </body>
+
 </html>
