@@ -31,12 +31,12 @@
 
         $row = $stmt->fetch();
         if ($row) {
-            $check_password = PasswordUtils::hashPassword($_POST['current_password'], $row['salt']);
+            $check_password = PasswordUtils::hashPassword($_POST['current_password'], $row['password_salt']);
             
             if (PasswordUtils::checkMatchingPasswords($check_password, $row['password'])) {
                 $changer->errorMessage = PasswordUtils::testPassword($_POST['new_password']);
                 if(empty($changer->errorMessage)) {
-                    $changer->makePasswordChange($db, $_POST['new_password'], $row['salt'], $row['_id']);
+                    $changer->makePasswordChange($db, $_POST['new_password'], $row['password_salt'], $row['_id']);
                     $changer->success = "Password changed successfully.";
                 }
             } else {
