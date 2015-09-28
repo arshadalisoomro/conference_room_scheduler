@@ -12,7 +12,7 @@
         // Check if the email is recognized.
         $fp->checkEmail($_POST['email'], $db);
         // If the email was recognized, generate a new password and send an email.
-        if(empty($fp->noEmail) && !empty($_POST['challenge_question_answer'])) {
+        if(empty($fp->noEmail)) {
             $newPassword = PasswordUtils::generateNewPassword();
             if($fp->sendNewPassword($newPassword)) {
                 $fp->success = "An email has been sent to the address that you provided. "
