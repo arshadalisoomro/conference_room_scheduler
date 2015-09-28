@@ -74,23 +74,25 @@
 
                         $row = $stmt->fetch();
                         if ($row) {
-                            echo "<h2>Welcome " . $row['description'] . "!</h2>";
+                            echo "<h2>Welcome, " . $row['description'] . ".</h2>";
                         }
                     ?>
-                    What would you like to do?<br/><br/>
+                    <div class='med_text'>What would you like to do?<br/><br/></div>
 
                     <?php
                         if ($userType == "user") {
                             echo "<a class='home_page_link' href='schedule_meeting.php'>Schedule New Meeting</a><br/>";
                             echo "<a class='home_page_link' href='http://dbsystems-engproject.rhcloud.com/src/view_meetings.php?type=me'>View Your Meetings</a><br/>";
                         } else if ($userType == "manager") {
-                            echo "<a class='home_page_link' href='http://schedule_meeting.php'>Schedule New Meeting</a><br/>";
+                            echo "<a class='home_page_link' href='http://schedule_meeting.php'>Schedule New Meeting</a><br/><br/>";
+
                             echo "<a class='home_page_link' href='http://dbsystems-engproject.rhcloud.com/src/view_meetings.php?type=me'>View Your Meetings</a><br/>";
                             echo "<a class='home_page_link' href='http://dbsystems-engproject.rhcloud.com/src/view_meetings.php?type=users'>View Created Users' Meetings</a><br/><br/>";
                             
                             echo "<a class='home_page_link' href='http://dbsystems-engproject.rhcloud.com/src/add_user.php?type=user'>Add a New User</a><br/>";
                         } else if ($userType == "admin") {
-                            echo "<a class='home_page_link' href='schedule_meeting.php'>Schedule New Meeting</a><br/>";
+                            echo "<a class='home_page_link' href='schedule_meeting.php'>Schedule New Meeting</a><br/><br/>";
+
                             echo "<a class='home_page_link' href='http://dbsystems-engproject.rhcloud.com/src/view_meetings.php?type=me'>View Your Meetings</a><br/>";
                             echo "<a class='home_page_link' href='http://dbsystems-engproject.rhcloud.com/src/view_meetings.php?type=all'>View All Meetings</a><br/><br/>";
                             
