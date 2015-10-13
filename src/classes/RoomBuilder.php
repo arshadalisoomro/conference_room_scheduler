@@ -1,9 +1,7 @@
 <?php
 
 class RoomBuilder {
-
-
-    function buildCards($db) {
+    static function buildCards($db) {
         $query = "SELECT room_number FROM room";
 
         // execute the statement
