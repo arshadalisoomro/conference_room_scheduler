@@ -6,7 +6,6 @@
     require("config.php");
 
     $user = $_SESSION['user'];
-    $roomBuilder = new roomBuilder($db, $user);
 
     if(empty($_SESSION['user'])) {
         header("Location: ../index.php");
