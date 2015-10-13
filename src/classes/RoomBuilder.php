@@ -19,11 +19,12 @@ class RoomBuilder {
                 echo '      </div>' . "\r\n";
                 echo '  </div>' . "\r\n";
                 echo '</section>' . "\r\n";
-                echo '</br>' . "\r\n";
             }
         } catch(Exception $e) {
             echo $e->getMessage();
         }
+
+        echo '</br>' . "\r\n";
     }
 
     function getResourcesString($db, $roomId) {
