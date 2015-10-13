@@ -32,6 +32,8 @@ class RoomBuilder {
                   WHERE r.room_id = " . $roomId;
 
         $string = "";
+        $inserted = false;
+
         // execute the statement
         try {
             $stmt = $db->prepare($query);
@@ -47,10 +49,15 @@ class RoomBuilder {
                     $string = $string . ", " . $row['description'];
                 }
 
+                $inserted = true;
                 $i = $i + 1;
             }
         } catch(Exception $e) {
             $string = $e->getMessage();
+        }
+
+        if (!$inserted) {
+            $string = "No resources available at this location.";
         }
 
         return $string;
