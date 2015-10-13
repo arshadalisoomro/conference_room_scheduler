@@ -5,7 +5,7 @@ class RoomBuilder {
     private $db;
     private $user;
 
-    function _construct($db, $user) {
+    function __construct($db, $user) {
         $this->db = $db;
         $this->user = $user;
     }
