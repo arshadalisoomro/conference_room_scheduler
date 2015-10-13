@@ -15,7 +15,7 @@ class RoomBuilder {
                 echo '  <div class="mdl-card mdl-cell mdl-cell--12-col">' . "\r\n";
                 echo '      <div class="mdl-card__supporting-text">' . "\r\n";
                 echo '          <h3>Room Number: ' . $row['room_number'] . '</h3>' . "\r\n";
-                echo '          <p>Resources: ' . $this->getResourcesString($row['_id']) . '</p>' . "\r\n";
+                echo '          <p>Resources: ' . $this->getResourcesString($db, $row['_id']) . '</p>' . "\r\n";
                 echo '      </div>' . "\r\n";
                 echo '  </div>' . "\r\n";
                 echo '</section>' . "\r\n";
@@ -26,7 +26,31 @@ class RoomBuilder {
         }
     }
 
-    function getResourcesString($roomId) {
-        return "test, one, two, three";
+    function getResourcesString($db, $roomId) {
+        $query = "SELECT description, quality_description 
+                  FROM resource r LEFT JOIN resource_type rt ON r.resource_type_id = rt._id 
+                  WHERE r.room_id = " . $roomId;
+
+        $string = "";
+        // execute the statement
+        try {
+            $stmt = $db->prepare($query);
+            $result = $stmt->execute();
+
+            $i = 0;
+
+            // loop through, adding the all the rooms in a seperate card
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                if ($i == 0) {
+                    $string = $row['description'];
+                } else {
+                    $string = $string . ", " . $row['description'];
+                }
+            }
+        } catch(Exception $e) {
+            $string = $e->getMessage();
+        }
+
+        return $string;
     }
 }
