@@ -46,6 +46,8 @@ class RoomBuilder {
                 } else {
                     $string = $string . ", " . $row['description'];
                 }
+
+                $i = $i + 1;
             }
         } catch(Exception $e) {
             $string = $e->getMessage();
