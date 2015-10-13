@@ -1,9 +1,9 @@
 <?php
 
 class RoomBuilder {
-    static function buildCards($db) {
+    function buildCards($db) {
         $query = "SELECT * FROM room";
-        
+
         // execute the statement
         try {
             $stmt = $db->prepare($query);
@@ -14,7 +14,7 @@ class RoomBuilder {
                 echo '<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">';
                 echo '  <div class="mdl-card mdl-cell mdl-cell--12-col">';
                 echo '      <div class="mdl-card__supporting-text">';
-                echo '          <h3>Room Number:' . $row['room_number'] . '</h3>';
+                echo '          <h3>Room Number: ' . $row['room_number'] . '</h3>';
                 echo '      </div>';
                 echo '  </div>';
                 echo '</section>';
@@ -24,4 +24,6 @@ class RoomBuilder {
             echo $e->getMessage();
         }
     }
+
+
 }

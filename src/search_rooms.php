@@ -6,6 +6,7 @@
     require("config.php");
 
     $user = $_SESSION['user'];
+    $roomBuilder = new RoomBuilder();
 
     if(empty($_SESSION['user'])) {
         header("Location: ../index.php");
@@ -42,7 +43,7 @@
         </div>
         <main class="mdl-layout__content">
             <br/>
-            <?php RoomBuilder::buildCards($db); ?>
+            <?php $roomBuilder->buildCards($db); ?>
         </main>
     </div>
     
