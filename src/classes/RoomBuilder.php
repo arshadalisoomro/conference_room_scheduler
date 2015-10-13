@@ -16,6 +16,7 @@ class RoomBuilder {
                 echo '      <div class="mdl-card__supporting-text">' . "\r\n";
                 echo '          <h3>Room Number: ' . $row['room_number'] . '</h3>' . "\r\n";
                 echo '          <p>Resources: ' . $this->getResourcesString($db, $row['_id']) . '</p>' . "\r\n";
+                echo '          <p>Capacity: ' . $row['capacity'] . '</p>';
                 echo '      </div>' . "\r\n";
                 echo '  </div>' . "\r\n";
                 echo '</section>' . "\r\n";
