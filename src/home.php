@@ -81,17 +81,17 @@
 
                     <?php
                         if ($userType == "user") {
-                            echo "<a class='home_page_link' href='schedule_meeting.php'>Schedule New Reservation</a><br/>";
+                            echo "<a class='home_page_link' href='search_rooms.php'>Schedule New Reservation</a><br/>";
                             echo "<a class='home_page_link' href='http://dbsystems-engproject.rhcloud.com/src/view_meetings.php?type=me'>View Your Meetings</a><br/>";
                         } else if ($userType == "manager") {
-                            echo "<a class='home_page_link' href='http://schedule_meeting.php'>Schedule New Reservation</a><br/><br/>";
+                            echo "<a class='home_page_link' href='search_room.php'>Schedule New Reservation</a><br/><br/>";
 
                             echo "<a class='home_page_link' href='http://dbsystems-engproject.rhcloud.com/src/view_meetings.php?type=me'>View Your Reservations</a><br/>";
                             echo "<a class='home_page_link' href='http://dbsystems-engproject.rhcloud.com/src/view_meetings.php?type=users'>View Created Users' Reservations</a><br/><br/>";
                             
                             echo "<a class='home_page_link' href='http://dbsystems-engproject.rhcloud.com/src/add_user.php?type=user'>Add a New User</a><br/>";
                         } else if ($userType == "admin") {
-                            echo "<a class='home_page_link' href='schedule_meeting.php'>Schedule New Reservation</a><br/><br/>";
+                            echo "<a class='home_page_link' href='search_room.php'>Schedule New Reservation</a><br/><br/>";
 
                             echo "<a class='home_page_link' href='http://dbsystems-engproject.rhcloud.com/src/view_meetings.php?type=me'>View Your Reservations</a><br/>";
                             echo "<a class='home_page_link' href='http://dbsystems-engproject.rhcloud.com/src/view_meetings.php?type=all'>View All Reservations</a><br/><br/>";
