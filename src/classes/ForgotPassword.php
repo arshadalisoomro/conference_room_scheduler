@@ -9,7 +9,7 @@ class ForgotPassword {
     private $db;
     private $userInfo;
     
-    function _construct() {
+    function __construct() {
         $this->noEmail =
         $this->success =
         $this->email = "";

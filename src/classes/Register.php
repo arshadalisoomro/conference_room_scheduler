@@ -12,7 +12,7 @@ class Register {
     public $badPassword;
     public $registrationFailure;
 
-    function _construct() {
+    function __construct() {
         $this->noEmail =
             $this->incorrectEmail =
             $this->noPassword =

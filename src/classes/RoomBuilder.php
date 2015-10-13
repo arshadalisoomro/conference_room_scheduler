@@ -1,16 +1,9 @@
 <?php
 
 class RoomBuilder {
-    
-    private $db;
-    private $user;
 
-    function __construct($db, $user) {
-        $this->db = $db;
-        $this->user = $user;
-    }
 
-    function buildCards() {
+    function buildCards($db) {
         $query = "SELECT room_number FROM room";
 
         // execute the statement
