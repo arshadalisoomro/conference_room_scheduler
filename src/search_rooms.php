@@ -43,7 +43,6 @@
         </div>
         <main class="mdl-layout__content">
             <br/>
-            <?php $roomBuilder->buildCards(); ?>
         </main>
     </div>
     
