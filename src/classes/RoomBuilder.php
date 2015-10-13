@@ -21,7 +21,7 @@ class RoomBuilder {
                 echo '</br>';
             }
         } catch(Exception $e) {
-            die("Failed to gather user type information. " . $e->getMessage());
+            echo $e->getMessage();
         }
     }
 }
