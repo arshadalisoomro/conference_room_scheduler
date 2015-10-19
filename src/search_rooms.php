@@ -42,7 +42,7 @@
             </nav>
         </div>
         <main class="mdl-layout__content">
-            <br/>
+            <?php $roomBuilder->buildFilters($db) ?><br/>
             <?php $roomBuilder->buildCards($db); ?>
         </main>
     </div>

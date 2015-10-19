@@ -1,6 +1,21 @@
 <?php
 
 class RoomBuilder {
+    function buildFilters($db) {
+        echo '<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">' . "\r\n";
+        echo '  <div class="mdl-card mdl-cell mdl-cell--12-col">' . "\r\n";
+        echo '      <div class="mdl-card__supporting-text">' . "\r\n";
+        echo '          <h3>Filter Rooms:</h3>';
+
+        echo makeResourceCheckboxes($db);
+        echo makeLocationSpinner($db);
+        echo makeCapacityInput($db);
+
+        echo '      </div>' . "\r\n";
+        echo '  </div>' . "\r\n";
+        echo '</section>' . "\r\n";
+    }
+
     function buildCards($db) {
         $query = "SELECT * FROM room";
 
@@ -63,5 +78,34 @@ class RoomBuilder {
         }
 
         return $string;
+    }
+
+    function makeResourceCheckboxes($db) {
+        $query = "SELECT * FROM resource_type";
+
+        $string = "";
+
+        try {
+            $stmt = $db->prepare($query);
+            $result = $stmt->execute();
+
+            // loop through, adding the all the rooms in a seperate card
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                $string += '<input type="checkbox" name="resourceType[]" value="' . $row['_id'] . '"/>' 
+                        . $row['description'] . '  ';
+            }
+        } catch(Exception $e) {
+            echo $e->getMessage();
+        }
+
+        return $string;
+    }
+
+    function makeLocationSpinner($db) {
+        return '';
+    }
+
+    function makeCapacityInput($db) {
+        return '';
     }
 }
