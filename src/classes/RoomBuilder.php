@@ -8,9 +8,9 @@ class RoomBuilder {
         echo '          <h3>Filter Rooms:</h3>';
         echo '          <form action="checkbox-form.php" method="post">';
 
-        echo makeResourceCheckboxes($db);
-        echo makeLocationSpinner($db);
-        echo makeCapacityInput($db);
+        makeResourceCheckboxes($db);
+        makeLocationSpinner($db);
+        makeCapacityInput($db);
 
         echo '          <input type="submit" value="Filter" />';
         echo '          </form>';
@@ -86,29 +86,25 @@ class RoomBuilder {
     function makeResourceCheckboxes($db) {
         $query = "SELECT * FROM resource_type";
 
-        $string = "";
-
         try {
             $stmt = $db->prepare($query);
             $result = $stmt->execute();
 
             // loop through, adding the all the rooms in a seperate card
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                $string = $string . '<input type="checkbox" name="formDoor[]" value="A" />Acorn Building<br />';
+                echo '<input type="checkbox" name="formDoor[]" value="' . $row['_id'] . '"/>' . $row['description'];
             }
         } catch(Exception $e) {
             echo $e->getMessage();
         }
-
-        return $string;
     }
 
     function makeLocationSpinner($db) {
-        return '';
+        
     }
 
     function makeCapacityInput($db) {
-        return '';
+        
     }
 
     function isChecked($post, $chkname, $value) {
