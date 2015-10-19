@@ -1,7 +1,7 @@
 <?php
 
 class RoomBuilder {
-    function buildFilters($db) {
+    function buildFilters($db, $post) {
         echo '<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">' . "\r\n";
         echo '  <div class="mdl-card mdl-cell mdl-cell--12-col">' . "\r\n";
         echo '      <div class="mdl-card__supporting-text">' . "\r\n";
@@ -91,8 +91,7 @@ class RoomBuilder {
 
             // loop through, adding the all the rooms in a seperate card
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                $string += '<input type="checkbox" name="resourceType[]" value="' . $row['_id'] . '"/>' 
-                        . $row['description'] . '  ';
+                
             }
         } catch(Exception $e) {
             echo $e->getMessage();
@@ -107,5 +106,17 @@ class RoomBuilder {
 
     function makeCapacityInput($db) {
         return '';
+    }
+
+    function isChecked($post, $chkname, $value) {
+        if(!empty($_POST[$chkname])) {
+            foreach($_POST[$chkname] as $chkval) {
+                if($chkval == $value) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 }
