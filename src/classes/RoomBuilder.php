@@ -108,6 +108,8 @@ class RoomBuilder {
 
             $i = 0;
 
+            echo '<select name="location_id">';
+
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 if ($i == 0) {
                     echo '<option value="' . $row['id'] . '" selected="selected">' . $row['name'] . '</option>';
@@ -117,6 +119,8 @@ class RoomBuilder {
 
                 $i = $i + 1;
             }
+
+            echo '</select>';
         } catch(Exception $e) {
             echo $e->getMessage();
         }
@@ -127,8 +131,8 @@ class RoomBuilder {
     }
 
     function isChecked($post, $chkname, $value) {
-        if(!empty($_POST[$chkname])) {
-            foreach($_POST[$chkname] as $chkval) {
+        if(!empty($post[$chkname])) {
+            foreach($post[$chkname] as $chkval) {
                 if($chkval == $value) {
                     return true;
                 }
