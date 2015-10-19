@@ -6,11 +6,14 @@ class RoomBuilder {
         echo '  <div class="mdl-card mdl-cell mdl-cell--12-col">' . "\r\n";
         echo '      <div class="mdl-card__supporting-text">' . "\r\n";
         echo '          <h3>Filter Rooms:</h3>';
+        echo '          <form action="checkbox-form.php" method="post">';
 
         echo makeResourceCheckboxes($db);
         echo makeLocationSpinner($db);
         echo makeCapacityInput($db);
 
+        echo '          <input type="submit" value="Filter" />';
+        echo '          </form>';
         echo '      </div>' . "\r\n";
         echo '  </div>' . "\r\n";
         echo '</section>' . "\r\n";
@@ -91,7 +94,7 @@ class RoomBuilder {
 
             // loop through, adding the all the rooms in a seperate card
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                
+                $string = $string . '<input type="checkbox" name="formDoor[]" value="A" />Acorn Building<br />';
             }
         } catch(Exception $e) {
             echo $e->getMessage();
