@@ -12,7 +12,7 @@ class RoomBuilder {
         $this->makeLocationSpinner($db);
         $this->makeCapacityInput($db);
 
-        echo '          <input type="submit" value="Filter" />' . "\r\n";
+        echo '          <br/><input type="submit" value="Filter"/>' . "\r\n";
         echo '          </form>' . "\r\n";
         echo '      </div>' . "\r\n";
         echo '  </div>' . "\r\n";
@@ -92,7 +92,7 @@ class RoomBuilder {
 
             // loop through, adding the all the rooms in a seperate card
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                echo '<input type="checkbox" name="resources[]" value="' . $row['_id'] . '"/>' . $row['description'];
+                echo '<input type="checkbox" name="resources[]" value="' . $row['_id'] . '"/>' . $row['description'] . '   ';
             }
         } catch(Exception $e) {
             echo $e->getMessage();
@@ -100,7 +100,26 @@ class RoomBuilder {
     }
 
     function makeLocationSpinner($db) {
-        
+        $query = "SELECT * FROM location";
+
+        try {
+            $stmt = $db->prepare($query);
+            $result = $stmt->execute();
+
+            $i = 0;
+
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                if ($i == 0) {
+                    echo '<option value="' . $row['id'] . '" selected="selected">' . $row['name'] . '</option>';
+                } else {
+                    echo '<option value="' . $row['id'] . '">' . $row['name'] . '</option>';
+                }
+
+                $i = $i + 1;
+            }
+        } catch(Exception $e) {
+            echo $e->getMessage();
+        }
     }
 
     function makeCapacityInput($db) {
