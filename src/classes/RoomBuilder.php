@@ -90,7 +90,8 @@ class RoomBuilder {
             $stmt = $db->prepare($query);
             $result = $stmt->execute();
 
-            // loop through, adding the all the rooms in a seperate card
+            echo 'Resources: <br/>';
+
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 echo '<input type="checkbox" name="resources[]" value="' . $row['_id'] . '"/>' . $row['description'] . '   ';
             }
@@ -108,7 +109,7 @@ class RoomBuilder {
 
             $i = 0;
 
-            echo '<select name="location_id">';
+            echo '<br/><br/>Location: <select name="location_id">';
 
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 if ($i == 0) {
