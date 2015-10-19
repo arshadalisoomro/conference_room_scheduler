@@ -35,6 +35,7 @@ class RoomBuilder {
                 echo '          <h3>Room Number: ' . $row['room_number'] . '</h3>' . "\r\n";
                 echo '          <p>Resources: ' . $this->getResourcesString($db, $row['_id']) . '</p>' . "\r\n";
                 echo '          <p>Capacity: ' . $row['capacity'] . '</p>';
+                echo '          <button value="Select Room" onClick="onclick="location.href=\'http://google.com\';" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"/>'
                 echo '      </div>' . "\r\n";
                 echo '  </div>' . "\r\n";
                 echo '</section>' . "\r\n";
