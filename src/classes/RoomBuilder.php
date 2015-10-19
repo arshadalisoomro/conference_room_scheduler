@@ -12,7 +12,7 @@ class RoomBuilder {
         $this->makeLocationSpinner($db);
         $this->makeCapacityInput($db);
 
-        echo '          <br/><input type="submit" value="Filter"/>' . "\r\n";
+        echo '          <br/><br/><input type="submit" value="Filter"/>' . "\r\n";
         echo '          </form>' . "\r\n";
         echo '      </div>' . "\r\n";
         echo '  </div>' . "\r\n";
@@ -90,7 +90,7 @@ class RoomBuilder {
             $stmt = $db->prepare($query);
             $result = $stmt->execute();
 
-            echo 'Resources: <br/>';
+            echo '<b>Resources:</b> <br/>';
 
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 echo '<input type="checkbox" name="resources[]" value="' . $row['_id'] . '"/>' . $row['description'] . '   ';
@@ -109,7 +109,7 @@ class RoomBuilder {
 
             $i = 0;
 
-            echo '<br/><br/>Location: <select name="location_id">';
+            echo '<br/><br/><b>Location:</b> <select name="location_id">';
 
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 if ($i == 0) {
