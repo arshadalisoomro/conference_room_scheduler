@@ -8,9 +8,9 @@ class RoomBuilder {
         echo '          <h3>Filter Rooms:</h3>' . "\r\n";
         echo '          <form action="search_rooms.php" method="post">' . "\r\n";
 
-        //makeResourceCheckboxes($db);
-        //makeLocationSpinner($db);
-        //makeCapacityInput($db);
+        $this->makeResourceCheckboxes($db);
+        $this->makeLocationSpinner($db);
+        $this->makeCapacityInput($db);
 
         echo '          <input type="submit" value="Filter" />' . "\r\n";
         echo '          </form>' . "\r\n";
