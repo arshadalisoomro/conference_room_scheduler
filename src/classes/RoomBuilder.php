@@ -5,15 +5,15 @@ class RoomBuilder {
         echo '<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">' . "\r\n";
         echo '  <div class="mdl-card mdl-cell mdl-cell--12-col">' . "\r\n";
         echo '      <div class="mdl-card__supporting-text">' . "\r\n";
-        echo '          <h3>Filter Rooms:</h3>';
-        echo '          <form action="checkbox-form.php" method="post">';
+        echo '          <h3>Filter Rooms:</h3>' . "\r\n";
+        echo '          <form action="checkbox-form.php" method="post">' . "\r\n";
 
-        makeResourceCheckboxes($db);
+        //makeResourceCheckboxes($db);
         makeLocationSpinner($db);
         makeCapacityInput($db);
 
-        echo '          <input type="submit" value="Filter" />';
-        echo '          </form>';
+        echo '          <input type="submit" value="Filter" />' . "\r\n";
+        echo '          </form>' . "\r\n";
         echo '      </div>' . "\r\n";
         echo '  </div>' . "\r\n";
         echo '</section>' . "\r\n";
@@ -92,7 +92,7 @@ class RoomBuilder {
 
             // loop through, adding the all the rooms in a seperate card
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                echo '<input type="checkbox" name="formDoor[]" value="' . $row['_id'] . '"/>' . $row['description'];
+                echo '<input type="checkbox" name="resources[]" value="' . $row['_id'] . '"/>' . $row['description'];
             }
         } catch(Exception $e) {
             echo $e->getMessage();
