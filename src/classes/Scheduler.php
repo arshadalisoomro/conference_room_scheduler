@@ -1,6 +1,19 @@
 <?php
 
 class Scheduler {
+	function buildRoomTitle($db, $roomId) {
+		$query = "SELECT name, room_number FROM room r LEFT OUTER JOIN location l ON r.location_id = l._id " .
+					"WHERE r._id = " . $roomId;
+
+        try {
+            $stmt = $db->prepare($query);
+            $result = $stmt->execute()->fetch();
+            echo "<h3>" . $result['name'] . ", Room " . $result['room_number'] . "</h3>";
+        } catch(Exception $e) {
+            echo $e->getMessage();
+        }
+	}
+
     function buildAvailableTimes($db, $post) {
     	$query = "SELECT * FROM time_slot";
 

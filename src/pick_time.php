@@ -11,6 +11,9 @@
     if(empty($_SESSION['user'])) {
         header("Location: ../index.php");
         die("Redirecting to index.php"); 
+    } else if (empty($_GET['room_id'])) {
+        header("Location: search_rooms.php");
+        die("Redirecting to search_rooms.php"); 
     }
 ?>
 
@@ -61,9 +64,10 @@
             <br/><section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
               <div class="mdl-card mdl-cell mdl-cell--12-col">
                 <div class="mdl-card__supporting-text">
+                <?php $scheduler->buildRoomTitle($db, $_GET['room_id']) ?>
                 <form id="time_form" action="pick_time.php" method="get">
                     <input type="hidden" name="room_id" value="<?php echo $_GET['room_id'] ?>" />
-                    Date: <input type="text" id="datepicker" name="date" readonly="readonly" value="<?php echo $_GET['date'] ?>" onchange="dateUpdated()"/>
+                    Date: <b><input type="text" id="datepicker" name="date" readonly="readonly" value="<?php echo $_GET['date'] ?>" onchange="dateUpdated()"/></b>
 
                     <?php 
 
