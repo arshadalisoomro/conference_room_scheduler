@@ -21,6 +21,7 @@ class RoomBuilder {
 
     function buildCards($db, $post) {
         $query = "SELECT * FROM resource r LEFT OUTER JOIN room rm ON r.room_id = rm._id " . 
+                    " LEFT OUTER JOIN location l on rm.location_id = l._id" . 
                     $this->buildWhereClause($post) . 
                     " GROUP BY rm._id";
 
@@ -36,8 +37,9 @@ class RoomBuilder {
                 echo '<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">' . "\r\n";
                 echo '  <div class="mdl-card mdl-cell mdl-cell--12-col">' . "\r\n";
                 echo '      <div class="mdl-card__supporting-text">' . "\r\n";
-                echo '          <h3>Room Number: ' . $row['room_number'] . '</h3>' . "\r\n";
-                echo '          <p>Resources: ' . $this->getResourcesString($db, $row['_id']) . '</p>' . "\r\n";
+                echo '          <h3>Room Number: ' . $row['room_number'] . '</h3>';
+                echo '          <p>Location: ' . $row['name'] . '</p>';
+                echo '          <p>Resources: ' . $this->getResourcesString($db, $row['_id']) . '</p>';
                 echo '          <p>Capacity: ' . $row['capacity'] . '</p>';
                 echo '          <button onclick="location.href=\'http://google.com\';" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Select Room</button>';
                 echo '      </div>' . "\r\n";
@@ -95,7 +97,7 @@ class RoomBuilder {
             $stmt = $db->prepare($query);
             $result = $stmt->execute();
 
-            echo '<b>Resources:</b> <br/>';
+            echo '<b>Resources (check all that are prefered):</b> <br/>';
 
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 echo '<input type="checkbox" name="resources[]" value="' . $row['_id'] . '"/>' . $row['description'] . '   ';
