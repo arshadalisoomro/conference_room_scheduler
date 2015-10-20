@@ -74,7 +74,9 @@
                     if (!empty($_GET['date'])) {
                         // we want to show the time selector and a submit button
                         $scheduler->buildAvailableTimes($db, $_GET);
-                        echo '<br/><br/><input type="submit" value="Schedule Reservation" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"/>' . "\r\n";
+
+                        $getParams = "?room_id=" . $_GET['room_id'] . "&date=" . $_GET['date'] . "&time_slot=" . $_GET['time_slot'] . "&user_id=" . $_SESSION['user']['_id'];
+                        echo '<br/><br/><input onclick="location.href=\'schedule_reservation.php' . $getParams . '\';" value="Schedule Reservation" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"/>' . "\r\n";
                     }
 
                     ?>
