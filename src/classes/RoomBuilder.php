@@ -131,7 +131,7 @@ class RoomBuilder {
     function buildWhereClause($post) {
         $where = "";
 
-        if (!isset($post['location_id'])) {
+        if (isset($post['location_id'])) {
             $where += "WHERE location_id = " . $post['location_id'];
         }
 
