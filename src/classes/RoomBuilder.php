@@ -8,9 +8,9 @@ class RoomBuilder {
         echo '          <h3>Filter Rooms:</h3>' . "\r\n";
         echo '          <form action="search_rooms.php" method="get">' . "\r\n";
 
-        $this->makeResourceCheckboxes($db);
-        $this->makeCapacityInput($db);
-        $this->makeLocationSpinner($db);
+        $this->makeResourceCheckboxes($db, $post);
+        $this->makeCapacityInput($db, $post);
+        $this->makeLocationSpinner($db, $post);
 
         echo '          <br/><br/><input type="submit" value="Filter"/>' . "\r\n";
         echo '          </form>' . "\r\n";
@@ -89,7 +89,7 @@ class RoomBuilder {
         return $string;
     }
 
-    function makeResourceCheckboxes($db) {
+    function makeResourceCheckboxes($db, $post) {
         $query = "SELECT * FROM resource_type";
 
         try {
@@ -99,14 +99,18 @@ class RoomBuilder {
             echo '<b>Resources (check all that are prefered):</b> <br/>';
 
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                echo '<input type="checkbox" name="resources[]" value="' . $row['_id'] . '"/>' . $row['description'] . '   ';
+                if ($this->isChecked($post, "resources", $row['_id'])) {
+                    echo '<input type="checkbox" name="resources[]" value="' . $row['_id'] . '" checked/>' . $row['description'] . '   ';
+                } else {
+                    echo '<input type="checkbox" name="resources[]" value="' . $row['_id'] . '"/>' . $row['description'] . '   ';
+                }
             }
         } catch(Exception $e) {
             echo $e->getMessage();
         }
     }
 
-    function makeLocationSpinner($db) {
+    function makeLocationSpinner($db, $post) {
         $query = "SELECT * FROM location";
 
         try {
@@ -126,7 +130,7 @@ class RoomBuilder {
         }
     }
 
-    function makeCapacityInput($db) {
+    function makeCapacityInput($db, $post) {
         echo '<br/><br/><b>Miniumum Room Capacity:</b> 
             <input type="number" name="capacity" min="1" max="75"> people';
     }
