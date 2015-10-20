@@ -108,19 +108,11 @@ class RoomBuilder {
             $stmt = $db->prepare($query);
             $result = $stmt->execute();
 
-            $i = 0;
-
             echo '<br/><br/><b>Location:</b> <select name="location_id">';
             echo '<option value="0" selected="selected">All Locations</option>';
 
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                if ($i == 0) {
-                    
-                } else {
-                    echo '<option value="' . $row['id'] . '">' . $row['name'] . '</option>';
-                }
-
-                $i = $i + 1;
+                echo '<option value="' . $row['id'] . '">' . $row['name'] . '</option>';
             }
 
             echo '</select>';
