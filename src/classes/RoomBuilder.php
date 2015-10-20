@@ -38,7 +38,7 @@ class RoomBuilder {
                 echo '  <div class="mdl-card mdl-cell mdl-cell--12-col">' . "\r\n";
                 echo '      <div class="mdl-card__supporting-text">' . "\r\n";
                 echo '          <h3>' . $row['name'] . ', Room ' . $row['room_number'] . '</h3>';
-                echo '          Resources: ' . $this->getResourcesString($db, $row['_id']) . '<br/>';
+                echo '          Resources: ' . $this->getResourcesString($db, $row['room_id']) . '<br/>';
                 echo '          Capacity: ' . $row['capacity'] . '<br/>';
                 echo '          <br/><button onclick="location.href=\'http://google.com\';" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Select Room</button>';
                 echo '      </div>' . "\r\n";
