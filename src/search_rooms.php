@@ -38,13 +38,13 @@
         <div class="mdl-layout__drawer">
             <span class="mdl-layout-title">Scheduler</span>
             <nav class="mdl-navigation">
-                <?php AccountDropdownBuilder::buildDropdown($db, $_SESSION) ?>
+                <?php AccountDropdownBuilder::buildDropdown($db, $_SESSION); ?>
             </nav>
         </div>
         <main class="mdl-layout__content">
             <br/>
-            <?php $roomBuilder->buildFilters($db, $_POST) ?>
-            <?php $roomBuilder->buildCards($db, $_POST); ?>
+            <?php $roomBuilder->buildFilters($db, $_GET); ?>
+            <?php $roomBuilder->buildCards($db, $_GET); ?>
         </main>
     </div>
     

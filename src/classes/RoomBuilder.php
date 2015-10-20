@@ -6,7 +6,7 @@ class RoomBuilder {
         echo '  <div class="mdl-card mdl-cell mdl-cell--12-col">' . "\r\n";
         echo '      <div class="mdl-card__supporting-text">' . "\r\n";
         echo '          <h3>Filter Rooms:</h3>' . "\r\n";
-        echo '          <form action="search_rooms.php" method="post">' . "\r\n";
+        echo '          <form action="search_rooms.php" method="get">' . "\r\n";
 
         $this->makeResourceCheckboxes($db);
         $this->makeLocationSpinner($db);
@@ -22,7 +22,8 @@ class RoomBuilder {
     function buildCards($db, $post) {
         $query = "SELECT * FROM room " . $this->buildWhereClause($post);
 
-        echo "query: " . $query;
+        echo "post: " . $post;
+        echo "query: " . $query . "...";
 
         // execute the statement
         try {
