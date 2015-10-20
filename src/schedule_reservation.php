@@ -23,5 +23,7 @@ try {
 	header("Location: home.php");
 	die("Redirecting to home.php");
 } catch(PDOException $ex) {
-    echo "exception: " . $ex->getMessage();
+	echo "query: " + $insertStatement . "</br>";
+	print_r($nsertParams);
+    echo "<br/>exception: " . $ex->getMessage();
 }
