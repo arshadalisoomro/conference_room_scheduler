@@ -4,6 +4,8 @@ class Scheduler {
     function buildAvailableTimes($db, $post) {
     	$query = "SELECT * FROM time_slot";
 
+    	echo "testing";
+
         try {
             $stmt = $db->prepare($query);
             $result = $stmt->execute();
@@ -16,6 +18,7 @@ class Scheduler {
                 } else {
                     echo '<option value="' . $row['_id'] . '">' . $this->buildTimeDisplay($row) . '</option>';
                 }
+                $i = $i + 1;
             }
 
             echo '</select>';
