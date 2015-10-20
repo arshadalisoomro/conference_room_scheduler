@@ -99,16 +99,11 @@ class RoomBuilder {
             echo '<b>Resources (check all that are prefered):</b> <br/>';
 
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                echo '<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-1">';
-
                 if ($this->isChecked($post, "resources", $row['_id'])) {
-                    echo '<input type="checkbox" name="resources[]" value="' . $row['_id'] . '" class="mdl-checkbox__input" checked />';
+                    echo '<input type="checkbox" name="resources[]" value="' . $row['_id'] . '" checked/>' . $row['description'] . '   ';
                 } else {
-                    echo '<input type="checkbox" name="resources[]" value="' . $row['_id'] . '" class="mdl-checkbox__input" />';
+                    echo '<input type="checkbox" name="resources[]" value="' . $row['_id'] . '"/>' . $row['description'] . '   ';
                 }
-
-                echo '  <span class="mdl-checkbox__label">' . $row['description'] . '</span>';
-                echo '</label>';
             }
         } catch(Exception $e) {
             echo $e->getMessage();
