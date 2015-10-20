@@ -26,7 +26,7 @@ class RoomBuilder {
                     " GROUP BY rm._id";
 
         //print_r($post);
-        echo "<br/>query: " . $query;
+        //echo "<br/>query: " . $query;
 
         try {
             $stmt = $db->prepare($query);
