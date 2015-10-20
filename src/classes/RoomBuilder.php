@@ -37,11 +37,10 @@ class RoomBuilder {
                 echo '<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">' . "\r\n";
                 echo '  <div class="mdl-card mdl-cell mdl-cell--12-col">' . "\r\n";
                 echo '      <div class="mdl-card__supporting-text">' . "\r\n";
-                echo '          <h3>Room Number: ' . $row['room_number'] . '</h3>';
-                echo '          Location: ' . $row['name'] . '<br/>';
+                echo '          <h3>' . $row['name'] . ', Room ' . $row['room_number'] . '</h3>';
                 echo '          Resources: ' . $this->getResourcesString($db, $row['_id']) . '<br/>';
                 echo '          Capacity: ' . $row['capacity'] . '<br/>';
-                echo '          <button onclick="location.href=\'http://google.com\';" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Select Room</button>';
+                echo '          <br/><button onclick="location.href=\'http://google.com\';" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Select Room</button>';
                 echo '      </div>' . "\r\n";
                 echo '  </div>' . "\r\n";
                 echo '</section>' . "\r\n";
@@ -114,7 +113,7 @@ class RoomBuilder {
             $stmt = $db->prepare($query);
             $result = $stmt->execute();
 
-            echo '<br/><br/><b>Location:</b> <select name="location_id">';
+            echo '<br/><b>Location:</b> <select name="location_id">';
             echo '<option value="" selected="selected">All Locations</option>';
 
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -128,7 +127,7 @@ class RoomBuilder {
     }
 
     function makeCapacityInput($db) {
-        echo '<br/><b>Room Capacity:</b> <input type="number" name="capacity" min="1" max="50" step="10">';
+        echo '<br/><br/><b>Room Capacity:</b> <input type="number" name="capacity" min="1" max="50" step="10">';
     }
 
     function buildWhereClause($post) {
