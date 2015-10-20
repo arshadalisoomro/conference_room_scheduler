@@ -112,7 +112,7 @@ class RoomBuilder {
             $result = $stmt->execute();
 
             echo '<br/><br/><b>Location:</b> <select name="location_id">';
-            echo '<option value="0" selected="selected">All Locations</option>';
+            echo '<option value="" selected="selected">All Locations</option>';
 
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 echo '<option value="' . $row['_id'] . '">' . $row['name'] . '</option>';
@@ -131,7 +131,7 @@ class RoomBuilder {
     function buildWhereClause($post) {
         $where = "";
 
-        if (isset($post['location_id'])) {
+        if (!empty($post['location_id'])) {
             $where = $where . "WHERE location_id = " . $post['location_id'];
         }
 
