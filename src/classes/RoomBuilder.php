@@ -128,7 +128,7 @@ class RoomBuilder {
     }
 
     function makeCapacityInput($db) {
-        echo '<input type="number" name="capacity" min="1" max="50" step="10">';
+        echo '<br/><b>Room Capacity:</b> <input type="number" name="capacity" min="1" max="50" step="10">';
     }
 
     function buildWhereClause($post) {
