@@ -22,6 +22,8 @@ class RoomBuilder {
     function buildCards($db, $post) {
         $query = "SELECT * FROM room " . $this->buildWhereClause($post);
 
+        echo "query: " . $query;
+
         // execute the statement
         try {
             $stmt = $db->prepare($query);
