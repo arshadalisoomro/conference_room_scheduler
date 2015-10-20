@@ -22,7 +22,7 @@ class Scheduler {
             $stmt = $db->prepare($query);
             $result = $stmt->execute();
 
-            echo '<br/><b>Available Time Slots:</b> <select name="time_slot">';
+            echo '<br/><b>Available Time Slots:</b> <select onchange="timeChange()" name="time_slot">';
             $i = 0;
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 if ($i == 0) {

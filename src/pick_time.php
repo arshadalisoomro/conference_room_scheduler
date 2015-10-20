@@ -14,6 +14,10 @@
     } else if (empty($_GET['room_id'])) {
         header("Location: search_rooms.php");
         die("Redirecting to search_rooms.php"); 
+    } else if (isset($_GET['submitted'])) {
+        $getParams = "?room_id=" . $_GET['room_id'] . "&date=" . $_GET['date'] . "&time_slot=" . $_GET['time_slot'] . "&user_id=" . $_SESSION['user']['_id'];
+        header("Location: schedule_reservation.php?" . $getParams);
+        die("Redirecting to schedule_reservation.php"); 
     }
 ?>
 
@@ -44,6 +48,10 @@
     function dateUpdated() {
         document.getElementById("time_form").submit();
     }
+
+    function submitButton() {
+        $("submitted").value = "true";
+    }
     </script>
 </head>
 
@@ -67,6 +75,7 @@
                 <div class="mdl-card__supporting-text">
                 <?php $scheduler->buildRoomTitle($db, $_GET['room_id']) ?>
                 <form id="time_form" action="pick_time.php" method="get">
+                    <input id="submitted" type="hidden" name="submitted" value="false" />
                     <input type="hidden" name="room_id" value="<?php echo $_GET['room_id'] ?>" />
                     <b>Reservation Date:</b> <input type="text" id="datepicker" name="date" readonly="readonly" value="<?php echo $_GET['date'] ?>" onchange="dateUpdated()"/>
 
@@ -75,9 +84,7 @@
                     if (!empty($_GET['date'])) {
                         // we want to show the time selector and a submit button
                         $scheduler->buildAvailableTimes($db, $_GET);
-
-                        $getParams = "?room_id=" . $_GET['room_id'] . "&date=" . $_GET['date'] . "&time_slot=" . $_GET['time_slot'] . "&user_id=" . $_SESSION['user']['_id'];
-                        echo '<br/><br/><input onclick="location.href=\'schedule_reservation.php' . $getParams . '\';" value="Schedule Reservation" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"/>' . "\r\n";
+                        echo '<br/><br/><input onClick="submitButton()" type="submit" value="Schedule Reservation" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"/>' . "\r\n";
                     }
 
                     ?>
