@@ -153,18 +153,18 @@ class RoomBuilder {
         } else if (isset($post['resources'])) { 
             // if they have filtered by resource, but not by location
             $where = "WHERE ";
-            $or = "(";
+            $or = "";
             foreach($post['resources'] as $val) {
                 if (!empty($or)) {
                     $or = $or . " OR resource_type_id = " . $val;
                 } else {
-                    $or = "resource_type_id = " . $val;
+                    $or = "(resource_type_id = " . $val;
                 }
             }
             $where = $where . $or . ")";
         }
 
-        if (isset($post['capacity'] && !empty($where))) {
+        if (isset($post['capacity']) && !empty($where)) {
             $where = $where . " AND capacity > " . $post['capacity'];
         } else if (isset($post['capacity'])) {
             $where = "WHERE capacity > " . $post['capacity'];
