@@ -20,7 +20,7 @@ class RoomBuilder {
     }
 
     function buildCards($db, $post) {
-        $query = "SELECT * FROM resource r JOIN room rm ON r.room_id = rm._id " . $this->buildWhereClause($post) . " GROUP BY rm._id";
+        $query = "SELECT * FROM resource r FULL OUTER JOIN room rm ON r.room_id = rm._id " . $this->buildWhereClause($post) . " GROUP BY rm._id";
 
         print_r($post);
         echo "<br/>query: " . $query . "...";
