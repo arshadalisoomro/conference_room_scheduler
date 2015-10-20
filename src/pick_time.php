@@ -50,7 +50,7 @@
     }
 
     function submitButton() {
-        $("submitted").value = "true";
+        document.getElementById("submitted").value = "true";
     }
     </script>
 </head>
