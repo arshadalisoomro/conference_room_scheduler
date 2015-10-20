@@ -113,8 +113,8 @@ class RoomBuilder {
             $stmt = $db->prepare($query);
             $result = $stmt->execute();
 
-            echo '<br/><b>Location:</b> <select name="location_id">';
-            echo '<option value="" selected="selected">All Locations</option>';
+            echo '<br/><b>Room Location:</b> <select name="location_id">';
+            echo '<option value="" selected="selected">Any Location</option>';
 
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 echo '<option value="' . $row['_id'] . '">' . $row['name'] . '</option>';
@@ -127,7 +127,8 @@ class RoomBuilder {
     }
 
     function makeCapacityInput($db) {
-        echo '<br/><br/><b>Room Capacity:</b> <input type="number" name="capacity" min="1" max="50" step="10">';
+        echo '<br/><br/><b>Miniumum Room Capacity:</b> 
+            <input type="number" name="capacity" min="1" max="50" step="10">';
     }
 
     function buildWhereClause($post) {
@@ -152,7 +153,7 @@ class RoomBuilder {
         } else if (isset($post['resources'])) { 
             // if they have filtered by resource, but not by location
             $where = "WHERE ";
-            $or = "";
+            $or = "(";
             foreach($post['resources'] as $val) {
                 if (!empty($or)) {
                     $or = $or . " OR resource_type_id = " . $val;
@@ -160,7 +161,13 @@ class RoomBuilder {
                     $or = "resource_type_id = " . $val;
                 }
             }
-            $where = $where . $or;
+            $where = $where . $or . ")";
+        }
+
+        if (isset($post['capacity'] && !empty($where))) {
+            $where = $where . " AND capacity > " . $post['capacity'];
+        } else if (isset($post['capacity'])) {
+            $where = "WHERE capacity > " . $post['capacity'];
         }
 
         return $where;
