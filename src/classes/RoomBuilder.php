@@ -12,7 +12,7 @@ class RoomBuilder {
         $this->makeCapacityInput($db, $post);
         $this->makeLocationSpinner($db, $post);
 
-        echo '          <br/><br/><input type="submit" value="Filter"/>' . "\r\n";
+        echo '          <br/><br/><input type="submit" value="Filter" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"/>' . "\r\n";
         echo '          </form>' . "\r\n";
         echo '      </div>' . "\r\n";
         echo '  </div>' . "\r\n";
