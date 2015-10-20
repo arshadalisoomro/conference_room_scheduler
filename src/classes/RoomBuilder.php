@@ -9,8 +9,8 @@ class RoomBuilder {
         echo '          <form action="search_rooms.php" method="get">' . "\r\n";
 
         $this->makeResourceCheckboxes($db);
-        $this->makeLocationSpinner($db);
         $this->makeCapacityInput($db);
+        $this->makeLocationSpinner($db);
 
         echo '          <br/><br/><input type="submit" value="Filter"/>' . "\r\n";
         echo '          </form>' . "\r\n";
@@ -38,9 +38,9 @@ class RoomBuilder {
                 echo '  <div class="mdl-card mdl-cell mdl-cell--12-col">' . "\r\n";
                 echo '      <div class="mdl-card__supporting-text">' . "\r\n";
                 echo '          <h3>Room Number: ' . $row['room_number'] . '</h3>';
-                echo '          <p>Location: ' . $row['name'] . '</p>';
-                echo '          <p>Resources: ' . $this->getResourcesString($db, $row['_id']) . '</p>';
-                echo '          <p>Capacity: ' . $row['capacity'] . '</p>';
+                echo '          Location: ' . $row['name'] . '<br/>';
+                echo '          Resources: ' . $this->getResourcesString($db, $row['_id']) . '<br/>';
+                echo '          Capacity: ' . $row['capacity'] . '<br/>';
                 echo '          <button onclick="location.href=\'http://google.com\';" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Select Room</button>';
                 echo '      </div>' . "\r\n";
                 echo '  </div>' . "\r\n";
