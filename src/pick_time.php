@@ -25,14 +25,17 @@
     <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.indigo-pink.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link href="../main.css" rel="stylesheet" type="text/css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <script type="text/javascript">
-    $("#datepicker").datepicker({
-            minDate: "+1D", 
-            maxDate: "+6M"
-        });
+    $(function() {
+        $("#datepicker").datepicker({
+                minDate: "+1D", 
+                maxDate: "+6M"
+            });
+    });
 
     function dateUpdated() {
         document.getElementById("time_form").submit();
@@ -60,7 +63,7 @@
                 <div class="mdl-card__supporting-text">
                 <form id="time_form" action="pick_time.php" method="get">
                     <input type="hidden" name="room_id" value="<?php echo $_GET['room_id'] ?>" />
-                    Date: <input type="text" id="datepicker" name="date" value="" onchange="dateUpdated()"/>
+                    Date: <input type="text" id="datepicker" name="date" readonly="readonly" value="" onchange="dateUpdated()"/>
 
                     <?php 
 
