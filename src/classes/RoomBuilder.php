@@ -19,8 +19,8 @@ class RoomBuilder {
         echo '</section>' . "\r\n";
     }
 
-    function buildCards($db) {
-        $query = "SELECT * FROM room";
+    function buildCards($db, $post) {
+        $query = "SELECT * FROM room " . $this->buildWhereClause($post);
 
         // execute the statement
         try {
@@ -130,6 +130,16 @@ class RoomBuilder {
 
     function makeCapacityInput($db) {
         
+    }
+
+    function buildWhereClause($post) {
+        $where = "";
+
+        if (!empty($post['location_id'])) {
+            $where += "WHERE location_id = " . $post['location_id'];
+        }
+
+        return $where;
     }
 
     function isChecked($post, $chkname, $value) {

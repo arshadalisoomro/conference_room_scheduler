@@ -42,8 +42,9 @@
             </nav>
         </div>
         <main class="mdl-layout__content">
-            <?php $roomBuilder->buildFilters($db) ?><br/>
-            <?php $roomBuilder->buildCards($db); ?>
+            <br/>
+            <?php $roomBuilder->buildFilters($db, $_POST) ?>
+            <?php $roomBuilder->buildCards($db, $_POST); ?>
         </main>
     </div>
     
