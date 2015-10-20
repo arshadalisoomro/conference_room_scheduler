@@ -1,0 +1,6 @@
+- Only show time slots that are available (don’t have a reservation currently)
+- display reservations in a table
+- cancel reservations
+- admins and managers need to be able to create users
+- admins and managers can view their created users reservations
+- we should be able to edit reservations (or is cancelling and making a new one good enough?)
