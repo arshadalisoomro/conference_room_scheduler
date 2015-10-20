@@ -63,7 +63,7 @@
                 <div class="mdl-card__supporting-text">
                 <form id="time_form" action="pick_time.php" method="get">
                     <input type="hidden" name="room_id" value="<?php echo $_GET['room_id'] ?>" />
-                    Date: <input type="text" id="datepicker" name="date" readonly="readonly" value="" onchange="dateUpdated()"/>
+                    Date: <input type="text" id="datepicker" name="date" readonly="readonly" value="<?php echo $_GET['date'] ?>" onchange="dateUpdated()"/>
 
                     <?php 
 
