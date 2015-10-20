@@ -164,9 +164,9 @@ class RoomBuilder {
             $where = $where . $or . ")";
         }
 
-        if (isset($post['capacity']) && !empty($where)) {
+        if (!empty($post['capacity']) && !empty($where)) {
             $where = $where . " AND capacity > " . $post['capacity'];
-        } else if (isset($post['capacity'])) {
+        } else if (!empty($post['capacity'])) {
             $where = "WHERE capacity > " . $post['capacity'];
         }
 
