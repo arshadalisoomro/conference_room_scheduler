@@ -36,7 +36,8 @@
     $(function() {
         $("#datepicker").datepicker({
                 minDate: "+1D", 
-                maxDate: "+6M"
+                maxDate: "+6M",
+                dateFormat: "yyyy-mm-dd"
             });
     });
 
