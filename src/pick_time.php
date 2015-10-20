@@ -29,7 +29,7 @@
     <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <script type="text/javascript">
-    $("#datepicker").datepicker( {
+    $("#datepicker").datepicker({
             minDate: "+1D", 
             maxDate: "+6M"
         });
@@ -60,7 +60,7 @@
                 <div class="mdl-card__supporting-text">
                 <form id="time_form" action="pick_time.php" method="get">
                     <input type="hidden" name="room_id" value="<?php echo $_GET['room_id'] ?>" />
-                    Date: <input type="text" id="datepicker" name="date" readonly="readonly" value="" onchange="dateUpdated()"/>
+                    Date: <input type="text" id="datepicker" name="date" value="" onchange="dateUpdated()"/>
 
                     <?php 
 
