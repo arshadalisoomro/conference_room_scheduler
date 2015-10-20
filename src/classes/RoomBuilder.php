@@ -21,7 +21,7 @@ class RoomBuilder {
 
     function buildCards($db, $post) {
         $query = "SELECT * FROM resource r LEFT OUTER JOIN room rm ON r.room_id = rm._id " . 
-                    " LEFT OUTER JOIN location l on rm.location_id = l._id" . 
+                    " LEFT OUTER JOIN location l on rm.location_id = l._id " . 
                     $this->buildWhereClause($post) . 
                     " GROUP BY rm._id";
 
@@ -128,7 +128,7 @@ class RoomBuilder {
     }
 
     function makeCapacityInput($db) {
-        
+        echo '<input type="number" name="capacity" min="1" max="50" step="10">';
     }
 
     function buildWhereClause($post) {
