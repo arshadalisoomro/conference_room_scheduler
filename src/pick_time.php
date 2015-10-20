@@ -15,7 +15,7 @@
         header("Location: search_rooms.php");
         die("Redirecting to search_rooms.php"); 
     } else if (isset($_GET['submitted']) && $_GET['submitted'] == "true") {
-        $getParams = "?room_id=" . $_GET['room_id'] . "&date=" . $_GET['date'] . "&time_slot=" . $_GET['time_slot'] . "&user_id=" . $_SESSION['user']['_id'];
+        $getParams = "room_id=" . $_GET['room_id'] . "&date=" . $_GET['date'] . "&time_slot=" . $_GET['time_slot'] . "&user_id=" . $_SESSION['user']['_id'];
         header("Location: schedule_reservation.php?" . $getParams);
         die("Redirecting to schedule_reservation.php"); 
     }
