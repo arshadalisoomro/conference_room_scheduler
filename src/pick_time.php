@@ -67,7 +67,7 @@
 
                     <?php 
 
-                    if (!empty($_POST['date'])) {
+                    if (!empty($_GET['date'])) {
                         // we want to show the time selector and a submit button
                         $scheduler->buildAvailableTimes($db, $_GET);
                         echo '<br/><br/><input type="submit" value="Schedule Reservation" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"/>' . "\r\n";

@@ -4,8 +4,6 @@ class Scheduler {
     function buildAvailableTimes($db, $post) {
     	$query = "SELECT * FROM time_slot";
 
-    	echo "testing";
-
         try {
             $stmt = $db->prepare($query);
             $result = $stmt->execute();
