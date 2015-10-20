@@ -20,12 +20,13 @@ class RoomBuilder {
     }
 
     function buildCards($db, $post) {
-        $query = "SELECT * FROM resource r FULL OUTER JOIN room rm ON r.room_id = rm._id " . $this->buildWhereClause($post) . " GROUP BY rm._id";
+        $query = "SELECT * FROM resource r LEFT OUTER JOIN room rm ON r.room_id = rm._id " . 
+                    $this->buildWhereClause($post) . 
+                    " GROUP BY rm._id";
 
-        print_r($post);
-        echo "<br/>query: " . $query . "...";
+        //print_r($post);
+        echo "<br/>query: " . $query;
 
-        // execute the statement
         try {
             $stmt = $db->prepare($query);
             $result = $stmt->execute();
@@ -135,10 +136,30 @@ class RoomBuilder {
             $where = $where . "WHERE location_id = " . $post['location_id'];
         }
 
-        if (isset($post['resources'])) {
+        // if they have check a resource to filter by and they have filtered by location
+        if (isset($post['resources']) && !empty($where)) {
+            $where = $where . " AND (";
+            $or = "";
             foreach($post['resources'] as $val) {
-
+                if (!empty($or)) {
+                    $or = $or . " OR resource_type_id = " . $val;
+                } else {
+                    $or = "resource_type_id = " . $val;
+                }
             }
+            $where = $where . $or . ")";
+        } else if (isset($post['resources'])) { 
+            // if they have filtered by resource, but not by location
+            $where = "WHERE ";
+            $or = "";
+            foreach($post['resources'] as $val) {
+                if (!empty($or)) {
+                    $or = $or . " OR resource_type_id = " . $val;
+                } else {
+                    $or = "resource_type_id = " . $val;
+                }
+            }
+            $where = $where . $or;
         }
 
         return $where;
