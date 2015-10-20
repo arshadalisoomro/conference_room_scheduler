@@ -118,10 +118,18 @@ class RoomBuilder {
             $result = $stmt->execute();
 
             echo '<br/><b>Room Location:</b> <select name="location_id">';
-            echo '<option value="" selected="selected">Any Location</option>';
+            if (!empty($post['location_id'])) {
+                echo '<option value="">Any Location</option>';
+            } else {
+                echo '<option value="" selected="selected">Any Location</option>';
+            }
 
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                echo '<option value="' . $row['_id'] . '">' . $row['name'] . '</option>';
+                if ($post['location_id'] == $row['_id']) {
+                    echo '<option selected="selected" value="' . $row['_id'] . '">' . $row['name'] . '</option>';
+                } else {
+                    echo '<option value="' . $row['_id'] . '">' . $row['name'] . '</option>';
+                }
             }
 
             echo '</select>';
