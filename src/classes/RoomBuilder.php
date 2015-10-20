@@ -132,7 +132,7 @@ class RoomBuilder {
         $where = "";
 
         if (isset($post['location_id'])) {
-            $where += "WHERE location_id = " . $post['location_id'];
+            $where = $where . "WHERE location_id = " . $post['location_id'];
         }
 
         return $where;
