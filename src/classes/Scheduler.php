@@ -7,8 +7,9 @@ class Scheduler {
 
         try {
             $stmt = $db->prepare($query);
-            $result = $stmt->execute()->fetch();
-            echo "<h3>" . $result['name'] . ", Room " . $result['room_number'] . "</h3>";
+            $result = $stmt->execute();
+            $row = $stmt->fetch();
+            echo "<h3>" . $row['name'] . ", Room " . $row['room_number'] . "</h3>";
         } catch(Exception $e) {
             echo $e->getMessage();
         }
