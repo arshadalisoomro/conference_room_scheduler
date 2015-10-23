@@ -13,16 +13,18 @@ class ViewMeetings {
             // here is the page for material design table:
             // http://www.getmdl.io/components/index.html#tables-section
 
-            echo '<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">';
-            echo '  <thead>';
-            echo '      <tr>';
-            echo '          <th class="mdl-data-table__cell--non-numeric">Name</th>';
-            echo '              <th>Building</th>';
-            echo '              <th>Room Number</th>';
-            echo '              <th>Time</th>';
-            echo '      </tr>';
-            echo '  </thead>';
-            echo '  <tbody>';
+            // the .\r\n just creates
+
+            echo '<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">' . "\r\n";
+            echo '  <thead>' . "\r\n";
+            echo '      <tr>' . "\r\n";
+            echo '          <th class="mdl-data-table__cell--non-numeric">Name</th>' . "\r\n";
+            echo '              <th>Building</th>' . "\r\n";
+            echo '              <th>Room Number</th>' . "\r\n";
+            echo '              <th>Time</th>' . "\r\n";
+            echo '      </tr>' . "\r\n";
+            echo '  </thead>' . "\r\n";
+            echo '  <tbody>' . "\r\n";
 
             
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -37,8 +39,8 @@ class ViewMeetings {
                 echo '<h3>user_id: ' . $row['user_id'] . ', conference room: ' . $row['conference_room_id'] . '</h3><br/>';
             }
 
-            echo '  </tbody>';
-            echo '</table>';
+            echo '  </tbody>' . "\r\n";
+            echo '</table>' . "\r\n";
 
         } catch(Exception $e) {
             echo $e->getMessage();
