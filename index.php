@@ -58,7 +58,7 @@
         }
     </style>
     <meta charset="utf-8">
-    <title>Conference Room</title>
+    <title>Conference Room2</title>
     <meta name="description" content="Conference room management system for Database Systems">
     <meta name="author" content="Team 6">
 
