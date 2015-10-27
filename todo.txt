@@ -1,5 +1,5 @@
 - display reservations in a table
-- cancel reservations
+- cancel reservations (just send it to a url and make sure confirm before clicking it)
 - admins and managers need to be able to create users
 - admins and managers can view their created users reservations
 - we should be able to edit reservations (or is cancelling and making a new one good enough?)
