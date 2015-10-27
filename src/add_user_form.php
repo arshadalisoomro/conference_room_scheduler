@@ -1,6 +1,6 @@
 <?php 
-    include_once('AutoLoader.php');
-    AutoLoader::registerDirectory('src/classes');
+    include_once('../AutoLoader.php');
+    AutoLoader::registerDirectory('../src/classes');
     
     require("config.php");
     
@@ -26,7 +26,7 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.indigo-pink.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link href="main.css" rel="stylesheet" type="text/css">
+    <link href="../main.css" rel="stylesheet" type="text/css">
 </head>
 
 <body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
