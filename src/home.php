@@ -75,7 +75,7 @@
 
                         $user_type = $stmt->fetch();
 
-                        echo "<h2>Welcome, " . $_SESSION['first_name'] . ' ' . $_SESSION['last_name'] . ".</h2>";
+                        echo "<h2>Welcome, " . $_SESSION['user']['first_name'] . ' ' . $_SESSION['user']['last_name'] . ".</h2>";
                     ?>
                     <div class='med_text'>As a <?php echo $user_type['description'] ?>, what would you like to do?<br/><br/></div>
 
