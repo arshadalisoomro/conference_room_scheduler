@@ -48,19 +48,24 @@
               <div class="mdl-card mdl-cell mdl-cell--12-col">
                 <div id="content" class="mdl-card__supporting-text">
                     <form action="insert_new_user.php" method="post">
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" id="email" name="email" />
-                            <label class="mdl-textfield__label" for="email">Email...</label>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield">
+                            <input class="mdl-textfield__input" type="text" id="first" name="first" />
+                            <label class="mdl-textfield__label" for="first">First Name</label>
+                        </div>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield">
+                            <input class="mdl-textfield__input" type="text" id="last" name="last" />
+                            <label class="mdl-textfield__label" for="last">Last Name</label>
                         </div><br/>
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="password" id="password" name="password" />
-                            <label class="mdl-textfield__label" for="password">Password...</label>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield">
+                            <input class="mdl-textfield__input" type="text" id="email" name="email" />
+                            <label class="mdl-textfield__label" for="email">Email</label>
                         </div><br/>
                         <br/> 
                         <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
-                          Login
+                          Create <?php echo $userTypeName ?>
                         </button>
-                    </form>
+                    </form><br/><br/>
+                    This will generate a random password for the user and send them an email informing them of how to log in.
                 </div>
               </div>
             </section>
