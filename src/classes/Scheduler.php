@@ -60,14 +60,16 @@ class Scheduler {
             $i = 0;
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 if ($i == 0) {
-                    $whereClause = "_id = " . $row['time_slot_id'];
+                    $whereClause = "_id <> " . $row['time_slot_id'];
                 } else {
-                    $whereClause = $whereClause . " and _id = " . $row['time_slot_id'];
+                    $whereClause = $whereClause . " and _id <> " . $row['time_slot_id'];
                 }
 
                 $i++;
             }
         } catch(Exception $e) { }
+
+        echo "where clause: " . $whereClause;
 
         return $whereClause;
     }
