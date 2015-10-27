@@ -2,17 +2,17 @@
     include_once('AutoLoader.php');
     AutoLoader::registerDirectory('src/classes');
     
-    require("src/config.php");
+    require("config.php");
     
     if(empty($_SESSION['user']) || empty($_GET['type'])) {
         header("Location: ../index.php");
         die("Redirecting to index.php"); 
     }
 
-    /*$userTypeName = "User";
+    $userTypeName = "User";
     if ($_GET['type'] == '2') {
         $userTypeName = "Manager";
-    }*/
+    }
 ?>
 
 <!doctype html>
@@ -56,18 +56,11 @@
                             <input class="mdl-textfield__input" type="password" id="password" name="password" />
                             <label class="mdl-textfield__label" for="password">Password...</label>
                         </div><br/>
-                        <span class="error"><?php echo $message;?></span>
                         <br/> 
                         <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
                           Login
                         </button>
-                    </form> 
-                    <form action="src/forgot_password.php" method="post">
-                        <button id="forgot_password" type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
-                          Forgot Password
-                        </button>
-                    </form> 
-                    
+                    </form>
                 </div>
               </div>
             </section>
