@@ -51,7 +51,7 @@ class Scheduler {
 
     function buildWhereClause($db, $post) {
         $whereClause = "";
-        $query = "SELECT time_slot_id FROM reservation WHERE date = " . $post['date'] . " and conference_room_id = " . $post['room_id'];
+        $query = "SELECT time_slot_id FROM reservation WHERE date = '" . $post['date'] . "' and conference_room_id = " . $post['room_id'];
 
         try {
             $stmt = $db->prepare($query);
