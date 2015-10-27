@@ -68,7 +68,7 @@ class Scheduler {
                 $i++;
             }
         } catch(Exception $e) { }
-
+        echo "query: " . $query . "<br/>";
         echo "where clause: " . $whereClause;
 
         return $whereClause;
