@@ -33,7 +33,7 @@ try {
     $link = "http://dbsystems-engproject.rhcloud.com/";
     $message = 'Hello!<br/><br/>'
             . 'An account has been created for you on our conference room scheduler!'
-            . ' Please click <a href='.$link.'>here</a> log in.<br/><br/>'
+            . ' Please click <a href='.$link.'>here</a> to log in.<br/><br/>'
             . 'Password: ' . $realPassword
             . '<br/><br/>Thank you,<br/>Team 6';
     $mailer = new SendEmail();
