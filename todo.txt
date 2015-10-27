@@ -1,4 +1,3 @@
-- Only show time slots that are available (don’t have a reservation currently)
 - display reservations in a table
 - cancel reservations
 - admins and managers need to be able to create users
