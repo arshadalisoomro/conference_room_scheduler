@@ -4,6 +4,7 @@ include_once('../AutoLoader.php');
 AutoLoader::registerDirectory('../src/classes');
 
 require("config.php");
+require("MailFiles/PHPMailerAutoload.php");
 
 $realPassword = PasswordUtils::generateNewPassword();
 $passwordSalt = PasswordUtils::generatePasswordSalt();
