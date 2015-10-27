@@ -9,10 +9,10 @@
         die("Redirecting to index.php"); 
     }
 
-    $userTypeName = "User";
+    /*$userTypeName = "User";
     if ($_GET['type'] == '2') {
         $userTypeName = "Manager";
-    }
+    }*/
 ?>
 
 <!doctype html>
