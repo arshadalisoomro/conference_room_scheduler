@@ -48,6 +48,7 @@
               <div class="mdl-card mdl-cell mdl-cell--12-col">
                 <div id="content" class="mdl-card__supporting-text">
                     <form action="insert_new_user.php" method="post">
+                        <input type="hidden" value="<?php echo $_GET['type'] ?>" name="user_type_id" />
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield">
                             <input class="mdl-textfield__input" type="text" id="first" name="first" />
                             <label class="mdl-textfield__label" for="first">First Name</label>
