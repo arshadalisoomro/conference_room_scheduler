@@ -1,6 +1,7 @@
-- Only show time slots that are available (don’t have a reservation currently)
 - display reservations in a table
-- cancel reservations
-- admins and managers need to be able to create users
+- cancel reservations (just send it to a url and make sure confirm before clicking it)
 - admins and managers can view their created users reservations
-- we should be able to edit reservations (or is cancelling and making a new one good enough?)
+- admins can edit the conference room resources (add, delete, edit their quality)
+- create a room viewer page
+	- Should just hold more extended info on the rooms (like their resources along with quality)
+	- Should have a button at the top or the bottom to "Schedule Meeting" that will simply forward them to the schedule_reservation.php?room_id=xx

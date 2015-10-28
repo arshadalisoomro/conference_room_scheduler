@@ -73,31 +73,31 @@
                             die("Failed to run query: " . $ex->getMessage());
                         }
 
-                        $row = $stmt->fetch();
-                        if ($row) {
-                            echo "<h2>Welcome, " . $row['description'] . ".</h2>";
-                        }
+                        $user_type = $stmt->fetch();
+
+                        echo "<h2>Welcome, " . $_SESSION['user']['first_name'] . ' ' . $_SESSION['user']['last_name'] . ".</h2>";
                     ?>
-                    <div class='med_text'>What would you like to do?<br/><br/></div>
+                    <div class='med_text'>As a <?php echo $user_type['description'] ?>, what would you like to do?<br/><br/></div>
 
                     <?php
                         if ($userType == "user") {
                             echo "<a class='home_page_link' href='search_rooms.php'>Schedule New Reservation</a><br/>";
-                            echo "<a class='home_page_link' href='http://dbsystems-engproject.rhcloud.com/src/view_meetings.php?type=me'>View Your Meetings</a><br/>";
+                            echo "<a class='home_page_link' href='view_meetings.php?type=me'>View Your Meetings</a><br/>";
                         } else if ($userType == "manager") {
-                            echo "<a class='home_page_link' href='search_room.php'>Schedule New Reservation</a><br/><br/>";
+                            echo "<a class='home_page_link' href='search_rooms.php'>Schedule New Reservation</a><br/><br/>";
 
-                            echo "<a class='home_page_link' href='http://dbsystems-engproject.rhcloud.com/src/view_meetings.php?type=me'>View Your Reservations</a><br/>";
-                            echo "<a class='home_page_link' href='http://dbsystems-engproject.rhcloud.com/src/view_meetings.php?type=users'>View Created Users' Reservations</a><br/><br/>";
+                            echo "<a class='home_page_link' href='view_meetings.php?type=me'>View Your Reservations</a><br/>";
+                            echo "<a class='home_page_link' href='view_meetings.php?type=users'>View Created Users' Reservations</a><br/><br/>";
                             
-                            echo "<a class='home_page_link' href='http://dbsystems-engproject.rhcloud.com/src/add_user.php?type=user'>Add a New User</a><br/>";
+                            echo "<a class='home_page_link' href='add_user_form.php?type=3'>Add a New User</a><br/>";
                         } else if ($userType == "admin") {
-                            echo "<a class='home_page_link' href='search_room.php'>Schedule New Reservation</a><br/><br/>";
+                            echo "<a class='home_page_link' href='search_rooms.php'>Schedule New Reservation</a><br/><br/>";
 
-                            echo "<a class='home_page_link' href='http://dbsystems-engproject.rhcloud.com/src/view_meetings.php?type=me'>View Your Reservations</a><br/>";
-                            echo "<a class='home_page_link' href='http://dbsystems-engproject.rhcloud.com/src/view_meetings.php?type=all'>View All Reservations</a><br/><br/>";
+                            echo "<a class='home_page_link' href='view_meetings.php?type=me'>View Your Reservations</a><br/>";
+                            echo "<a class='home_page_link' href='view_meetings.php?type=all'>View All Reservations</a><br/><br/>";
                             
-                            echo "<a class='home_page_link' href='http://dbsystems-engproject.rhcloud.com/src/add_user.php?type=manager'>Add a New Manager</a><br/>";
+                            echo "<a class='home_page_link' href='add_user_form.php?type=2'>Add a New Manager</a><br/>";
+                            echo "<a class='home_page_link' href='add_user_form.php?type=3'>Add a New User</a><br/>";
                             echo "<a class='home_page_link' href='edit_resources.php'>Edit Conference Room Resources</a><br/>";
                         }
 
