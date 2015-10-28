@@ -34,7 +34,9 @@ try {
     $message = 'Hello!<br/><br/>'
             . 'An account has been created for you on our conference room scheduler!'
             . ' Please click <a href='.$link.'>here</a> to log in.<br/><br/>'
-            . 'Password: ' . $realPassword
+            . 'Password: ' . $realPassword 
+            . '<br/>To change your password, sign in, then select \'Change Password\''
+            . ' from the drawer on the left side of the screen.'
             . '<br/><br/>Thank you,<br/>Team 6';
     $mailer = new SendEmail();
     $mailer->SendEmail($email,"Conference Room Scheduler",$message,false);
