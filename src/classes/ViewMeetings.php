@@ -15,7 +15,7 @@ class ViewMeetings {
 
             // the .\r\n just creates
 
-            echo '<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">' . "\r\n";
+            echo '<table class="mdl-data-table mdl-js-data-table mdl-data-table mdl-shadow--2dp">' . "\r\n";
             echo '  <thead>' . "\r\n";
             echo '      <tr>' . "\r\n";
             echo '          <th class="mdl-data-table__cell--non-numeric">Name</th>' . "\r\n";
@@ -32,7 +32,7 @@ class ViewMeetings {
     	        echo '         <td>' . $row['name'] . '</td>' . "\r\n";
     	        echo '         <td>' . $row['room_number'] . '</td>' . "\r\n";
      	        echo '         <td>' . $row['start_time'] . '</td>' . "\r\n";
-     	        echo '      <tr>' . "\r\n";
+     	        echo '      </tr>' . "\r\n";
             }
 
             echo '  </tbody>' . "\r\n";
