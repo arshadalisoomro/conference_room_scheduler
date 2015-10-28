@@ -3,7 +3,7 @@
 class ViewMeetings {
 	function buildTable($db, $userId) {
         // you will have to join reservation with location, room, user, and time slot
-        $query = "SELECT * FROM reservation WHERE user_id = " . $userId;
+        $query = "SELECT * FROM reservation res JOIN room r ON res.conference_room_id = r._id JOIN location l ON r.location_id = l._id JOIN user u ON res.user_id = u._id JOIN time_slot t ON res.time_slot_id = t._id WHERE user_id = " . $userId;
 
         try {
             $stmt = $db->prepare($query);
@@ -24,19 +24,15 @@ class ViewMeetings {
             echo '              <th>Time</th>' . "\r\n";
             echo '      </tr>' . "\r\n";
             echo '  </thead>' . "\r\n";
-            echo '  <tbody>' . "\r\n";
 
-            
-            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                // a table row looks like this: (this is with the dummy data on google's website though, change it to use our data)
-                /*
-                <tr>
-                    <td class="mdl-data-table__cell--non-numeric">Acrylic (Transparent)</td>
-                    <td>25</td>
-                    <td>$2.90</td>
-                </tr>
-                */
-                echo '<h3>user_id: ' . $row['user_id'] . ', conference room: ' . $row['conference_room_id'] . '</h3><br/>';
+	    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            echo '  <tbody>' . "\r\n";
+            echo '      <tr>' . "\r\n";
+            echo '         <td class="mdl-data-table__cell--non-numeric"> $row['last_name'])</td>' . "\r\n";
+	    echo '         <td> $row['name']</td>' . "\r\n";
+	    echo '         <td> $row['room_number']</td>' . "\r\n";
+ 	    echo '         <td> $row['start_time']</td>' . "\r\n";
+ 	    echo '      <tr>' . "\r\n";
             }
 
             echo '  </tbody>' . "\r\n";
