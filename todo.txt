@@ -2,3 +2,6 @@
 - cancel reservations (just send it to a url and make sure confirm before clicking it)
 - admins and managers can view their created users reservations
 - admins can edit the conference room resources (add, delete, edit their quality)
+- create a room viewer page
+	- Should just hold more extended info on the rooms (like their resources along with quality)
+	- Should have a button at the top or the bottom to "Schedule Meeting" that will simply forward them to the schedule_reservation.php?room_id=xx
