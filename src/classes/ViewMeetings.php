@@ -28,15 +28,15 @@ class ViewMeetings {
 	    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             echo '  <tbody>' . "\r\n";
             echo '      <tr>' . "\r\n";
-            echo '         <td class="mdl-data-table__cell--non-numeric"> $row['last_name'])</td>' . "\r\n";
-	    echo '         <td> $row['name']</td>' . "\r\n";
-	    echo '         <td> $row['room_number']</td>' . "\r\n";
- 	    echo '         <td> $row['start_time']</td>' . "\r\n";
- 	    echo '      <tr>' . "\r\n";
-            }
+            echo '         <td class="mdl-data-table__cell--non-numeric"> ' . $row['last_name'] . '</td>' . "\r\n";
+	        echo '         <td>' . $row['name'] . '</td>' . "\r\n";
+	        echo '         <td>' . $row['room_number'] . '</td>' . "\r\n";
+ 	        echo '         <td>' . $row['start_time'] . '</td>' . "\r\n";
+ 	        echo '      <tr>' . "\r\n";
+        }
 
-            echo '  </tbody>' . "\r\n";
-            echo '</table>' . "\r\n";
+        echo '  </tbody>' . "\r\n";
+        echo '</table>' . "\r\n";
 
         } catch(Exception $e) {
             echo $e->getMessage();
