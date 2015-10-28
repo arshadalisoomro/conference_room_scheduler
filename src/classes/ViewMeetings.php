@@ -21,17 +21,19 @@ class ViewMeetings {
             echo '          <th class="mdl-data-table__cell--non-numeric">Name</th>' . "\r\n";
             echo '              <th>Building</th>' . "\r\n";
             echo '              <th>Room Number</th>' . "\r\n";
-            echo '              <th>Time</th>' . "\r\n";
+            echo '              <th>Start Time</th>' . "\r\n";
+            echo '              <th>End Time</th>' . "\r\n";
             echo '      </tr>' . "\r\n";
             echo '  </thead>' . "\r\n";
             echo '  <tbody>' . "\r\n";
 
     	    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 echo '      <tr>' . "\r\n";
-                echo '         <td class="mdl-data-table__cell--non-numeric"> ' . $row['last_name'] . '</td>' . "\r\n";
+                echo '         <td class="mdl-data-table__cell--non-numeric"> ' . $row['fisrt_name'] . ' ' . $row['last_name'] . '</td>' . "\r\n";
     	        echo '         <td>' . $row['name'] . '</td>' . "\r\n";
     	        echo '         <td>' . $row['room_number'] . '</td>' . "\r\n";
      	        echo '         <td>' . $row['start_time'] . '</td>' . "\r\n";
+                echo '         <td>' . $row['end_time'] . '</td>' . "\r\n";
      	        echo '      </tr>' . "\r\n";
             }
 
