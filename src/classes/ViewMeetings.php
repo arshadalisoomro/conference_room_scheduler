@@ -9,13 +9,13 @@ class ViewMeetings {
 
         echo "<h3>";
         if ($tableType == 'me') {
-            echo "Future Meetings";
+            echo "Future Reservations";
             $query = "SELECT * FROM reservation res JOIN room r ON res.conference_room_id = r._id JOIN location l ON r.location_id = l._id JOIN user u ON res.user_id = u._id JOIN time_slot t ON res.time_slot_id = t._id WHERE date >= CURDATE() AND user_id = " . $userId;
         } else if ($tableType == 'users') {
-            echo "Created User's Meetings";
+            echo "Created User's Reservations";
             $query = "SELECT * FROM reservation res JOIN room r ON res.conference_room_id = r._id JOIN location l ON r.location_id = l._id JOIN user u ON res.user_id = u._id JOIN time_slot t ON res.time_slot_id = t._id WHERE date >= CURDATE() AND created_by_id = " . $userId;
         } else { // all users
-            echo "All User's Meetings";
+            echo "All User's Reservations";
             $query = "SELECT * FROM reservation res JOIN room r ON res.conference_room_id = r._id JOIN location l ON r.location_id = l._id JOIN user u ON res.user_id = u._id JOIN time_slot t ON res.time_slot_id = t._id WHERE date >= CURDATE()";
         }
         echo "</h3>" . "\r\n";
@@ -49,6 +49,7 @@ class ViewMeetings {
     	        echo '         <td>' . $row['room_number'] . '</td>' . "\r\n";
      	        echo '         <td>' . $row['start_time'] . '</td>' . "\r\n";
                 echo '         <td>' . $row['end_time'] . '</td>' . "\r\n";
+                echo '         <td>' . "<a class='home_page_link' href='cancel_reservation.php?reservation_id=" . $row['res._id']  . "'>Delete</a>" . '</td>' . "\r\n";
      	        echo '      </tr>' . "\r\n";
             }
 

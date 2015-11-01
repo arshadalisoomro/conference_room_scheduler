@@ -1,7 +1,4 @@
-- see the reservations for users that managers have created
-- see all reservations for admins
 - recurring reservation support
-- only view reservations that are in the future on the table 
 - cancel reservations (just send it to a url and make sure confirm before clicking it)
 - admins can edit the conference room resources (add, delete, edit their quality)
 - create a room viewer page
