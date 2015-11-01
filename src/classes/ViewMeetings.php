@@ -10,7 +10,7 @@ class ViewMeetings {
         if ($tableType == 'me') {
             $query = "SELECT * FROM reservation res JOIN room r ON res.conference_room_id = r._id JOIN location l ON r.location_id = l._id JOIN user u ON res.user_id = u._id JOIN time_slot t ON res.time_slot_id = t._id WHERE date >= CURDATE() AND user_id = " . $userId;
         } else if ($tableType == 'users') {
-            $query = "SELECT * FROM reservation res JOIN room r ON res.conference_room_id = r._id JOIN location l ON r.location_id = l._id JOIN user u ON res.user_id = u._id JOIN time_slot t ON res.time_slot_id = t._id WHERE date >= CURDATE() AND created_id = " . $userId;
+            $query = "SELECT * FROM reservation res JOIN room r ON res.conference_room_id = r._id JOIN location l ON r.location_id = l._id JOIN user u ON res.user_id = u._id JOIN time_slot t ON res.time_slot_id = t._id WHERE date >= CURDATE() AND created_by_id = " . $userId;
         } else { // all users
             $query = "SELECT * FROM reservation res JOIN room r ON res.conference_room_id = r._id JOIN location l ON r.location_id = l._id JOIN user u ON res.user_id = u._id JOIN time_slot t ON res.time_slot_id = t._id WHERE date >= CURDATE()";
         }
