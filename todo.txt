@@ -1,5 +1,4 @@
 - recurring reservation support
-- cancel reservations (just send it to a url and make sure confirm before clicking it)
 - admins can edit the conference room resources (add, delete, edit their quality)
 - create a room viewer page
 	- Should just hold more extended info on the rooms (like their resources along with quality)
