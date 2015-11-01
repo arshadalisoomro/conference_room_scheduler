@@ -13,11 +13,12 @@ $hashedPassword = PasswordUtils::hashPassword($realPassword, $passwordSalt);
 $email = $_POST['email'];
 
 $insertStatement = "INSERT INTO user
-					(`user_type_id`, `password`, `password_salt`, `first_name`, `last_name`, `email`, `picture_url`) 
-					VALUES (:user_type_id,:password,:password_salt,:first_name,:last_name,:email,:picture_url)";
+					(`user_type_id`, `created_by_id`, `password`, `password_salt`, `first_name`, `last_name`, `email`, `picture_url`) 
+					VALUES (:user_type_id,:created_by_id, :password,:password_salt,:first_name,:last_name,:email,:picture_url)";
 
 $insertParams = array(
             ':user_type_id' => $_POST['user_type_id'],
+            ':created_by_id' => $_SESSION['user']['_id'],
             ':password' => $hashedPassword,
             ':password_salt' => $passwordSalt,
             ':first_name' => $_POST['first'],

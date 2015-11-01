@@ -31,7 +31,7 @@
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
         <header class="mdl-layout__header mdl-layout__header--waterfall">
             <div class="mdl-layout__header-row">
-                <span class="mdl-layout-title">Current Reservations</span>
+                <span class="mdl-layout-title">View Reservations</span>
             </div>
         </header>
         <div class="mdl-layout__drawer">
@@ -45,7 +45,6 @@
             <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
               <div class="mdl-card mdl-cell mdl-cell--12-col">
                 <div class="mdl-card__supporting-text">
-                    <h3>Future Reservations</h3>
                     <div id="content">
                         <?php $meetings->buildTable($db, $_GET, $_SESSION['user']['_id']) ?>
                     </div>

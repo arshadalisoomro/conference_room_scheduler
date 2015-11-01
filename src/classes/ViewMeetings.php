@@ -7,13 +7,18 @@ class ViewMeetings {
         // you will have to join reservation with location, room, user, and time slot
         $query;
 
+        echo "<h3>";
         if ($tableType == 'me') {
+            echo "Future Meetings";
             $query = "SELECT * FROM reservation res JOIN room r ON res.conference_room_id = r._id JOIN location l ON r.location_id = l._id JOIN user u ON res.user_id = u._id JOIN time_slot t ON res.time_slot_id = t._id WHERE date >= CURDATE() AND user_id = " . $userId;
         } else if ($tableType == 'users') {
+            echo "Created User's Meetings";
             $query = "SELECT * FROM reservation res JOIN room r ON res.conference_room_id = r._id JOIN location l ON r.location_id = l._id JOIN user u ON res.user_id = u._id JOIN time_slot t ON res.time_slot_id = t._id WHERE date >= CURDATE() AND created_by_id = " . $userId;
         } else { // all users
+            echo "All User's Meetings";
             $query = "SELECT * FROM reservation res JOIN room r ON res.conference_room_id = r._id JOIN location l ON r.location_id = l._id JOIN user u ON res.user_id = u._id JOIN time_slot t ON res.time_slot_id = t._id WHERE date >= CURDATE()";
         }
+        echo "</h3>" . "\r\n";
 
         try {
             $stmt = $db->prepare($query);
