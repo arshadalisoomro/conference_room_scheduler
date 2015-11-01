@@ -45,7 +45,7 @@
             <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
               <div class="mdl-card mdl-cell mdl-cell--12-col">
                 <div class="mdl-card__supporting-text">
-                    <?php $meetings->buildTable($db, $_SESSION['user']['_id']) ?>
+                    <?php $meetings->buildTable($db, $_GET, $_SESSION['user']['_id']) ?>
                 </div>
               </div>
             </section>

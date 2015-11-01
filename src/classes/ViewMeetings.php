@@ -1,9 +1,19 @@
 <?php
 
 class ViewMeetings {
-	function buildTable($db, $userId) {
+	function buildTable($db, $post, $userId) {
+        $tableType = $post['type']; // will either be me, users, or all
+
         // you will have to join reservation with location, room, user, and time slot
-        $query = "SELECT * FROM reservation res JOIN room r ON res.conference_room_id = r._id JOIN location l ON r.location_id = l._id JOIN user u ON res.user_id = u._id JOIN time_slot t ON res.time_slot_id = t._id WHERE user_id = " . $userId;
+        $query;
+
+        if ($tableType == 'me') {
+            $query = "SELECT * FROM reservation res JOIN room r ON res.conference_room_id = r._id JOIN location l ON r.location_id = l._id JOIN user u ON res.user_id = u._id JOIN time_slot t ON res.time_slot_id = t._id WHERE date >= CURDATE() AND user_id = " . $userId;
+        } else if ($tableType == 'users') {
+            $query = "SELECT * FROM reservation res JOIN room r ON res.conference_room_id = r._id JOIN location l ON r.location_id = l._id JOIN user u ON res.user_id = u._id JOIN time_slot t ON res.time_slot_id = t._id WHERE date >= CURDATE() AND created_id = " . $userId;
+        } else { // all users
+            $query = "SELECT * FROM reservation res JOIN room r ON res.conference_room_id = r._id JOIN location l ON r.location_id = l._id JOIN user u ON res.user_id = u._id JOIN time_slot t ON res.time_slot_id = t._id WHERE date >= CURDATE()";
+        }
 
         try {
             $stmt = $db->prepare($query);
