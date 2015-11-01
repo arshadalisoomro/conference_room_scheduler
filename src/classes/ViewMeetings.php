@@ -10,13 +10,13 @@ class ViewMeetings {
         echo "<h3>";
         if ($tableType == 'me') {
             echo "Future Reservations";
-            $query = "SELECT * FROM reservation res JOIN room r ON res.conference_room_id = r._id JOIN location l ON r.location_id = l._id JOIN user u ON res.user_id = u._id JOIN time_slot t ON res.time_slot_id = t._id WHERE date >= CURDATE() AND user_id = " . $userId;
+            $query = "SELECT res._id AS _id, first_name, last_name, name, room_number, start_time, end_time FROM reservation res JOIN room r ON res.conference_room_id = r._id JOIN location l ON r.location_id = l._id JOIN user u ON res.user_id = u._id JOIN time_slot t ON res.time_slot_id = t._id WHERE date >= CURDATE() AND user_id = " . $userId;
         } else if ($tableType == 'users') {
             echo "Created User's Reservations";
-            $query = "SELECT * FROM reservation res JOIN room r ON res.conference_room_id = r._id JOIN location l ON r.location_id = l._id JOIN user u ON res.user_id = u._id JOIN time_slot t ON res.time_slot_id = t._id WHERE date >= CURDATE() AND created_by_id = " . $userId;
+            $query = "SELECT res._id AS _id, first_name, last_name, name, room_number, start_time, end_time FROM reservation res JOIN room r ON res.conference_room_id = r._id JOIN location l ON r.location_id = l._id JOIN user u ON res.user_id = u._id JOIN time_slot t ON res.time_slot_id = t._id WHERE date >= CURDATE() AND created_by_id = " . $userId;
         } else { // all users
             echo "All User's Reservations";
-            $query = "SELECT * FROM reservation res JOIN room r ON res.conference_room_id = r._id JOIN location l ON r.location_id = l._id JOIN user u ON res.user_id = u._id JOIN time_slot t ON res.time_slot_id = t._id WHERE date >= CURDATE()";
+            $query = "SELECT res._id AS _id, first_name, last_name, name, room_number, start_time, end_time FROM reservation res JOIN room r ON res.conference_room_id = r._id JOIN location l ON r.location_id = l._id JOIN user u ON res.user_id = u._id JOIN time_slot t ON res.time_slot_id = t._id WHERE date >= CURDATE()";
         }
         echo "</h3>" . "\r\n";
 
@@ -38,6 +38,7 @@ class ViewMeetings {
             echo '              <th>Room Number</th>' . "\r\n";
             echo '              <th>Start Time</th>' . "\r\n";
             echo '              <th>End Time</th>' . "\r\n";
+            echo '              <th>Delete?</th>' . "\r\n";
             echo '      </tr>' . "\r\n";
             echo '  </thead>' . "\r\n";
             echo '  <tbody>' . "\r\n";
