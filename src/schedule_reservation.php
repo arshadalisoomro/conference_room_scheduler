@@ -20,8 +20,8 @@ try {
     $stmt = $db->prepare($insertStatement);
     $result = $stmt->execute($insertParams);
 
-	header("Location: home.php");
-	die("Redirecting to home.php");
+	//header("Location: home.php");
+	//die("Redirecting to home.php");
 } catch(PDOException $ex) {
 	echo "query: " . $insertStatement . "</br>";
 	print_r($insertParams);
