@@ -42,8 +42,9 @@ if (empty($_GET['recurrence'])) {
 
     $currentDate = strtotime($_GET['date']);
     $recurrenceEndDate = strtotime($_GET['rec_end']);
+    $difference = ($recurrenceEndDate - $currentDate);
 
-    echo "current date: " . $currentDate . ", end date: " . $recurrenceEndDate . ", difference: " . $recurrenceEndDate - $currentDate;
+    echo "current date: " . $currentDate . ", end date: " . $recurrenceEndDate . ", difference: " . $difference;
     while ($currentDate <= $recurrenceEndDate) {
         $insertParams = array(
                 ':user_id' => $_GET['user_id'],
