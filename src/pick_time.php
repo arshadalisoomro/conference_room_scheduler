@@ -84,7 +84,7 @@
                     if (!empty($_GET['date'])) {
                         // we want to show the time selector and a submit button
                         $scheduler->buildAvailableTimes($db, $_GET);
-                        echo '<input type="checkbox" name="recurring"> Recurring Reservation</br>';
+                        echo '</br><br/><input type="checkbox" name="recurring" onchange="dateUpdated()"> Recurring Reservation</br>';
                         if ($_GET['recurring']) {
                             echo 'recurring on';
                         }
