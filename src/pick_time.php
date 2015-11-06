@@ -15,7 +15,13 @@
         header("Location: search_rooms.php");
         die("Redirecting to search_rooms.php"); 
     } else if (isset($_GET['submitted']) && $_GET['submitted'] == "true") {
-        $getParams = "room_id=" . $_GET['room_id'] . "&date=" . $_GET['date'] . "&time_slot=" . $_GET['time_slot'] . "&user_id=" . $_SESSION['user']['_id'];
+        $getParams;
+
+        if ($_GET['recurring'] == 'on') {
+            $getParams = "room_id=" . $_GET['room_id'] . "&date=" . $_GET['date'] . "&time_slot=" . $_GET['time_slot'] . "&user_id=" . $_SESSION['user']['_id'] . "&recurrence=" . $_GET['recurrence'];
+        } else {
+            $getParams = "room_id=" . $_GET['room_id'] . "&date=" . $_GET['date'] . "&time_slot=" . $_GET['time_slot'] . "&user_id=" . $_SESSION['user']['_id'];
+        }
         header("Location: schedule_reservation.php?" . $getParams);
         die("Redirecting to schedule_reservation.php"); 
     }
@@ -86,7 +92,6 @@
                         $scheduler->buildAvailableTimes($db, $_GET);
                         if (!empty($_GET['recurring']) && $_GET['recurring'] == 'on') {
                             echo '</br><br/><input checked type="checkbox" name="recurring" onchange="dateUpdated()"> Recurring Reservation</br>';
-                            echo '</br>';
                             $scheduler->buildRecurrenceOptions($db);
                         } else {
                             echo '</br><br/><input type="checkbox" name="recurring" onchange="dateUpdated()"> Recurring Reservation</br>';
