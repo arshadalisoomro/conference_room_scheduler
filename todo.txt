@@ -1,4 +1,6 @@
+- edit reservations from the view reservation table
 - recurring reservation support
+	- deleting or editing them should allow us to edit the entire recurrance group
 - admins can edit the conference room resources (add, delete, edit their quality)
 - create a room viewer page
 	- Should just hold more extended info on the rooms (like their resources along with quality)
