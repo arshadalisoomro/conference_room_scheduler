@@ -35,7 +35,7 @@ class ViewMeetings {
             echo '      <tr>' . "\r\n";
             echo '          <th class="mdl-data-table__cell--non-numeric">Name</th>' . "\r\n";
             echo '              <th>Building</th>' . "\r\n";
-            echo '              <th>Room Number</th>' . "\r\n";
+            echo '              <th>Room</th>' . "\r\n";
             echo '              <th>Date</th>' . "\r\n";
             echo '              <th>Start Time</th>' . "\r\n";
             echo '              <th>End Time</th>' . "\r\n";
