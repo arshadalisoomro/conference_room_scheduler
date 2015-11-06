@@ -31,6 +31,8 @@ if (empty($_GET['recurrence'])) {
         echo "<br/>exception: " . $ex->getMessage();
     }
 } else {
+    $error = false;
+
     $createRecurrence = "INSERT INTO recurrence (`recurrence_type_id`) VALUES (:_id)";
     $createParams = array(':_id' => $_GET['recurrence']);
     $stmt = $db->prepare($createRecurrence);
@@ -39,7 +41,10 @@ if (empty($_GET['recurrence'])) {
     $recurrenceId = $db->lastInsertId();
 
     $currentDate = strtotime($_GET['date']);
-    while ($currentDate < strtotime($_GET['rec_end'])) {
+    $recurrenceEndDate = strtotime($_GET['rec_end']);
+
+    echo "current date: " . $currentDate . ", end date: " . $recurrenceEndDate . ", difference: " . $recurrenceEndDate - $currentDate;
+    while ($currentDate <= $recurrenceEndDate) {
         $insertParams = array(
                 ':user_id' => $_GET['user_id'],
                 ':conference_room_id' => $_GET['room_id'],
@@ -51,15 +56,19 @@ if (empty($_GET['recurrence'])) {
         try {
             $stmt = $db->prepare($insertStatement);
             $result = $stmt->execute($insertParams);
-
-            header("Location: home.php");
-            die("Redirecting to home.php");
         } catch(PDOException $ex) {
+            $error = true;
+
             echo "query: " . $insertStatement . "</br>";
             print_r($insertParams);
             echo "<br/>exception: " . $ex->getMessage();
         }
 
         $currentDate = $currentDate + 86400000;
+    }
+
+    if (!$error) {
+        header("Location: home.php");
+        die("Redirecting to home.php");
     }
 }
