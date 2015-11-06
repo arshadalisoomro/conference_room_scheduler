@@ -65,7 +65,7 @@ if (empty($_GET['recurrence'])) {
             echo "<br/>exception: " . $ex->getMessage();
         }
 
-        $currentDate = $currentDate + 86400000;
+        $currentDate = strtotime("+1 day", $currentDate);
     }
 
     if (!$error) {
