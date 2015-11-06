@@ -15,7 +15,7 @@ if (empty($_GET['recurrence'])) {
                 ':user_id' => $_GET['user_id'],
                 ':conference_room_id' => $_GET['room_id'],
                 ':time_slot_id' => $_GET['time_slot'],
-                ':recurrence_id' => '0',
+                ':recurrence_id' => '1',
                 ':date_val' => $_GET['date']
             );
 
