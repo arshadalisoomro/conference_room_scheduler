@@ -50,6 +50,11 @@
                 maxDate: "+6M",
                 dateFormat: "yy-mm-dd"
             });
+        $("#datepicker2").datepicker({
+                minDate: "+1D", 
+                maxDate: "+6M",
+                dateFormat: "yy-mm-dd"
+            });
     });
 
     function dateUpdated() {
@@ -95,9 +100,9 @@
                             echo '</br><br/><input checked type="checkbox" name="recurring" onchange="dateUpdated()"> Recurring Reservation</br>';
                             $scheduler->buildRecurrenceOptions($db);
                             if (empty($_GET['recurrence_end'])) {
-                                echo '<b>Reservation Date:</b> <input type="text" id="datepicker" name="recurrence_end" readonly="readonly" value="' . $_GET['date'] . '"/>';
+                                echo '</br><b>Recurrence End Date:</b> <input type="text" id="datepicker2" name="recurrence_end" readonly="readonly" value="' . $_GET['date'] . '"/>';
                             } else {
-                                echo '<b>Reservation Date:</b> <input type="text" id="datepicker" name="recurrence_end" readonly="readonly" value="' . $_GET['recurrence_end'] . '"/>';
+                                echo '</br><b>Recurrence End Date:</b> <input type="text" id="datepicker2" name="recurrence_end" readonly="readonly" value="' . $_GET['recurrence_end'] . '"/>';
                             }
                         } else {
                             echo '</br><br/><input type="checkbox" name="recurring" onchange="dateUpdated()"> Recurring Reservation</br>';
