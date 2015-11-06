@@ -40,11 +40,16 @@ if (empty($_GET['recurrence'])) {
     
     $recurrenceId = $db->lastInsertId();
 
+    $typeId = "SELECT increment_string FROM recurrence r JOIN recurrence_type rt ON r.recurrence_type_id = rt._id WHERE r._id = " . $recurrenceId;
+    $stmt = $db->prepare($typeId);
+    $result = $stmt->execute();
+    $row = $stmt->fetch();
+
+    $incrementString = $row['increment_string'];
+
     $currentDate = strtotime($_GET['date']);
     $recurrenceEndDate = strtotime($_GET['rec_end']);
-    $difference = ($recurrenceEndDate - $currentDate);
 
-    echo "current date: " . $currentDate . ", end date: " . $recurrenceEndDate . ", difference: " . $difference;
     while ($currentDate <= $recurrenceEndDate) {
         $insertParams = array(
                 ':user_id' => $_GET['user_id'],
@@ -65,7 +70,7 @@ if (empty($_GET['recurrence'])) {
             echo "<br/>exception: " . $ex->getMessage();
         }
 
-        $currentDate = strtotime("+1 month", $currentDate);
+        $currentDate = strtotime($incrementString, $currentDate);
     }
 
     if (!$error) {
