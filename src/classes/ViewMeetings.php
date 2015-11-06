@@ -44,6 +44,7 @@ class ViewMeetings {
             echo '      </tr>' . "\r\n";
             echo '  </thead>' . "\r\n";
             echo '  <tbody>' . "\r\n";
+<<<<<<< HEAD
 
     	    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 echo '      <tr>' . "\r\n";
@@ -57,6 +58,15 @@ class ViewMeetings {
                 echo '         <td>' . "<a class='home_page_link' onclick='return confirm(\"Are you sure?\")'href='cancel_reservation.php?reservation_id=" . $row['_id']  . "'>Delete</a>" . '</td>' . "\r\n";
      	        echo '      </tr>' . "\r\n";
             }
+=======
+            echo '      <tr>' . "\r\n";
+            echo '         <td class="mdl-data-table__cell--non-numeric"> $row['last_name'])</td>' . "\r\n";
+	    echo '         <td> $row['name']</td>' . "\r\n";
+	    echo '         <td> $row['room_number']</td>' . "\r\n";
+ 	    echo '         <td> $row['start_time']</td>' . "\r\n";
+ 	    echo '      <tr>' . "\r\n";
+        }
+>>>>>>> add veiw room structure
 
             echo '  </tbody>' . "\r\n";
             echo '</table>' . "\r\n";
