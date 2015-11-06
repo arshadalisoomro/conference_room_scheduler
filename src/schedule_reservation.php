@@ -18,6 +18,18 @@ if (empty($_GET['recurrence'])) {
                 ':recurrence_id' => '0',
                 ':date_val' => $_GET['date']
             );
+
+    try {
+        $stmt = $db->prepare($insertStatement);
+        $result = $stmt->execute($insertParams);
+
+        header("Location: home.php");
+        die("Redirecting to home.php");
+    } catch(PDOException $ex) {
+        echo "query: " . $insertStatement . "</br>";
+        print_r($insertParams);
+        echo "<br/>exception: " . $ex->getMessage();
+    }
 } else {
     $createRecurrence = "INSERT INTO recurrence (`recurrence_type_id`) VALUES (:_id)";
     $createParams = array(':_id' => $_GET['recurrence']);
@@ -26,24 +38,28 @@ if (empty($_GET['recurrence'])) {
     
     $recurrenceId = $db->lastInsertId();
 
-    $insertParams = array(
+    $currentDate = strtotime($_GET['date']);
+    while ($currentDate < strtotime($_GET['rec_end'])) {
+        $insertParams = array(
                 ':user_id' => $_GET['user_id'],
                 ':conference_room_id' => $_GET['room_id'],
                 ':time_slot_id' => $_GET['time_slot'],
                 ':recurrence_id' => $recurrenceId,
-                ':date_val' => $_GET['date']
+                ':date_val' => date("yy-mm-dd", $currentDate)
             );
-}
 
+        try {
+            $stmt = $db->prepare($insertStatement);
+            $result = $stmt->execute($insertParams);
 
-try {
-    $stmt = $db->prepare($insertStatement);
-    $result = $stmt->execute($insertParams);
+            header("Location: home.php");
+            die("Redirecting to home.php");
+        } catch(PDOException $ex) {
+            echo "query: " . $insertStatement . "</br>";
+            print_r($insertParams);
+            echo "<br/>exception: " . $ex->getMessage();
+        }
 
-	//header("Location: home.php");
-	//die("Redirecting to home.php");
-} catch(PDOException $ex) {
-	echo "query: " . $insertStatement . "</br>";
-	print_r($insertParams);
-    echo "<br/>exception: " . $ex->getMessage();
+        $currentDate = $currentDate + 86400000;
+    }
 }
