@@ -15,6 +15,30 @@ class Scheduler {
         }
 	}
 
+    function buildRecurrenceOptions($db, $post) {
+        $query = "SELECT * FROM recurrence_type where _id <> 1";
+
+        try {
+            $stmt = $db->prepare($query);
+            $result = $stmt->execute();
+
+            echo '<br/><b>Recurrence:</b> <select name="recurrence">';
+            $i = 1;
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                if ($i == $post['recurrence'] || (empty($post['recurrence']) && $i == 1)) {
+                    echo '<option selected="selected" value="' . $row['_id'] . '">' . $row['description'] . '</option>';
+                } else {
+                    echo '<option value="' . $row['_id'] . '">' . $row['description'] . '</option>';
+                }
+                $i = $i + 1;
+            }
+
+            echo '</select>';
+        } catch(Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+
     function buildAvailableTimes($db, $post) {
         $whereClause = $this->buildWhereClause($db, $post);
     	$query;
@@ -31,7 +55,7 @@ class Scheduler {
             echo '<br/><b>Available Time Slots:</b> <select onchange="timeChange()" name="time_slot">';
             $i = 0;
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                if ($i == 0) {
+                if ($row['_id'] == $post['time_slot'] || (empty($post['time_slot']) && i == 0)) {
                     echo '<option selected="selected" value="' . $row['_id'] . '">' . $this->buildTimeDisplay($row) . '</option>';
                 } else {
                     echo '<option value="' . $row['_id'] . '">' . $this->buildTimeDisplay($row) . '</option>';

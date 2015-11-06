@@ -86,11 +86,12 @@
                         $scheduler->buildAvailableTimes($db, $_GET);
                         if (!empty($_GET['recurring']) && $_GET['recurring'] == 'on') {
                             echo '</br><br/><input checked type="checkbox" name="recurring" onchange="dateUpdated()"> Recurring Reservation</br>';
-                            echo 'recurring on';
+                            echo '</br>';
+                            $scheduler->buildRecurrenceOptions($db);
                         } else {
                             echo '</br><br/><input type="checkbox" name="recurring" onchange="dateUpdated()"> Recurring Reservation</br>';
                         }
-                        
+
                         echo '<br/><br/><input onclick="submitButton();" type="submit" value="Schedule Reservation" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"/>' . "\r\n";
                     }
 
