@@ -10,7 +10,7 @@
         die("Redirecting to index.php"); 
     }
 
-    $meetings = new ViewMeetings();
+    $rooms = new ViewRoom();
 ?>
 
 <!doctype html>
@@ -31,7 +31,7 @@
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
         <header class="mdl-layout__header mdl-layout__header--waterfall">
             <div class="mdl-layout__header-row">
-                <span class="mdl-layout-title">Current Reservations</span>
+                <span class="mdl-layout-title">View Room</span>
             </div>
         </header>
         <div class="mdl-layout__drawer">
@@ -45,7 +45,7 @@
             <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
               <div class="mdl-card mdl-cell mdl-cell--12-col">
                 <div class="mdl-card__supporting-text">
-                    <?php $meetings->buildTable($db, $_SESSION['user']['_id']) ?>
+                    <?php $room->buildRoom($db) ?>
                 </div>
               </div>
             </section>
