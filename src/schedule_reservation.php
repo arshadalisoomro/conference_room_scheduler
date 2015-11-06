@@ -50,7 +50,7 @@ if (empty($_GET['recurrence'])) {
                 ':conference_room_id' => $_GET['room_id'],
                 ':time_slot_id' => $_GET['time_slot'],
                 ':recurrence_id' => $recurrenceId,
-                ':date_val' => date("yy-mm-dd", $currentDate)
+                ':date_val' => date("Y-n-d", $currentDate)
             );
 
         try {
@@ -68,7 +68,7 @@ if (empty($_GET['recurrence'])) {
     }
 
     if (!$error) {
-        header("Location: home.php");
-        die("Redirecting to home.php");
+        //header("Location: home.php");
+        //die("Redirecting to home.php");
     }
 }
