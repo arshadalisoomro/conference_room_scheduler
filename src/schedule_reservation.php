@@ -65,11 +65,11 @@ if (empty($_GET['recurrence'])) {
             echo "<br/>exception: " . $ex->getMessage();
         }
 
-        $currentDate = strtotime("+1 week", $currentDate);
+        $currentDate = strtotime("+1 month", $currentDate);
     }
 
     if (!$error) {
-        //header("Location: home.php");
-        //die("Redirecting to home.php");
+        header("Location: home.php");
+        die("Redirecting to home.php");
     }
 }
