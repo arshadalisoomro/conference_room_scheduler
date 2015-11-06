@@ -24,7 +24,7 @@ if (empty($_GET['recurrence'])) {
     $createParams = array(':_id' => $_GET['recurrence']);
     $stmt = $db->prepare($createRecurrence);
     $result = $stmt->execute($createParams);
-    print_r($result);
+    echo "id: " . $db->lastInsertId();
 }
 
 
