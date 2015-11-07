@@ -10,7 +10,7 @@ class ViewRoom {
  $tableType = $post['type']; // will either be me, users, or all
 
         // you will have to join reservation with location, room, user, and time slot
-        $query="SELECT room.room_number,room.geometry,room.capacity,location.name,resource.quality_description FROM room INNER JOIN location ON room.location_id=location._id INNER JOIN resource ON room._id=resource.room_id INNER JOIN resource_type ON resource.resource_type_id=resource_type._id ";
+        $query="SELECT room.room_number,room.geometry,room.capacity,location.name,resource.quality_description FROM room LEFT JOIN location ON room.location_id=location._id LEFT JOIN resource ON room._id=resource.room_id LEFT JOIN resource_type ON resource.resource_type_id=resource_type._id ";
         echo "<h3>";
 		
 		echo "Room Details";
