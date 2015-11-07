@@ -69,7 +69,7 @@ class ViewRoom {
 			//echo json_encode($room_list_json);
 			//echo '<script type="text/javascript">console.log('+json_encode($room_list_json)+');</script>';
 	
-			echo '<script type="text/javascript">window["room_detail"]='+json_encode($room_list_json)+'; console.log(window["room_detail"]);</script>';
+			echo '<script type="text/javascript">var room_json='+json_encode($room_list_json)+'; console.log(room_json);</script>';
 			//echo 'function load_table_json(){ window["room_detail"]=json_encode('+$room_list_json+');';
 			//echo 'console.log("aaa"); alert("test");}';
 			//echo 'load_table_json();';
