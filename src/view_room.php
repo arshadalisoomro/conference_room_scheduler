@@ -1,5 +1,5 @@
 <?php
-
+error_reporting(E_ALL);
     include_once('../AutoLoader.php');
     AutoLoader::registerDirectory('../src/classes');
 
@@ -46,7 +46,9 @@
               <div class="mdl-card mdl-cell mdl-cell--12-col">
                 <div class="mdl-card__supporting-text">
 				<div id="content">
-                    <?php $room->buildRoom($db, $_GET, $_SESSION['user']['_id']) ?>
+                    <?php 
+					echo "page loaded";
+					$rooms->buildRoom($db, $_GET, $_SESSION['user']['_id']) ?>
 					
 					</div>
                 </div>

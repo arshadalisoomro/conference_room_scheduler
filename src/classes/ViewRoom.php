@@ -1,5 +1,5 @@
 <?php 
-//error_reporting(E_ALL);
+error_reporting(E_ALL);
 //parse_str($_SERVER['QUERY_STRING']);
 
 
@@ -43,7 +43,7 @@ class ViewRoom {
     	        echo '         <td>' . $row['room_number'] . '</td>' . "\r\n";
                 echo '         <td>' . $row['capacity'] . '</td>' . "\r\n";
 				echo '         <td>' . $row['geometry'] . '</td>' . "\r\n";
-                echo '         <td>' . "<a class='home_page_link' onclick='return confirm(\"Are you sure?\")'href='cancel_reservation.php?reservation_id=" . $row['_id']  . "'>Delete</a>" . '</td>' . "\r\n";
+                //echo '         <td>' . "<a class='home_page_link' onclick='return confirm(\"Are you sure?\")'href='cancel_reservation.php?reservation_id=" . $row['_id']  . "'>Delete</a>" . '</td>' . "\r\n";
      	        echo '      </tr>' . "\r\n";
             }
 
