@@ -28,8 +28,8 @@ class ViewRoom {
             // the .\r\n just creates
 
             echo '<table class="mdl-data-table mdl-js-data-table mdl-data-table mdl-shadow--2dp">' . "\r\n";
-            echo '  <thead style="overflow: scroll; height:500px;">' . "\r\n";
-            echo '      <tr>' . "\r\n";
+            echo '  <thead >' . "\r\n";
+            echo '      <tr >' . "\r\n";
             echo '          <th class="mdl-data-table__cell--non-numeric">Building</th>' . "\r\n";
             echo '              <th>Room</th>' . "\r\n";
             echo '              <th>Capacity</th>' . "\r\n";
@@ -37,7 +37,7 @@ class ViewRoom {
 			echo '              <th>Equipments</th>' . "\r\n";
             echo '      </tr>' . "\r\n";
             echo '  </thead>' . "\r\n";
-            echo '  <tbody>' . "\r\n";
+            echo '  <tbody style="overflow: scroll; height:500px;">' . "\r\n";
 
     	    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 				
