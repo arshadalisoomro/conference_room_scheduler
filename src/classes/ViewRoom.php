@@ -11,7 +11,7 @@ class ViewRoom {
 		
 
         // you will have to join reservation with location, room, user, and time slot
-        $query="SELECT room.room_number,room.geometry,room.capacity,location.name,resource.quality_description FROM room LEFT JOIN location ON room.location_id=location._id LEFT JOIN resource ON room._id=resource.room_id LEFT JOIN resource_type ON resource.resource_type_id=resource_type._id ";
+        $query="SELECT room.room_number,room.geometry,room.capacity,location.name,resource.quality_description,resource_type.description FROM room LEFT JOIN location ON room.location_id=location._id LEFT JOIN resource ON room._id=resource.room_id LEFT JOIN resource_type ON resource.resource_type_id=resource_type._id ";
         echo "<h3>";
 		
 		echo "Room Details";
@@ -27,7 +27,7 @@ class ViewRoom {
 
             // the .\r\n just creates
 
-            echo '<table class="mdl-data-table mdl-js-data-table mdl-data-table mdl-shadow--2dp" style="display:block;height:300px;">' . "\r\n";
+            echo '<table align="center" class="mdl-data-table mdl-js-data-table mdl-data-table mdl-shadow--2dp" style="display:block;height:400px;">' . "\r\n";
             echo '  <thead >' . "\r\n";
             echo '      <tr >' . "\r\n";
             echo '          <th class="mdl-data-table__cell--non-numeric">Building</th>' . "\r\n";
@@ -35,6 +35,7 @@ class ViewRoom {
             echo '              <th>Capacity</th>' . "\r\n";
             echo '              <th>Geometry</th>' . "\r\n";
 			echo '              <th>Equipments</th>' . "\r\n";
+			echo '              <th>Resource Types</th>' . "\r\n";
             echo '      </tr>' . "\r\n";
             echo '  </thead style="display:block;">' . "\r\n";
             echo '  <tbody style="position:absolute; overflow: auto; height:100%; display:block;">' . "\r\n";
@@ -49,6 +50,7 @@ class ViewRoom {
                 echo '         <td>' . $row['capacity'] . '</td>' . "\r\n";
 				echo '         <td>' . $row['geometry'] . '</td>' . "\r\n";
 				echo '         <td>' . $row['quality_description'] . '</td>' . "\r\n";
+				echo '         <td>' . $row['description'] . '</td>' . "\r\n";			
                 //echo '         <td>' . "<a class='home_page_link' onclick='return confirm(\"Are you sure?\")'href='cancel_reservation.php?reservation_id=" . $row['_id']  . "'>Delete</a>" . '</td>' . "\r\n";
      	        echo '      </tr>' . "\r\n";
             }
