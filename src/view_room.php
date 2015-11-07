@@ -17,7 +17,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Conference Room</title>
+    <title>Conference Room Detail</title>
     <meta name="description" content="Conference room management system for Database Systems">
     <meta name="author" content="Team 6">
 
@@ -45,13 +45,17 @@
             <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
               <div class="mdl-card mdl-cell mdl-cell--12-col">
                 <div class="mdl-card__supporting-text">
-                    <?php $room->buildRoom($db) ?>
+				<div id="content">
+                    <?php $room->buildRoom($db, $_GET, $_SESSION['user']['_id']) ?>
+					
+					</div>
                 </div>
               </div>
             </section>
             <br/>
         </main>
     </div>
+	<div id="room_list"></div>
     
     <script src="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.min.js"></script>
 </body>

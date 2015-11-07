@@ -99,6 +99,8 @@
                             echo "<a class='home_page_link' href='add_user_form.php?type=2'>Add a New Manager</a><br/>";
                             echo "<a class='home_page_link' href='edit_resources.php'>Edit Conference Room Resources</a><br/>";
                         }
+							
+							echo "<a class='home_page_link' href='view_room.php.php?type=me'>View Room Resources</a><br/>";
 
                     ?> 
                     
