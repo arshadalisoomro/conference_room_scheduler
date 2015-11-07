@@ -30,7 +30,7 @@ class ViewRoom {
             echo '<table align="center" class="mdl-data-table mdl-js-data-table mdl-data-table mdl-shadow--2dp" style="height:400px;">' . "\r\n";
             echo '  <thead >' . "\r\n";
             echo '      <tr >' . "\r\n";
-            echo '          <th class="mdl-data-table__cell--non-numeric">Building</th>' . "\r\n";
+            echo '          <th class="mdl-data-table__cell--non-numeric">Building&nbsp;&nbsp;&nbsp;</th>' . "\r\n";
             echo '              <th>Room</th>' . "\r\n";
             echo '              <th>Capacity</th>' . "\r\n";
             echo '              <th>Geometry</th>' . "\r\n";
