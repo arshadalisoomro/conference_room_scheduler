@@ -68,8 +68,8 @@ class ViewRoom {
             echo '</table>' . "\r\n";
 			
 			echo '<script type="text/javascript">';
-			echo 'function load_table_json(){ window["room_detail"]=json_encode('+$room_list_json+')';
-			echo 'console.log(window["room_detail"]); alert("test");}';
+			//echo 'function load_table_json(){ window["room_detail"]=json_encode('+$room_list_json+');';
+			echo 'console.log("aaa"); alert("test");}';
 			echo 'load_table_json();';
 			echo '</script>';
 			
