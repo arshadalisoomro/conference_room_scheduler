@@ -38,7 +38,7 @@ class ViewRoom {
 			echo '              <th>Resource Types</th>' . "\r\n";
             echo '      </tr>' . "\r\n";
             echo '  </thead style="display:block;">' . "\r\n";
-            echo '  <tbody align="center" style="position:absolute; overflow: auto; height:90%; width:100%;">' . "\r\n";
+            echo '  <tbody align="center" style="position:absolute; overflow-y: auto; overflow-x: hidden; height:85%; width:100%;">' . "\r\n";
 
     	    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 								
