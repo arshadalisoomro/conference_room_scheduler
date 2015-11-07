@@ -6,7 +6,7 @@ class ViewRoom {
 	function buildRoom($db, $post, $userId) {
 		$tableType = $post['type']; // will either be me, users, or all
 		
-		$json_list=array();
+		$room_list_json=array();
 		
 		
 
@@ -41,9 +41,7 @@ class ViewRoom {
             echo '  <tbody style="position:absolute; overflow: auto; height:100%; display:block;">' . "\r\n";
 
     	    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-				
-				
-				
+								
                 echo '      <tr>' . "\r\n";
     	        echo '         <td>' . $row['name'] . '</td>' . "\r\n";
     	        echo '         <td>' . $row['room_number'] . '</td>' . "\r\n";
@@ -53,10 +51,27 @@ class ViewRoom {
 				echo '         <td>' . $row['description'] . '</td>' . "\r\n";			
                 //echo '         <td>' . "<a class='home_page_link' onclick='return confirm(\"Are you sure?\")'href='cancel_reservation.php?reservation_id=" . $row['_id']  . "'>Delete</a>" . '</td>' . "\r\n";
      	        echo '      </tr>' . "\r\n";
-            }
+            
+			$each_record=array(			
+			"name" => $row['name'],
+			"room_number" => $row['room_number'],
+			"capacity" => $row['capacity'],
+			"geometry" => $row['geometry'],
+			"quality_description" => $row['quality_description'],
+			"description" => $row['description'],
+			);
+            array_push($room_list_json, $each_record);
+			
+			}
 
             echo '  </tbody>' . "\r\n";
             echo '</table>' . "\r\n";
+			
+			echo '<script type="text/javascript">';
+			echo 'window["room_detail"]=json_encode('+$room_list_json+')';
+			echo 'console.log(window["room_detail"])';
+			echo '</script>';
+			
 
         } catch(Exception $e) {
             echo $e->getMessage();
