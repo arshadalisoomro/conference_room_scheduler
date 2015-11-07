@@ -2,12 +2,13 @@
 error_reporting(E_ALL);
 //parse_str($_SERVER['QUERY_STRING']);
 
-
-
-
 class ViewRoom {
 	function buildRoom($db, $post, $userId) {
- $tableType = $post['type']; // will either be me, users, or all
+		$tableType = $post['type']; // will either be me, users, or all
+		
+		$json_list=array();
+		
+		
 
         // you will have to join reservation with location, room, user, and time slot
         $query="SELECT room.room_number,room.geometry,room.capacity,location.name,resource.quality_description FROM room LEFT JOIN location ON room.location_id=location._id LEFT JOIN resource ON room._id=resource.room_id LEFT JOIN resource_type ON resource.resource_type_id=resource_type._id ";
@@ -27,7 +28,7 @@ class ViewRoom {
             // the .\r\n just creates
 
             echo '<table class="mdl-data-table mdl-js-data-table mdl-data-table mdl-shadow--2dp">' . "\r\n";
-            echo '  <thead>' . "\r\n";
+            echo '  <thead style="overflow: scroll; height:500px;">' . "\r\n";
             echo '      <tr>' . "\r\n";
             echo '          <th class="mdl-data-table__cell--non-numeric">Building</th>' . "\r\n";
             echo '              <th>Room</th>' . "\r\n";
@@ -39,6 +40,9 @@ class ViewRoom {
             echo '  <tbody>' . "\r\n";
 
     	    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+				
+				
+				
                 echo '      <tr>' . "\r\n";
     	        echo '         <td>' . $row['name'] . '</td>' . "\r\n";
     	        echo '         <td>' . $row['room_number'] . '</td>' . "\r\n";
