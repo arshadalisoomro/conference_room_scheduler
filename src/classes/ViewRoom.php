@@ -27,7 +27,7 @@ class ViewRoom {
 
             // the .\r\n just creates
 
-            echo '<table align="center" class="mdl-data-table mdl-js-data-table mdl-data-table mdl-shadow--2dp" style="display:block;height:400px;">' . "\r\n";
+            echo '<table align="center" class="mdl-data-table mdl-js-data-table mdl-data-table mdl-shadow--2dp" style="height:400px;">' . "\r\n";
             echo '  <thead align="center">' . "\r\n";
             echo '      <tr >' . "\r\n";
             echo '          <th class="mdl-data-table__cell--non-numeric">Building</th>' . "\r\n";
@@ -67,7 +67,7 @@ class ViewRoom {
             echo '  </tbody>' . "\r\n";
             echo '</table>' . "\r\n";
 			
-			echo '<script type="text/javascript">alert("test")</script>'; 
+			echo '<script type="text/javascript"> window["room_detail"]=json_encode('+$room_list_json+'); console.log(window["room_detail"]);</script>'; 
 			//echo 'function load_table_json(){ window["room_detail"]=json_encode('+$room_list_json+');';
 			//echo 'console.log("aaa"); alert("test");}';
 			//echo 'load_table_json();';
