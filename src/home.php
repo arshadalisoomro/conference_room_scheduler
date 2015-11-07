@@ -100,7 +100,7 @@
                             echo "<a class='home_page_link' href='edit_resources.php'>Edit Conference Room Resources</a><br/>";
                         }
 							
-							echo "<a class='home_page_link' href='view_room.php.php?type=me'>View Room Resources</a><br/>";
+							echo "<a class='home_page_link' href='view_room.php?type=all'>View Room Details</a><br/>";
 
                     ?> 
                     

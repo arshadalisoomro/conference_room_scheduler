@@ -1,12 +1,12 @@
 <?php 
-error_reporting(E_ALL);
-parse_str($_SERVER['QUERY_STRING']);
+//error_reporting(E_ALL);
+//parse_str($_SERVER['QUERY_STRING']);
 
 
 
 
 class ViewRoom {
-	function buildTable($db, $post, $userId) {
+	function buildRoom($db, $post, $userId) {
  $tableType = $post['type']; // will either be me, users, or all
 
         // you will have to join reservation with location, room, user, and time slot

@@ -55,7 +55,7 @@
             <br/>
         </main>
     </div>
-	<div id="room_list"></div>
+	
     
     <script src="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.min.js"></script>
 </body>
