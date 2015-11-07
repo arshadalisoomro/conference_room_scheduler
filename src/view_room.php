@@ -46,8 +46,7 @@ error_reporting(E_ALL);
               <div class="mdl-card mdl-cell mdl-cell--12-col">
                 <div class="mdl-card__supporting-text">
 				<div id="content">
-                    <?php 
-					echo "page loaded";
+                    <?php 					
 					$rooms->buildRoom($db, $_GET, $_SESSION['user']['_id']) ?>
 					
 					</div>

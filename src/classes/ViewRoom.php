@@ -10,7 +10,7 @@ class ViewRoom {
  $tableType = $post['type']; // will either be me, users, or all
 
         // you will have to join reservation with location, room, user, and time slot
-        $query="SELECT room.room_number,room.geometry,room.capacity,location.name FROM room INNER JOIN location ON room._id=location._id";
+        $query="SELECT room.room_number,room.geometry,room.capacity,location.name,resource.description FROM room INNER JOIN location ON room.location_id=location._id INNER JOIN resource ON room._id=resource._id";
         echo "<h3>";
 		
 		echo "Room Details";
@@ -33,6 +33,7 @@ class ViewRoom {
             echo '              <th>Room</th>' . "\r\n";
             echo '              <th>Capacity</th>' . "\r\n";
             echo '              <th>Geometry</th>' . "\r\n";
+			echo '              <th>Equipments</th>' . "\r\n";
             echo '      </tr>' . "\r\n";
             echo '  </thead>' . "\r\n";
             echo '  <tbody>' . "\r\n";
@@ -43,6 +44,7 @@ class ViewRoom {
     	        echo '         <td>' . $row['room_number'] . '</td>' . "\r\n";
                 echo '         <td>' . $row['capacity'] . '</td>' . "\r\n";
 				echo '         <td>' . $row['geometry'] . '</td>' . "\r\n";
+				echo '         <td>' . $row['description'] . '</td>' . "\r\n";
                 //echo '         <td>' . "<a class='home_page_link' onclick='return confirm(\"Are you sure?\")'href='cancel_reservation.php?reservation_id=" . $row['_id']  . "'>Delete</a>" . '</td>' . "\r\n";
      	        echo '      </tr>' . "\r\n";
             }
