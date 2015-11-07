@@ -70,6 +70,7 @@ class ViewRoom {
 			echo '<script type="text/javascript">';
 			echo 'window["room_detail"]=json_encode('+$room_list_json+')';
 			echo 'console.log(window["room_detail"])';
+			echo 'alert(window["room_detail"])';
 			echo '</script>';
 			
 
