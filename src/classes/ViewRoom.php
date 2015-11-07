@@ -27,10 +27,10 @@ class ViewRoom {
 
             // the .\r\n just creates
 
-            echo '<table align="center" class="mdl-data-table mdl-js-data-table mdl-data-table mdl-shadow--2dp" style="height:400px;">' . "\r\n";
+            echo '<table align="center" class="mdl-data-table mdl-js-data-table mdl-data-table mdl-shadow--2dp" style="height:400px;width:800px">' . "\r\n";
             echo '  <thead >' . "\r\n";
             echo '      <tr >' . "\r\n";
-            echo '          <th class="mdl-data-table__cell--non-numeric">Building&nbsp;&nbsp;&nbsp;&nbsp;</th>' . "\r\n";
+            echo '          <th class="mdl-data-table__cell--non-numeric">Building</th>' . "\r\n";
             echo '              <th>Room</th>' . "\r\n";
             echo '              <th>Capacity</th>' . "\r\n";
             echo '              <th>Geometry</th>' . "\r\n";
@@ -38,7 +38,7 @@ class ViewRoom {
 			echo '              <th>Resource Types</th>' . "\r\n";
             echo '      </tr>' . "\r\n";
             echo '  </thead style="display:block;">' . "\r\n";
-            echo '  <tbody align="center" style="position:absolute; overflow-y: auto; overflow-x: hidden; height:85%; width:100%;">' . "\r\n";
+            echo '  <tbody style="position:absolute; overflow-y: auto; overflow-x: hidden; height:85%; width:100%;">' . "\r\n";
 
     	    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 								
