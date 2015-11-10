@@ -59,8 +59,8 @@ error_reporting(E_ALL);
 	
 	<script type="text/javascript">
 	var room_in_json_text = <?php $rooms->getRoom($db, $_GET, $_SESSION['user']['_id']) ?>;
-	var room_json=JSON.parse(room_in_json_text);
-	console.log(room_json)
+	//var room_json=JSON.parse(room_in_json_text);
+	console.log(room_in_json_text)
 	
 	</script>
 	
