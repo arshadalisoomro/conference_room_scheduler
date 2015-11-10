@@ -53,8 +53,8 @@ error_reporting(E_ALL);
                     <?php 					
 					//$rooms->buildRoom($db, $_GET, $_SESSION['user']['_id']) ?>
 					
-					<div id="room_search">
-				<input class="typeahead" type="text" placeholder="search conference room" style="margin-bottom:30px">
+					<div id="room_search" style="margin-bottom:30px">
+				<input class="typeahead" type="text" placeholder="search conference room" >
 				     </div>
 					
 					
