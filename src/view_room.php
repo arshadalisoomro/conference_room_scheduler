@@ -25,6 +25,7 @@ error_reporting(E_ALL);
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link href="../main.css" rel="stylesheet" type="text/css">
 	 <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+	 <script src="https://twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js"></script>
 </head>
 
 
@@ -49,6 +50,9 @@ error_reporting(E_ALL);
 				<div id="content">
                     <?php 					
 					//$rooms->buildRoom($db, $_GET, $_SESSION['user']['_id']) ?>
+					<div id="room_search">
+					<input class="typeahead" type="text" placeholder="search conference room">
+					</div>
 					<table align="center" class="mdl-data-table mdl-js-data-table mdl-data-table mdl-shadow--2dp" style="height:400px;width:600px">
 					<thead ><tr >
 					<th class="mdl-data-table__cell--non-numeric">Building &nbsp;</th>
@@ -73,7 +77,9 @@ error_reporting(E_ALL);
 	<script type="text/javascript">
 	var room_in_json = <?php $rooms->getRoom($db, $_GET, $_SESSION['user']['_id']) ?>;
 	console.log(room_in_json);
+	window["autocomplete_list"]=[];
 	for(var i=0;i<room_in_json.length;i++){
+		!function outer(i){
 		var room=room_in_json[i]["name"];
 		var room_number=room_in_json[i]["room_number"];
 		var capacity=room_in_json[i]["capacity"];
@@ -81,9 +87,44 @@ error_reporting(E_ALL);
 		var quality_description=room_in_json[i]["quality_description"];
 		var description=room_in_json[i]["description"];
 		
+		window["autocomplete_list"].push(room+" "+room_number);
+		window["autocomplete_list"].push(description);
+		
 		var tr_text="<tr><td>"+room+"</td><td>"+room_number+"</td><td>"+capacity+"</td><td>"+geometry+"</td><td>"+quality_description+"</td><td>"+description+"</td>";
 		$("#room_detail_table").append(tr_text);
-	}
+		}(i)
+	}//end of for loop and table generation
+	
+	var substringMatcher = function(strs) {
+			return function findMatches(q, cb) {
+			var matches, substringRegex;
+
+			// an array that will be populated with substring matches
+			matches = [];
+
+			// regex used to determine if a string contains the substring `q`
+			substrRegex = new RegExp(q, 'i');
+
+			// iterate through the pool of strings and for any string that
+			// contains the substring `q`, add it to the `matches` array
+					$.each(strs, function(i, str) {
+					  if (substrRegex.test(str)) {
+						matches.push(str);
+					  }
+					});
+
+					cb(matches);
+				  };
+				};
+	$('#room_search .typeahead').typeahead({
+		  hint: true,
+		  highlight: true,
+		  minLength: 1
+		},
+		{
+		  name: 'room',
+		  source: substringMatcher(window["autocomplete_list"])
+		});
 	
 	
 	</script>
