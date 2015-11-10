@@ -114,7 +114,7 @@ error_reporting(E_ALL);
 						cb(matches);
 					  };
 					};
-		$(html_id+'.typeahead').typeahead({
+		$(html_id+' .typeahead').typeahead({
 			  hint: true,
 			  highlight: true,
 			  minLength: 1
@@ -124,7 +124,7 @@ error_reporting(E_ALL);
 			  source: substringMatcher(input_list)
 			});
 	}
-	console.log(window["autocomplete_list"]);
+	
 	autocomplete(window["autocomplete_list"],"#room_search");
 	/*
 		   $(document).on("click",".tt-menu",function() {
