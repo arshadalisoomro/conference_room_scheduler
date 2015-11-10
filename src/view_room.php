@@ -54,7 +54,7 @@ error_reporting(E_ALL);
 					//$rooms->buildRoom($db, $_GET, $_SESSION['user']['_id']) ?>
 					
 					<div id="room_search" style="margin-bottom:30px">
-				<input class="typeahead" id="seach_val" type="text" placeholder="search conference room" >
+				<input class="typeahead" type="text" placeholder="search conference room" >
 				     </div>
 					
 					<table align="center" class="mdl-data-table mdl-js-data-table mdl-data-table mdl-shadow--2dp" style="height:400px;width:600px">
@@ -129,7 +129,7 @@ error_reporting(E_ALL);
 	autocomplete(window["autocomplete_list"],"#room_search");
 	
 		   $(document).on("click",".tt-menu",function() {
-			var matching_val=$("#seach_val").val();
+			var matching_val=$(".typeahead").val();
 		   $("#room_detail_table").empty();
 		    search_table(matching_val);
 			});
