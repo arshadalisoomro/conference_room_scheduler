@@ -127,7 +127,7 @@ error_reporting(E_ALL);
 	}
 	
 	autocomplete(window["autocomplete_list"],"#room_search");
-	
+	/*
 		   $(document).on("click",".tt-menu",function() {
 			var matching_val=$(".typeahead").val();
 		   $("#room_detail_table").empty();
@@ -151,7 +151,7 @@ error_reporting(E_ALL);
 		}(i)
 	   }//end of for loop and table generation
 		
-	}
+	}*/
 	
 	</script>
 	
