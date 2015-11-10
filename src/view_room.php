@@ -34,13 +34,13 @@ error_reporting(E_ALL);
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
         <header class="mdl-layout__header mdl-layout__header--waterfall">
             <div class="mdl-layout__header-row">
-                <span class="mdl-layout-title">View Room</span>
+                <span class="mdl-layout-title">View Equipment Details</span>
             </div>
         </header>
         <div class="mdl-layout__drawer">
             <span class="mdl-layout-title">Scheduler</span>
             <nav class="mdl-navigation">
-                <?php //AccountDropdownBuilder::buildDropdown($db, $_SESSION) ?>
+                <?php AccountDropdownBuilder::buildDropdown($db, $_SESSION) ?>
             </nav>
         </div>
         <main class="mdl-layout__content">
@@ -59,12 +59,12 @@ error_reporting(E_ALL);
 					
 					<table id="display_table" align="center" class="mdl-data-table mdl-js-data-table mdl-data-table mdl-shadow--2dp" style="height:400px;width:600px">
 					<thead ><tr >
-					<th class="mdl-data-table__cell--non-numeric">Building &nbsp;</th>
+					<th class="mdl-data-table__cell--non-numeric">Resource &nbsp;</th>
+					<th>Quality</th>
+					<th>Building</th>
 					<th>Room</th>
 					<th>Capacity</th>
 					<th>Geometry</th>
-					<th>Equipments</th>
-					<th>Resource Types</th>
 					</tr>
 					</thead style="display:block;">
 					<tbody id="room_detail_table" style="position:absolute; overflow-y: auto; overflow-x: hidden; height:85%; width:100%;">
@@ -95,7 +95,7 @@ error_reporting(E_ALL);
 		window["autocomplete_list"].push(room_in_json[i]["combine_room_name"]);
 		window["autocomplete_list"].push(description);
 		
-		var tr_text="<tr><td>"+room+"</td><td>"+room_number+"</td><td>"+capacity+"</td><td>"+geometry+"</td><td>"+quality_description+"</td><td>"+description+"</td>";
+		var tr_text="<tr><td>"+description+"</td><td>"+quality_description+"</td><td>"+room+"</td><td>"+room_number+"</td><td>"+capacity+"</td><td>"+geometry+"</td>";
 		$("#room_detail_table").append(tr_text);
 		}(i)
 	}//end of for loop and table generation

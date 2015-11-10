@@ -99,12 +99,12 @@ class ViewRoom {
    
             
 			$each_record=array(			
-			"name" => $row['name'],
-			"room_number" => $row['room_number'],
-			"capacity" => $row['capacity'],
-			"geometry" => $row['geometry'],
-			"quality_description" => $row['quality_description'],
-			"description" => $row['description'],
+				"name" => $row['name'],
+				"room_number" => $row['room_number'],
+				"capacity" => $row['capacity'],
+				"geometry" => $row['geometry'],
+				"quality_description" => $row['quality_description'],
+				"description" => $row['description'],
 			);
             array_push($room_list_json, $each_record);
 			
