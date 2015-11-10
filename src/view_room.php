@@ -92,9 +92,9 @@ error_reporting(E_ALL);
 		var quality_description=room_in_json[i]["quality_description"];
 		var description=room_in_json[i]["description"];
 		room_in_json[i]["combine_room_name"]=room+","+room_number;
-		window["autocomplete_list"].push(room_in_json[i]["combine_room_name"]);
+		//window["autocomplete_list"].push(room_in_json[i]["combine_room_name"]);
 		window["autocomplete_list"].push(description);
-		
+		window["autocomplete_list"].push(room);
 		var tr_text="<tr><td>"+room+"</td><td>"+room_number+"</td><td>"+capacity+"</td><td>"+geometry+"</td><td>"+quality_description+"</td><td>"+description+"</td>";
 		$("#room_detail_table").append(tr_text);
 		}(i) 
