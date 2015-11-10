@@ -24,6 +24,7 @@ error_reporting(E_ALL);
     <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.indigo-pink.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link href="../main.css" rel="stylesheet" type="text/css">
+	 <link href="assets/css/typehead.css" rel="stylesheet" type="text/css">
 	 <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 	 <script src="https://twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js"></script>
 </head>
@@ -51,6 +52,7 @@ error_reporting(E_ALL);
                     <?php 					
 					//$rooms->buildRoom($db, $_GET, $_SESSION['user']['_id']) ?>
 					<div id="room_search">
+					</br>
 					<input class="typeahead" type="text" placeholder="search conference room">
 					</div>
 					<table align="center" class="mdl-data-table mdl-js-data-table mdl-data-table mdl-shadow--2dp" style="height:400px;width:600px">

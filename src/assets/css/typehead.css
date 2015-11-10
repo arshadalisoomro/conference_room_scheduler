@@ -1,0 +1,47 @@
+
+.typeahead {
+    background-color: #ffffff;
+	width:200px;
+}
+.tt-dropdown-menu {
+    background-color: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    margin-top: 4px;
+    max-height: 300px;
+    overflow: auto;
+    padding: 4px 0;
+    width: 100%;
+}
+.tt-suggestion {
+    font-size: 14px;
+    line-height: 20px;
+    padding: 3px 10px;
+}
+.tt-suggestion.tt-cursor {
+    background-color: #0097cf;
+    color: #ffffff;
+    cursor: pointer;
+}
+.tt-suggestion p {
+    margin: 0;
+}
+.tt-suggestion + .tt-suggestion {
+    border-top: 1px solid #ccc;
+}
+.typeahead-header {
+    border-bottom: 2px solid #333;
+    margin: 0 5px 5px;
+    padding: 3px 0;
+}
+.has-feedback .form-control-feedback {
+    display: block;
+    height: 34px;
+    line-height: 34px;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 0;
+    width: 34px;
+}
