@@ -57,6 +57,13 @@ error_reporting(E_ALL);
         </main>
     </div>
 	
+	<script type="text/javascript">
+	var room_in_json_text = <?php $rooms->getRoom($db, $_GET, $_SESSION['user']['_id']) ?>;
+	var room_json=JSON.parse(room_in_json_text);
+	console.log(room_json)
+	
+	</script>
+	
     
     <script src="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.min.js"></script>
 </body>

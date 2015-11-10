@@ -81,4 +81,45 @@ class ViewRoom {
         }
 
 	}
+	function getRoom($db, $post, $userId) {
+		$tableType = $post['type']; // will either be me, users, or all
+		
+		$room_list_json=array();
+        // you will have to join reservation with location, room, user, and time slot
+        $query="SELECT room.room_number,room.geometry,room.capacity,location.name,resource.quality_description,resource_type.description FROM room LEFT JOIN location ON room.location_id=location._id LEFT JOIN resource ON room._id=resource.room_id LEFT JOIN resource_type ON resource.resource_type_id=resource_type._id ";
+       
+
+        try {
+            $stmt = $db->prepare($query);
+            $result = $stmt->execute();
+
+
+    	    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+								
+   
+            
+			$each_record=array(			
+			"name" => $row['name'],
+			"room_number" => $row['room_number'],
+			"capacity" => $row['capacity'],
+			"geometry" => $row['geometry'],
+			"quality_description" => $row['quality_description'],
+			"description" => $row['description'],
+			);
+            array_push($room_list_json, $each_record);
+			
+			}
+
+			//echo json_encode($room_list_json);
+			//echo '<script type="text/javascript">console.log('+json_encode($room_list_json)+');</script>';
+	
+			echo json_encode($room_list_json);
+
+			
+
+        } catch(Exception $e) {
+            echo $e->getMessage();
+        }
+
+	}
 }
