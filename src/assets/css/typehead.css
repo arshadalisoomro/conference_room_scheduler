@@ -14,7 +14,11 @@
     padding: 4px 0;
     width: 100%;
 }
-.tt-menu
+.tt-open{
+	background-color: white;
+	
+	
+}
 
 
 .tt-suggestion {
