@@ -57,7 +57,7 @@ error_reporting(E_ALL);
 				<input class="typeahead" id="seach_val" type="text" placeholder="search conference room" >
 				     </div>
 					
-					<table align="center" class="mdl-data-table mdl-js-data-table mdl-data-table mdl-shadow--2dp" style="height:400px;width:600px">
+					<table id="display_table" align="center" class="mdl-data-table mdl-js-data-table mdl-data-table mdl-shadow--2dp" style="height:400px;width:600px">
 					<thead ><tr >
 					<th class="mdl-data-table__cell--non-numeric">Building &nbsp;</th>
 					<th>Room</th>
@@ -129,9 +129,13 @@ error_reporting(E_ALL);
 	
 		   $(document).on("click",".tt-menu",function() {
 			var matching_val=$("#seach_val").val();
-		   $("#room_detail_table").empty();
+		   $("#room_detail_table").remove();
+		   var reappend='<tbody id="room_detail_table" style="position:absolute; overflow-y: auto; overflow-x: hidden; height:85%; width:100%;"></tbody>'
+	        $("#display_table").append(reappend);
 		    search_table(matching_val);
+			
 			});
+
 	function search_table(match_val){
 		for(var i=0;i<room_in_json.length;i++){
 		!function outer(i){

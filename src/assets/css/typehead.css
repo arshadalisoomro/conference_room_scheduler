@@ -15,8 +15,9 @@
     width: 100%;
 }
 .tt-open{
+	width: 100%;
 	background-color: white;
-		/*border-style: solid;*/
+		border-style: solid;
 	
 }
 
