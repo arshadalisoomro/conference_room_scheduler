@@ -124,7 +124,7 @@ error_reporting(E_ALL);
 			  source: substringMatcher(input_list)
 			});
 	}
-	
+	window["autocomplete_list"].push("Display all room");
 	autocomplete(window["autocomplete_list"],"#room_search");
 	
 		   $(document).on("click",".tt-menu",function() {
@@ -147,8 +147,13 @@ error_reporting(E_ALL);
 		var description=room_in_json[i]["description"]; 
 	
         if(match_val==room_in_json[i]["combine_room_name"]||match_val==description){
-		 var tr_text="<tr><td>"+room+"</td><td>"+room_number+"</td><td>"+capacity+"</td><td>"+geometry+"</td><td>"+quality_description+"</td><td>"+description+"</td>";
+		 var tr_text="<tr><td>"+room+"</td><td>"+room_number+"</td><td>"+capacity+"</td><td>"+geometry+"</td><td>&nbsp;&nbsp;"+quality_description+"</td><td>&nbsp;"+description+"</td>";
 		$("#room_detail_table").append(tr_text);			
+		}
+		if(match_val=="Display all room"){
+		var tr_text="<tr><td>"+room+"</td><td>"+room_number+"</td><td>"+capacity+"</td><td>"+geometry+"</td><td>&nbsp;&nbsp;"+quality_description+"</td><td>&nbsp;"+description+"</td>";
+		$("#room_detail_table").append(tr_text);
+			
 		}
 
 		}(i)
