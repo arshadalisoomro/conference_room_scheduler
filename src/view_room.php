@@ -48,7 +48,7 @@ error_reporting(E_ALL);
                 <div class="mdl-card__supporting-text">
 				<div id="content">
                     <?php 					
-					$rooms->buildRoom($db, $_GET, $_SESSION['user']['_id']) ?>
+					//$rooms->buildRoom($db, $_GET, $_SESSION['user']['_id']) ?>
 					<table align="center" class="mdl-data-table mdl-js-data-table mdl-data-table mdl-shadow--2dp" style="height:400px;width:600px">
 					<thead ><tr >
 					<th class="mdl-data-table__cell--non-numeric">Building &nbsp;</th>
