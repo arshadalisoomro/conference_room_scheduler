@@ -84,22 +84,22 @@ error_reporting(E_ALL);
 	window["autocomplete_list"]=[];
 	for(var i=0;i<room_in_json.length;i++){
 		!function outer(i){
-		room_in_json[i]["combine_room_name"]="";
+		//room_in_json[i]["combine_room_name"]="";
 		var room=room_in_json[i]["name"];
 		var room_number=room_in_json[i]["room_number"];
 		var capacity=room_in_json[i]["capacity"];
 		var geometry=room_in_json[i]["geometry"];
 		var quality_description=room_in_json[i]["quality_description"];
 		var description=room_in_json[i]["description"];
-		room_in_json[i]["combine_room_name"]=room+","+room_number;
+		//room_in_json[i]["combine_room_name"]=room+","+room_number;
 		//window["autocomplete_list"].push(room_in_json[i]["combine_room_name"]);
 		window["autocomplete_list"].push(description);
-		window["autocomplete_list"].push(room);
+		window["autocomplete_list"].push(room+","+room_number);
 		var tr_text="<tr><td>"+room+"</td><td>"+room_number+"</td><td>"+capacity+"</td><td>"+geometry+"</td><td>"+quality_description+"</td><td>"+description+"</td>";
 		$("#room_detail_table").append(tr_text);
 		}(i) 
 	}//end of for loop and table generation
-	console.log(room_in_json);
+	
 	function autocomplete(input_list,html_id){
 			var substringMatcher = function(strs) {
 				return function findMatches(q, cb) {
@@ -125,7 +125,7 @@ error_reporting(E_ALL);
 			  source: substringMatcher(input_list)
 			});
 	}
-	
+	console.log(window["autocomplete_list"]);
 	autocomplete(window["autocomplete_list"],"#room_search");
 	/*
 		   $(document).on("click",".tt-menu",function() {
