@@ -14,6 +14,9 @@
     padding: 4px 0;
     width: 100%;
 }
+.tt-menu
+
+
 .tt-suggestion {
     font-size: 14px;
     line-height: 20px;
@@ -44,4 +47,23 @@
     text-align: center;
     top: 0;
     width: 34px;
+}
+
+
+
+
+span.twitter-typeahead {
+  width: 100%;
+}
+.input-group span.twitter-typeahead {
+  display: block !important;
+}
+.input-group span.twitter-typeahead .tt-dropdown-menu {
+  top: 32px !important;
+}
+.input-group.input-group-lg span.twitter-typeahead .tt-dropdown-menu {
+  top: 44px !important;
+}
+.input-group.input-group-sm span.twitter-typeahead .tt-dropdown-menu {
+  top: 28px !important;
 }

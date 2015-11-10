@@ -48,10 +48,11 @@ error_reporting(E_ALL);
             <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
               <div class="mdl-card mdl-cell mdl-cell--12-col">
                 <div class="mdl-card__supporting-text">
+				<div id="room_search">
 				<div id="content">
                     <?php 					
 					//$rooms->buildRoom($db, $_GET, $_SESSION['user']['_id']) ?>
-					<div id="room_search">
+					
 					</br>
 					<input class="typeahead" type="text" placeholder="search conference room">
 					</div>
@@ -96,37 +97,39 @@ error_reporting(E_ALL);
 		$("#room_detail_table").append(tr_text);
 		}(i)
 	}//end of for loop and table generation
-	
-	var substringMatcher = function(strs) {
-			return function findMatches(q, cb) {
-			var matches, substringRegex;
+	function autocomplete(input_list,html_id){
+			var substringMatcher = function(strs) {
+				return function findMatches(q, cb) {
+				var matches, substringRegex;
 
-			// an array that will be populated with substring matches
-			matches = [];
+				// an array that will be populated with substring matches
+				matches = [];
 
-			// regex used to determine if a string contains the substring `q`
-			substrRegex = new RegExp(q, 'i');
+				// regex used to determine if a string contains the substring `q`
+				substrRegex = new RegExp(q, 'i');
 
-			// iterate through the pool of strings and for any string that
-			// contains the substring `q`, add it to the `matches` array
-					$.each(strs, function(i, str) {
-					  if (substrRegex.test(str)) {
-						matches.push(str);
-					  }
-					});
+				// iterate through the pool of strings and for any string that
+				// contains the substring `q`, add it to the `matches` array
+						$.each(strs, function(i, str) {
+						  if (substrRegex.test(str)) {
+							matches.push(str);
+						  }
+						});
 
-					cb(matches);
-				  };
-				};
-	$('#room_search .typeahead').typeahead({
-		  hint: true,
-		  highlight: true,
-		  minLength: 1
-		},
-		{
-		  name: 'room',
-		  source: substringMatcher(window["autocomplete_list"])
-		});
+						cb(matches);
+					  };
+					};
+		$(html_id+'.typeahead').typeahead({
+			  hint: true,
+			  highlight: true,
+			  minLength: 1
+			},
+			{
+			  name: 'room',
+			  source: substringMatcher(input_list)
+			});
+	}
+	autocomplete(window["autocomplete_list"],"#room_search ");
 	
 	
 	</script>
