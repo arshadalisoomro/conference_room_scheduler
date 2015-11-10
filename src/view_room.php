@@ -50,10 +50,11 @@ error_reporting(E_ALL);
                 <div class="mdl-card__supporting-text">
 				
 				<div id="content">
-
+                    <?php 					
+					//$rooms->buildRoom($db, $_GET, $_SESSION['user']['_id']) ?>
 					
-					<div id="room_search" >
-						<input class="typeahead" type="text" placeholder="search conference room" >
+					<div id="room_search" style="margin-bottom:30px">
+				<input class="typeahead" id="seach_val" type="text" placeholder="search conference room" >
 				     </div>
 					
 					<table align="center" class="mdl-data-table mdl-js-data-table mdl-data-table mdl-shadow--2dp" style="height:400px;width:600px">
@@ -79,26 +80,25 @@ error_reporting(E_ALL);
 	
 	<script type="text/javascript">
 	var room_in_json = <?php $rooms->getRoom($db, $_GET, $_SESSION['user']['_id']) ?>;
-	
+	console.log(room_in_json);
 	window["autocomplete_list"]=[];
 	for(var i=0;i<room_in_json.length;i++){
 		!function outer(i){
-		//room_in_json[i]["combine_room_name"]="";
+		room_in_json[i]["combine_room_name"]="";
 		var room=room_in_json[i]["name"];
 		var room_number=room_in_json[i]["room_number"];
 		var capacity=room_in_json[i]["capacity"];
 		var geometry=room_in_json[i]["geometry"];
 		var quality_description=room_in_json[i]["quality_description"];
 		var description=room_in_json[i]["description"];
-		//room_in_json[i]["combine_room_name"]=room+","+room_number;
-		//window["autocomplete_list"].push(room_in_json[i]["combine_room_name"]);
+		room_in_json[i]["combine_room_name"]=room+","+room_number;
+		window["autocomplete_list"].push(room_in_json[i]["combine_room_name"]);
 		window["autocomplete_list"].push(description);
-		window["autocomplete_list"].push(room+","+room_number);
+		
 		var tr_text="<tr><td>"+room+"</td><td>"+room_number+"</td><td>"+capacity+"</td><td>"+geometry+"</td><td>"+quality_description+"</td><td>"+description+"</td>";
 		$("#room_detail_table").append(tr_text);
-		}(i) 
+		}(i)
 	}//end of for loop and table generation
-	
 	function autocomplete(input_list,html_id){
 			var substringMatcher = function(strs) {
 				return function findMatches(q, cb) {
@@ -126,9 +126,9 @@ error_reporting(E_ALL);
 	}
 	
 	autocomplete(window["autocomplete_list"],"#room_search");
-	/*
+	
 		   $(document).on("click",".tt-menu",function() {
-			var matching_val=$(".typeahead").val();
+			var matching_val=$("#seach_val").val();
 		   $("#room_detail_table").empty();
 		    search_table(matching_val);
 			});
@@ -140,7 +140,7 @@ error_reporting(E_ALL);
 		var capacity=room_in_json[i]["capacity"];
 		var geometry=room_in_json[i]["geometry"];
 		var quality_description=room_in_json[i]["quality_description"];
-		var description=room_in_json[i]["description"];
+		var description=room_in_json[i]["description"]; 
 	
         if(match_val==room_in_json[i]["combine_room_name"]||match_val==description){
 		 var tr_text="<tr><td>"+room+"</td><td>"+room_number+"</td><td>"+capacity+"</td><td>"+geometry+"</td><td>"+quality_description+"</td><td>"+description+"</td>";
@@ -150,7 +150,7 @@ error_reporting(E_ALL);
 		}(i)
 	   }//end of for loop and table generation
 		
-	}*/
+	}
 	
 	</script>
 	
