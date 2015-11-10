@@ -17,7 +17,7 @@ error_reporting(E_ALL);
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Conference Room Detail</title>
+    <title>Conference Room</title>
     <meta name="description" content="Conference room management system for Database Systems">
     <meta name="author" content="Team 6">
 
@@ -54,12 +54,12 @@ error_reporting(E_ALL);
 					//$rooms->buildRoom($db, $_GET, $_SESSION['user']['_id']) ?>
 					
 					<div id="room_search" style="margin-bottom:30px">
-				<input class="typeahead" id="seach_val" type="text" placeholder="search conference room" >
+				<input class="typeahead" id="seach_val" type="text" placeholder="Search by keyword" >
 				     </div>
 					
 					<table id="display_table" align="center" class="mdl-data-table mdl-js-data-table mdl-data-table mdl-shadow--2dp" style="height:400px;width:600px">
-					<thead ><tr >
-					<th class="mdl-data-table__cell--non-numeric">Resource &nbsp;</th>
+					<thead ><tr>
+					<th>Resource</th>
 					<th>Quality</th>
 					<th>Building</th>
 					<th>Room</th>
