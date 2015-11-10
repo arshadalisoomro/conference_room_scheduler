@@ -97,7 +97,7 @@ error_reporting(E_ALL);
 		
 		var tr_text="<tr><td>"+room+"</td><td>"+room_number+"</td><td>"+capacity+"</td><td>"+geometry+"</td><td>"+quality_description+"</td><td>"+description+"</td>";
 		$("#room_detail_table").append(tr_text);
-		}(i)
+		}(i) 
 	}//end of for loop and table generation
 	console.log(room_in_json);
 	function autocomplete(input_list,html_id){
