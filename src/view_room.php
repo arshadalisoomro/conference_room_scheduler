@@ -50,11 +50,10 @@ error_reporting(E_ALL);
                 <div class="mdl-card__supporting-text">
 				
 				<div id="content">
-                    <?php 					
-					//$rooms->buildRoom($db, $_GET, $_SESSION['user']['_id']) ?>
+
 					
-					<div id="room_search" style="margin-bottom:30px">
-				<input class="typeahead" type="text" placeholder="search conference room" >
+					<div id="room_search" >
+						<input class="typeahead" type="text" placeholder="search conference room" >
 				     </div>
 					
 					<table align="center" class="mdl-data-table mdl-js-data-table mdl-data-table mdl-shadow--2dp" style="height:400px;width:600px">
