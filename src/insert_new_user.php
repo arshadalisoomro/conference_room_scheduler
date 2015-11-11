@@ -24,7 +24,7 @@ $insertParams = array(
             ':first_name' => $_POST['first'],
             ':last_name' => $_POST['last'],
             ':email' => $email,
-            ':picture_url' => 'http://walphotobucket.s3.amazonaws.com/default.jpg'
+            ':picture_url' => 'https://s3-us-west-2.amazonaws.com/dbsystems/default-avatar.png'
         );
 
 try {

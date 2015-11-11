@@ -124,7 +124,7 @@ class Register {
             ':first_name' => $post['first_name'],
             ':last_name' => $post['last_name'],
             ':user_type_id' => '1',
-            ':picture_url' => 'http://walphotobucket.s3.amazonaws.com/default.jpg'
+            ':picture_url' => 'https://s3-us-west-2.amazonaws.com/dbsystems/default-avatar.png'
         );
 
         try {
