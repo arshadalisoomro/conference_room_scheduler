@@ -27,6 +27,7 @@ error_reporting(E_ALL);
 	 <link href="assets/css/typehead.css" rel="stylesheet" type="text/css">
 	 <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 	 <script src="https://twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js"></script>
+	 <script src="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.js"></script>
 </head>
 
 
@@ -50,14 +51,14 @@ error_reporting(E_ALL);
                 <div class="mdl-card__supporting-text">
 				
 				<div id="content">
-                    <?php 					
-					//$rooms->buildRoom($db, $_GET, $_SESSION['user']['_id']) ?>
-					
+             
+					<div id="map" ></div>
+					<script src="assets/js/map_setup.js"></script>
 					<div id="room_search" style="margin-bottom:30px">
 				<input class="typeahead" id="seach_val" type="text" placeholder="Search by keyword" >
 				     </div>
 					
-					<table id="display_table" align="center" class="mdl-data-table mdl-js-data-table mdl-data-table mdl-shadow--2dp" style="height:400px;width:600px">
+					<table id="display_table" align="center" class="mdl-data-table mdl-js-data-table mdl-data-table mdl-shadow--2dp" >
 					<thead ><tr>
 					<th>Resource</th>
 					<th>Quality</th>
@@ -66,8 +67,8 @@ error_reporting(E_ALL);
 					<th>Capacity</th>
 					<th>Geometry</th>
 					</tr>
-					</thead style="display:block;">
-					<tbody id="room_detail_table" style="position:absolute; overflow-y: auto; overflow-x: hidden; height:85%; width:100%;">
+					</thead >
+					<tbody id="room_detail_table" >
 					 </tbody>
 					</table>
 					</div>
@@ -147,11 +148,12 @@ error_reporting(E_ALL);
 		var description=room_in_json[i]["description"]; 
 	
         if(match_val==room_in_json[i]["combine_room_name"]||match_val==description){
-		 var tr_text="<tr><td>"+room+"</td><td>"+room_number+"</td><td>"+capacity+"</td><td>"+geometry+"</td><td>&nbsp;&nbsp;"+quality_description+"</td><td>&nbsp;"+description+"</td>";
+		
+		var tr_text="<tr><td>"+description+"</td><td>"+quality_description+"</td><td>"+room+"</td><td>"+room_number+"</td><td>"+capacity+"</td><td>"+geometry+"</td>";
 		$("#room_detail_table").append(tr_text);			
 		}
-		if(match_val=="Display all room"){
-		var tr_text="<tr><td>"+room+"</td><td>"+room_number+"</td><td>"+capacity+"</td><td>"+geometry+"</td><td>&nbsp;&nbsp;"+quality_description+"</td><td>&nbsp;"+description+"</td>";
+		if(match_val=="Display all room"){		
+		var tr_text="<tr><td>"+description+"</td><td>"+quality_description+"</td><td>"+room+"</td><td>"+room_number+"</td><td>"+capacity+"</td><td>"+geometry+"</td>";
 		$("#room_detail_table").append(tr_text);
 			
 		}
