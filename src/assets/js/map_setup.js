@@ -18,7 +18,7 @@ var catchment = L.geoJson(null, {
                 fillOpacity: 0.2 							
 				
             },onEachFeature: function (feature, layer) {
-				if( feature.properties.name.length==0){
+				if( feature.properties.name=== null){
 					layer.setStyle({
 						fill:false,
 						stroke:false,
