@@ -133,7 +133,7 @@ error_reporting(E_ALL);
 		   $(document).on("click",".tt-menu",function() {
 			var matching_val=$("#seach_val").val();
 		   $("#room_detail_table").empty();
-		     $("#display_table").append(reappend);
+		    
 		    search_table(matching_val);
 			console.log(matching_val);
 			
