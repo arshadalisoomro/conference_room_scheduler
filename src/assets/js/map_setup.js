@@ -46,7 +46,7 @@ var catchment = L.geoJson(null, {
 						stroke:"#FF0066",
 						weight: 3,
 					})
-					alert("a");
+					$("#room_detail_table").empty();
 					search_table(feature.properties.name,"room");
 				})	
 	
