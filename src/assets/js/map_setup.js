@@ -18,7 +18,29 @@ var catchment = L.geoJson(null, {
                 fillOpacity: 0.3 							
 				
             },onEachFeature: function (feature, layer) {
+				
+				
+				layer.on('mouseover', function(e){
+					layer.setStyle({
+						stroke:"#FFCC00",
+						weight: 2,
+					})
+				})
+				layer.on('mouseout', function(e){
+					layer.setStyle({
+						stroke:"#6600FF",
+						weight: 1,
+					})
+				})
+				layer.on('click', function(e){
+					layer.setStyle({
+						stroke:"#FF0066",
+						weight: 2,
+					})
+					search_table(feature.properties.name,room);
+				})	
 	
+
 
 			}//end of oneach
 				
@@ -32,3 +54,30 @@ $.getJSON("assets/data/iowa_city_4326.geojson", function (data) {
   
 });
 catchment.addTo(map);
+
+
+function search_table(match_val,table_field_name){
+		for(var i=0;i<room_in_json.length;i++){
+		!function outer(i){
+		var room=room_in_json[i]["name"];
+		var room_number=room_in_json[i]["room_number"];
+		var capacity=room_in_json[i]["capacity"];
+		var geometry=room_in_json[i]["geometry"];
+		var quality_description=room_in_json[i]["quality_description"];
+		var description=room_in_json[i]["description"]; 
+	
+        if(match_val==room_in_json[i][table_field_name]||match_val==description){
+		
+		var tr_text="<tr><td>"+description+"</td><td>"+quality_description+"</td><td>"+room+"</td><td>"+room_number+"</td><td>"+capacity+"</td><td>"+geometry+"</td>";
+		$("#room_detail_table").append(tr_text);			
+		}
+		if(match_val=="Display all room"){		
+		var tr_text="<tr><td>"+description+"</td><td>"+quality_description+"</td><td>"+room+"</td><td>"+room_number+"</td><td>"+capacity+"</td><td>"+geometry+"</td>";
+		$("#room_detail_table").append(tr_text);
+			
+		}
+
+		}(i)
+	   }//end of for loop and table generation
+		
+	}
