@@ -135,6 +135,7 @@ error_reporting(E_ALL);
 		   var reappend='<tbody id="room_detail_table" style="position:absolute; overflow-y: auto; overflow-x: hidden; height:85%; width:100%;"></tbody>'
 	        $("#display_table").append(reappend);
 		    search_table(matching_val);
+			console.log(matching_val);
 			
 			});
 
@@ -150,7 +151,8 @@ error_reporting(E_ALL);
 	
         if(match_val==room_in_json[i]["combine_room_name"]||match_val==description){
 		
-		var tr_text="<tr class='"+room+"'><td class='"+room+"'>"+description+"</td><td class='"+room+"'>"+quality_description+"</td><td class='"+room+"'>"+room+"</td><td class='"+room+"'>"+room_number+"</td><td class='"+room+"'>"+capacity+"</td><td class='"+room+"'>"+geometry+"</td>";$("#room_detail_table").append(tr_text);			
+		var tr_text="<tr class='"+room+"'><td class='"+room+"'>"+description+"</td><td class='"+room+"'>"+quality_description+"</td><td class='"+room+"'>"+room+"</td><td class='"+room+"'>"+room_number+"</td><td class='"+room+"'>"+capacity+"</td><td class='"+room+"'>"+geometry+"</td>";
+		$("#room_detail_table").append(tr_text);			
 		}
 		if(match_val=="Display all room"){		
 		var tr_text="<tr class='"+room+"'><td class='"+room+"'>"+description+"</td><td class='"+room+"'>"+quality_description+"</td><td class='"+room+"'>"+room+"</td><td class='"+room+"'>"+room_number+"</td><td class='"+room+"'>"+capacity+"</td><td class='"+room+"'>"+geometry+"</td>";
