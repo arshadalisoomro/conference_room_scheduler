@@ -83,7 +83,7 @@ error_reporting(E_ALL);
 	
 	<script type="text/javascript">
 	var room_in_json = <?php $rooms->getRoom($db, $_GET, $_SESSION['user']['_id']) ?>;
-	window['room_in_json'] = room_in_json;
+	//window['room_in_json'] = room_in_json;
 	console.log(room_in_json);
 	window["autocomplete_list"]=[];
 	for(var i=0;i<room_in_json.length;i++){
