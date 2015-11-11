@@ -53,7 +53,7 @@ error_reporting(E_ALL);
 				<div id="content">
              
 					<div id="map" ></div>
-					<script src="assets/js/map_setup.js"></script>
+					
 					<div id="room_search" style="margin-bottom:30px">
 				<input class="typeahead" id="seach_val" type="text" placeholder="Search by keyword" >
 				     </div>
@@ -165,7 +165,7 @@ error_reporting(E_ALL);
 	
 	</script>
 	
-    
+    <script src="assets/js/map_setup.js"></script>
     <script src="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.min.js"></script>
 </body>
 </html>
