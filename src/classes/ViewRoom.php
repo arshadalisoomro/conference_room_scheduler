@@ -89,7 +89,7 @@ class ViewRoom {
                 FROM resource JOIN resource_type ON resource.resource_type_id = resource_type._id 
                 	JOIN room ON room._id = resource.room_id 
                 	JOIN location ON room.location_id = location._id 
-                ORDER BY location.name, room.room_number";
+                ORDER BY resource_type.description, location.name, room.room_number";
 
 
         try {
