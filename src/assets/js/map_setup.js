@@ -18,6 +18,13 @@ var catchment = L.geoJson(null, {
                 fillOpacity: 0.3 							
 				
             },onEachFeature: function (feature, layer) {
+				if(feature.properties.name.length=0){
+					layer.setStyle({
+						stroke:"#6600FF",
+						weight: 0.5,
+						fillOpacity: 0.1 
+					})
+				}
 				
 				
 				layer.on('mouseover', function(e){
@@ -37,7 +44,7 @@ var catchment = L.geoJson(null, {
 						stroke:"#FF0066",
 						weight: 2,
 					})
-					search_table(feature.properties.name,room);
+					search_table(feature.properties.name,"room");
 				})	
 	
 
