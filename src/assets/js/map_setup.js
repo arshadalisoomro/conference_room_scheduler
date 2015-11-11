@@ -14,7 +14,7 @@ var nationalMapAttribution = "<a href='http:usgs.gov'>USGS</a> National Map Data
 var nationalMap = new L.TileLayer(nationalMapUrl, {maxZoom: 15, attribution: nationalMapAttribution},{noWrap: true});
 /*end of national map service*/
 
-nationalMap.addTo(map);
+qst.addTo(map);
 
 var catchment_bound_center;
 var catchment = L.geoJson(null, {
@@ -23,7 +23,7 @@ var catchment = L.geoJson(null, {
 				stroke:"#6600FF",
                 weight: 1,
                 opacity: 1,
-                color: '##9966FF',
+                color: '#9966FF',
                 fillOpacity: 0.6 							
 				
             },onEachFeature: function (feature, layer) {
@@ -52,7 +52,7 @@ var catchment = L.geoJson(null, {
 						stroke:"#6600FF",
 						weight: 1,
 						opacity: 1,
-						color: '##9966FF',
+						color: '#9966FF',
 						fillOpacity: 0.6 
 					});
 					$("#seach_val").val("");
