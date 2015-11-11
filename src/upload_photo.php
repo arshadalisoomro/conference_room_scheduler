@@ -47,8 +47,8 @@
                         if (!class_exists('S3'))require_once('S3.php');
                      
                         //AWS access info
-                        if (!defined('awsAccessKey')) define('awsAccessKey', 'AKIAJQX5I545NDU35UBA');
-                        if (!defined('awsSecretKey')) define('awsSecretKey', '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');
+                        if (!defined('awsAccessKey')) define('awsAccessKey', 'AKIAISQRITXWEZ76MJHA');
+                        if (!defined('awsSecretKey')) define('awsSecretKey', '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');
                      
                         //instantiate the class
                         $s3 = new S3(awsAccessKey, awsSecretKey);
@@ -58,13 +58,13 @@
                             $fileName = $_FILES['theFile']['name'];
                             $fileTempName = $_FILES['theFile']['tmp_name'];
                             //create a new bucket
-                            $result = $s3->putBucket("walphotobucket", S3::ACL_PUBLIC_READ);
+                            $result = $s3->putBucket("dbsystems", S3::ACL_PUBLIC_READ);
                             //move the file
 
-                            if ($s3->putObjectFile($fileTempName, "walphotobucket", $fileName, S3::ACL_PUBLIC_READ)) {
+                            if ($s3->putObjectFile($fileTempName, "dbsystems", $fileName, S3::ACL_PUBLIC_READ)) {
                                 echo "We successfully uploaded your file.";
 
-                                $image_url = "http://walphotobucket.s3.amazonaws.com/" . $fileName;
+                                $image_url = "http://s3-us-west-2.amazonaws.com/" . $fileName;
 
                                 $query = "
                                 UPDATE user
