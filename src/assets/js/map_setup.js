@@ -10,12 +10,12 @@ L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 var catchment_bound_center;
 var catchment = L.geoJson(null, {
   style:	{
-				fill:false,
+				fill:true,
 				stroke:"#6600FF",
                 weight: 1,
                 opacity: 1,
                 color: '#8F8F8F',
-                fillOpacity: 0.3 							
+                fillOpacity: 0.2 							
 				
             },onEachFeature: function (feature, layer) {
 				if(typeof (feature.properties.name)=='undefined'){
