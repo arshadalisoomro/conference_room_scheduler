@@ -42,7 +42,7 @@ var catchment = L.geoJson(null, {
 					
 					var center=feature.geometry.coordinates[0][0][0];
 					console.log(center);
-					map.setView(center, 16);
+					map.setView([center[1], center[0]], 16);
 				}
 
 			
