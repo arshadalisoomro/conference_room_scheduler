@@ -44,8 +44,9 @@ var catchment = L.geoJson(null, {
 				layer.on('click', function(e){
 					layer.setStyle({
 						stroke:"#FF0066",
-						weight: 2,
+						weight: 3,
 					})
+					alert("a");
 					search_table(feature.properties.name,"room");
 				})	
 	
