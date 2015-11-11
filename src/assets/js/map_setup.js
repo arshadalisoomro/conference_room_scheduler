@@ -36,6 +36,18 @@ var catchment = L.geoJson(null, {
 					})
 				}
 				
+			$(document).on("click","tr",function() {
+				console.log(this.class);
+				if(feature.properties.name==this.class){
+					console.log(feature);
+				}
+
+			
+			});
+				
+				
+				
+				
 				
 				layer.on('mouseover', function(e){
 					layer.setStyle({
@@ -94,11 +106,11 @@ function search_table(match_val,table_field_name){
 	
         if(match_val==room_in_json[i][table_field_name]||match_val==description){
 		
-		var tr_text="<tr><td>"+description+"</td><td>"+quality_description+"</td><td>"+room+"</td><td>"+room_number+"</td><td>"+capacity+"</td><td>"+geometry+"</td>";
+		var tr_text="<tr class='"+room+"'><td>"+description+"</td><td>"+quality_description+"</td><td>"+room+"</td><td>"+room_number+"</td><td>"+capacity+"</td><td>"+geometry+"</td>";
 		$("#room_detail_table").append(tr_text);			
 		}
 		if(match_val=="Display all room"){		
-		var tr_text="<tr><td>"+description+"</td><td>"+quality_description+"</td><td>"+room+"</td><td>"+room_number+"</td><td>"+capacity+"</td><td>"+geometry+"</td>";
+		var tr_text="<tr class='"+room+"'><td>"+description+"</td><td>"+quality_description+"</td><td>"+room+"</td><td>"+room_number+"</td><td>"+capacity+"</td><td>"+geometry+"</td>";
 		$("#room_detail_table").append(tr_text);
 			
 		}
