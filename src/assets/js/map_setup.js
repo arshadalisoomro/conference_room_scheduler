@@ -20,7 +20,8 @@ var catchment = L.geoJson(null, {
             },onEachFeature: function (feature, layer) {
 				if(typeof (feature.properties.name)=='undefined'){
 					layer.setStyle({
-						stroke:"#6600FF",
+						fill:false,
+						stroke:false,
 						weight: 0.5,
 						fillOpacity: 0.1 
 					})
@@ -47,7 +48,7 @@ var catchment = L.geoJson(null, {
 						weight: 3,
 					})
 					$("#room_detail_table").empty();
-					search_table(feature.properties.name,"room");
+					search_table(feature.properties.name,"name");
 				})	
 	
 
