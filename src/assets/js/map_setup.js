@@ -1,5 +1,5 @@
 
-var map = L.map('map').setView([41.660, -91.541], 14);
+var map = L.map('map').setView([41.660, -91.541], 14.5);
 
 L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -14,8 +14,8 @@ var catchment = L.geoJson(null, {
 				stroke:"#6600FF",
                 weight: 1,
                 opacity: 1,
-                color: '#8F8F8F',
-                fillOpacity: 0.2 							
+                color: '##9966FF',
+                fillOpacity: 0.6 							
 				
             },onEachFeature: function (feature, layer) {
 				if( feature.properties.name=== null){
@@ -33,6 +33,7 @@ var catchment = L.geoJson(null, {
 						stroke:"#FFCC00",
 						weight: 2,
 						color: '#FFCC00',
+						fillOpacity: 0.9
 					})
 				})
 				layer.on('mouseout', function(e){
@@ -40,6 +41,7 @@ var catchment = L.geoJson(null, {
 						stroke:"#6600FF",
 						weight: 1,
 						color: '#8F8F8F',
+						fillOpacity: 0.6 
 					})
 				})
 				layer.on('click', function(e){
