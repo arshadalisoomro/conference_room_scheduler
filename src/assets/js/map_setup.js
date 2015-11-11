@@ -18,7 +18,7 @@ var catchment = L.geoJson(null, {
                 fillOpacity: 0.3 							
 				
             },onEachFeature: function (feature, layer) {
-				if(feature.properties.name.length=0){
+				if(typeof (feature.properties.name.length)==¡°undefined¡±){
 					layer.setStyle({
 						stroke:"#6600FF",
 						weight: 0.5,
@@ -31,12 +31,14 @@ var catchment = L.geoJson(null, {
 					layer.setStyle({
 						stroke:"#FFCC00",
 						weight: 2,
+						color: '#FFCC00',
 					})
 				})
 				layer.on('mouseout', function(e){
 					layer.setStyle({
 						stroke:"#6600FF",
 						weight: 1,
+						color: '#8F8F8F',
 					})
 				})
 				layer.on('click', function(e){
