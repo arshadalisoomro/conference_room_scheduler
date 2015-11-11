@@ -46,7 +46,7 @@ error_reporting(E_ALL);
         </div>
         <main class="mdl-layout__content">
             <br/>
-			<div id="map" style="position:absolute; width:100%; height:300px;"></div>
+			
             <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
               <div class="mdl-card mdl-cell mdl-cell--12-col">
 			  
@@ -59,7 +59,7 @@ error_reporting(E_ALL);
 					<div id="room_search" style="margin-bottom:30px">
 				<input class="typeahead" id="seach_val" type="text" placeholder="Search by keyword" >
 				     </div>
-					
+					<div id="map" style="position:relative; width:100%; height:300px; 	border-style: solid;"></div>
 					<table id="display_table" align="center" class="mdl-data-table mdl-js-data-table mdl-data-table mdl-shadow--2dp" >
 					<thead ><tr>
 					<th>Resource</th>
