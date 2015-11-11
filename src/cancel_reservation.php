@@ -5,12 +5,22 @@ AutoLoader::registerDirectory('../src/classes');
 
 require("config.php");
 
+
 $deleteStatement = "DELETE FROM reservation 
                     WHERE _id = :reservation_id";
 
 $deleteParams = array(
             ':reservation_id' => $_GET['reservation_id']
         );
+
+if (!empty($_GET["recurrance_id"])) {
+    $deleteStatement = "DELETE FROM reservation 
+                    WHERE recurrance_id = :recurrance_id";
+
+    $deleteParams = array(
+            ':recurrance_id' => $_GET['recurrance_id']
+        );
+}
 
 try {
     $stmt = $db->prepare($deleteStatement);
