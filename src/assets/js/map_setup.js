@@ -3,9 +3,10 @@ var map = L.map('map').setView([41.660, -91.541], 14.5);
 
 L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map);
+})
 
-
+var qst = new L.TileLayer('http://otile1.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png', {attribution:'Tiles Courtesy of <a href="http://www.mapquest.com/" target="_blank">MapQuest</a> <img src="http://developer.mapquest.com/content/osm/mq_logo.png">'});
+qst.addTo(map);
 
 var catchment_bound_center;
 var catchment = L.geoJson(null, {
@@ -34,7 +35,9 @@ var catchment = L.geoJson(null, {
 						weight: 2,
 						color: '#FFCC00',
 						fillOpacity: 0.9
-					})
+					});
+					$("#seach_val").val(feature.properties.name);
+					
 				})
 				layer.on('mouseout', function(e){
 					layer.setStyle({
@@ -42,7 +45,8 @@ var catchment = L.geoJson(null, {
 						weight: 1,
 						color: '#8F8F8F',
 						fillOpacity: 0.6 
-					})
+					});
+					$("#seach_val").val("");
 				})
 				layer.on('click', function(e){
 					layer.setStyle({
