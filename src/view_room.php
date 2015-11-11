@@ -84,7 +84,7 @@ error_reporting(E_ALL);
 	<script type="text/javascript">
 	var room_in_json = <?php $rooms->getRoom($db, $_GET, $_SESSION['user']['_id']) ?>;
 	//window['room_in_json'] = room_in_json;
-	console.log(room_in_json);
+	//console.log(room_in_json);
 	window["autocomplete_list"]=[];
 	for(var i=0;i<room_in_json.length;i++){
 		!function outer(i){
@@ -130,12 +130,12 @@ error_reporting(E_ALL);
 	window["autocomplete_list"].push("Display all room");
 	autocomplete(window["autocomplete_list"],"#room_search");
 	
-		   $(document).on("click",".tt-menu",function() {
+		   $(document).on("mouseover",".tt-menu",function() {
 			var matching_val=$("#seach_val").val();
 		   $("#room_detail_table").empty();
 		    
 		    search_table(matching_val);
-			console.log(matching_val);
+			//console.log(matching_val);
 			
 			});
 
@@ -153,12 +153,12 @@ error_reporting(E_ALL);
 		
 		var tr_text="<tr class='"+room+"'><td class='"+room+"'>"+description+"</td><td class='"+room+"'>"+quality_description+"</td><td class='"+room+"'>"+room+"</td><td class='"+room+"'>"+room_number+"</td><td class='"+room+"'>"+capacity+"</td><td class='"+room+"'>"+geometry+"</td>";$("#room_detail_table").append(tr_text);
 		
-         console.log(tr_text);		
+         //console.log(tr_text);		
 		}
 		if(match_val=="Display all room"){		
 		var tr_text="<tr class='"+room+"'><td class='"+room+"'>"+description+"</td><td class='"+room+"'>"+quality_description+"</td><td class='"+room+"'>"+room+"</td><td class='"+room+"'>"+room_number+"</td><td class='"+room+"'>"+capacity+"</td><td class='"+room+"'>"+geometry+"</td>";$("#room_detail_table").append(tr_text);
 		
-		console.log("ALL"+tr_text)	
+		//console.log("ALL"+tr_text)	
 			
 		}
 
