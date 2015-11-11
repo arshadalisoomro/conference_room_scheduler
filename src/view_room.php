@@ -52,7 +52,7 @@ error_reporting(E_ALL);
 				
 				<div id="content">
              
-					<div id="map_div" ></div>
+					<div id="map" style="position:absolute; width:100%; height:300px;"></div>
 					
 					<div id="room_search" style="margin-bottom:30px">
 				<input class="typeahead" id="seach_val" type="text" placeholder="Search by keyword" >
