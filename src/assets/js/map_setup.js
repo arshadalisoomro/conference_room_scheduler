@@ -76,7 +76,7 @@ var catchment = L.geoJson(null, {
 						weight: 3,
 					})
 					$("#room_detail_table").empty();
-					search_table(feature.properties.name,"name");
+					search_table2(feature.properties.name,"name");
 				})	
 	
 
@@ -95,7 +95,7 @@ $.getJSON("assets/data/iowa_city_4326.geojson", function (data) {
 catchment.addTo(map);
 
 
-function search_table(match_val,table_field_name){
+function search_table2(match_val,table_field_name){
 		for(var i=0;i<room_in_json.length;i++){
 		!function outer(i){
 		var room=room_in_json[i]["name"];
