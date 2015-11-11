@@ -20,7 +20,7 @@ error_reporting(E_ALL);
     <title>Conference Room</title>
     <meta name="description" content="Conference room management system for Database Systems">
     <meta name="author" content="Team 6">
-
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
     <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.indigo-pink.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link href="../main.css" rel="stylesheet" type="text/css">
