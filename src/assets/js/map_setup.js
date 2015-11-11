@@ -36,13 +36,13 @@ var catchment = L.geoJson(null, {
 					})
 				}
 				
-			$(document).on("click","tr",function() {
+			$(document).on("mouseover","tr",function() {
 				console.log($(this).attr('class'));
 				if(feature.properties.name==$(this).attr('class') && feature.properties.name!= null){
 					
 					var center=feature.geometry.coordinates[0][0][0];
 					console.log(center);
-					map.setView([center[1], center[0]], 18);
+					map.setView([center[1], center[0]], 17);
 				}
 
 			

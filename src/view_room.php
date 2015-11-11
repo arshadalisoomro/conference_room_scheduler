@@ -130,7 +130,7 @@ error_reporting(E_ALL);
 	window["autocomplete_list"].push("Display all room");
 	autocomplete(window["autocomplete_list"],"#room_search");
 	
-		   $(document).on("mouseover",".tt-menu",function() {
+		   $(document).on("click",".tt-menu",function() {
 			var matching_val=$("#seach_val").val();
 		   $("#room_detail_table").empty();
 		    
