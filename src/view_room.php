@@ -82,7 +82,8 @@ error_reporting(E_ALL);
     </div>
 	
 	<script type="text/javascript">
-	window['room_in_json'] = <?php $rooms->getRoom($db, $_GET, $_SESSION['user']['_id']) ?>;
+	var room_in_json = <?php $rooms->getRoom($db, $_GET, $_SESSION['user']['_id']) ?>;
+	window['room_in_json'] = room_in_json;
 	console.log(room_in_json);
 	window["autocomplete_list"]=[];
 	for(var i=0;i<room_in_json.length;i++){
@@ -153,7 +154,7 @@ error_reporting(E_ALL);
 		
 		var tr_text="<tr class='"+room+"'><td class='"+room+"'>"+description+"</td><td class='"+room+"'>"+quality_description+"</td><td class='"+room+"'>"+room+"</td><td class='"+room+"'>"+room_number+"</td><td class='"+room+"'>"+capacity+"</td><td class='"+room+"'>"+geometry+"</td>";
 		$("#room_detail_table").append(tr_text);
-         console.log(tr_text)		
+         console.log(tr_text);		
 		}
 		if(match_val=="Display all room"){		
 		var tr_text="<tr class='"+room+"'><td class='"+room+"'>"+description+"</td><td class='"+room+"'>"+quality_description+"</td><td class='"+room+"'>"+room+"</td><td class='"+room+"'>"+room_number+"</td><td class='"+room+"'>"+capacity+"</td><td class='"+room+"'>"+geometry+"</td>";
