@@ -13,12 +13,12 @@ $deleteParams = array(
             ':reservation_id' => $_GET['reservation_id']
         );
 
-if (!empty($_GET["recurrance_id"])) {
+if (!empty($_GET["recurrence_id"])) {
     $deleteStatement = "DELETE FROM reservation 
-                    WHERE recurrance_id = :recurrance_id";
+                    WHERE recurrence_id = :recurrence_id";
 
     $deleteParams = array(
-            ':recurrance_id' => $_GET['recurrance_id']
+            ':recurrence_id' => $_GET['recurrence_id']
         );
 }
 
