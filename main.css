@@ -107,6 +107,10 @@ html, body {
     max-width: 860px;
 }
 
+.mdl-demo section.section--center--larger {
+    max-width: 1000px;
+}
+
 .mdl-demo #features section.section--center {
     max-width: 620px;
 }
@@ -315,8 +319,4 @@ html, body {
 
 .success {
     color: #00FF00;
-}
-
-.bigger-card {
-    max-width: 1000px;
 }
