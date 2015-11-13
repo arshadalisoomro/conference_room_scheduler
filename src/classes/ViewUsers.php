@@ -2,9 +2,7 @@
 
 class ViewMeetings {
 	function buildTable($db, $post, $userId) {
-        $tableType = $post['type']; // will either be me, users, or all
-
-        // you will have to join reservation with location, room, user, and time slot
+        $tableType = $post['type'];
         $query;
 
         echo "<h3>";
@@ -32,11 +30,11 @@ class ViewMeetings {
             echo '  <tbody>' . "\r\n";
 
     	    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                echo '      <tr>' . "\r\n";
+                /*echo '      <tr>' . "\r\n";
                 echo '         <td>' . $row['description'] . '</td>' . "\r\n";
                 echo '         <td>' . "<a class='home_page_link' href='user_page.php?id=" . $row['_id']  . "'>" . $row['first_name'] . ' ' . $row['last_name'] . "</a>" . '</td>' . "\r\n";
     	        echo '         <td>' . $row['email'] . '</td>' . "\r\n";
-     	        echo '      </tr>' . "\r\n";
+     	        echo '      </tr>' . "\r\n";*/
             }
 
             echo '  </tbody>' . "\r\n";
