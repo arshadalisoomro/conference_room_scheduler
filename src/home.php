@@ -94,7 +94,7 @@
                         } else if ($userType == "admin") {
                             echo "<a class='home_page_link' href='add_user_form.php?type=2'>Add a New Manager</a><br/><br/>";
                             
-                            echo "<a class='home_page_link' href='view_users.php?type=all'>View Created Users</a><br/>";
+                            echo "<a class='home_page_link' href='view_users.php?type=all'>View All Users</a><br/>";
                             echo "<a class='home_page_link' href='view_meetings.php?type=all'>View All Reservations</a><br/><br/>";
 
                             echo "<a class='home_page_link' href='search_rooms.php'>Schedule New Reservation</a><br/>";
