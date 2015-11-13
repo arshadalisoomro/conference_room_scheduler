@@ -25,6 +25,7 @@ class ViewUsers {
             echo '          <th class="mdl-data-table__cell--non-numeric">Type</th>' . "\r\n";
             echo '          <th>Name</th>' . "\r\n";
             echo '          <th>Email</th>' . "\r\n";
+            echo '          <th>Delete?</th>' . "\r\n";
             echo '      </tr>' . "\r\n";
             echo '  </thead>' . "\r\n";
             echo '  <tbody>' . "\r\n";
@@ -33,8 +34,8 @@ class ViewUsers {
                 echo '      <tr>' . "\r\n";
                 echo '         <td>' . $row['description'] . '</td>' . "\r\n";
                 echo '         <td>' . "<a class='home_page_link' href='user_page.php?id=" . $row['_id']  . "'>" . $row['first_name'] . ' ' . $row['last_name'] . "</a>" . '</td>' . "\r\n";
-                echo '<td>' . "<a class='home_page_link' onclick='return confirm(\"Are you sure?\")'href='user_page.php?to_delete_id=" . $row['_id']  . "'>Delete</a>" . '</td>' . "\r\n";
-    	        echo '         <td>' . $row['email'] . '</td>' . "\r\n";
+    	        echo '         <td>' . $row['email'] . '</td>' . "\r\n";                
+                echo '         <td>' . "<a class='home_page_link' onclick='return confirm(\"Are you sure?\")'href='user_page.php?to_delete_id=" . $row['_id']  . "'>Delete</a>" . '</td>' . "\r\n";
      	        echo '      </tr>' . "\r\n";
             }
 

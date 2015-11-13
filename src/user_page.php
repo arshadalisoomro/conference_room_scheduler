@@ -13,7 +13,7 @@ if(empty($_SESSION['user'])) {
         DELETE
         FROM user
         WHERE
-          id = :id
+          _id = :id
     ";
     $query_params = array(
         ':id' => $_GET['to_delete_id']
