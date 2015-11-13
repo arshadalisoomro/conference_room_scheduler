@@ -42,7 +42,7 @@
         </div>
         <main class="mdl-layout__content">
             <br/>
-            <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+            <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp bigger-card">
               <div class="mdl-card mdl-cell mdl-cell--12-col">
                 <div class="mdl-card__supporting-text">
                     <div id="content">

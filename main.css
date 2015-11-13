@@ -104,7 +104,7 @@ html, body {
 }
 
 .mdl-demo section.section--center {
-    max-width: 900px;
+    max-width: 860px;
 }
 
 .mdl-demo #features section.section--center {
@@ -315,4 +315,8 @@ html, body {
 
 .success {
     color: #00FF00;
+}
+
+.bigger-card {
+    max-width: 1000px;
 }
