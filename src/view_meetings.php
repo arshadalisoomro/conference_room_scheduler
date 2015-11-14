@@ -46,7 +46,7 @@
               <div class="mdl-card mdl-cell mdl-cell--12-col">
                 <div class="mdl-card__supporting-text">
                     <div id="content">
-                        <?php $meetings->buildTable($db, $_GET, $_SESSION['user']['_id']) ?>
+                        <?php $meetings->buildTables($db, $_GET) ?>
                     </div>
                 </div>
               </div>

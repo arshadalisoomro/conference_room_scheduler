@@ -1,24 +1,48 @@
 <?php
 
 class ViewMeetings {
-	function buildTable($db, $post, $userId) {
+    function buildTables($db, $post) {
+        $thisUserId = $_SESSION['user']['_id'];
         $tableType = $post['type']; // will either be me, users, or all
 
         // you will have to join reservation with location, room, user, and time slot
         $query;
 
-        echo "<h3>";
         if ($tableType == 'me') {
-            echo "Future Reservations";
-            $query = "SELECT res._id AS _id, first_name, last_name, name, room_number, start_time, end_time, date, recurrence_id, rect.description as description FROM reservation res JOIN room r ON res.conference_room_id = r._id JOIN location l ON r.location_id = l._id JOIN user u ON res.user_id = u._id JOIN time_slot t ON res.time_slot_id = t._id JOIN recurrence rec on res.recurrence_id = rec._id JOIN recurrence_type rect on rec.recurrence_type_id = rect._id WHERE date >= CURDATE() AND user_id = " . $userId . " ORDER BY date";
+            echo "<h3>Future Reservations</h3>";
+            $this->buildTable($db, $thisUserId);
+
+            return;
         } else if ($tableType == 'users') {
-            echo "Created User's Reservations";
-            $query = "SELECT res._id AS _id, first_name, last_name, name, room_number, start_time, end_time, date, recurrence_id, rect.description as description FROM reservation res JOIN room r ON res.conference_room_id = r._id JOIN location l ON r.location_id = l._id JOIN user u ON res.user_id = u._id JOIN time_slot t ON res.time_slot_id = t._id JOIN recurrence rec on res.recurrence_id = rec._id JOIN recurrence_type rect on rec.recurrence_type_id = rect._id WHERE date >= CURDATE() AND created_by_id = " . $userId . " ORDER BY date";
+            echo "<h3>Created User's Reservations</h3>";
+            $query = "SELECT user_id AS _id 
+                      FROM reservation r JOIN user u ON r.user_id = u._id 
+                      WHERE date >= CURDATE() AND created_by_id = " . $userId . ' ' .
+                      "ORDER BY date " .
+                      "GROUP BY user_id";
         } else { // all users
-            echo "All User's Reservations";
-            $query = "SELECT res._id AS _id, first_name, last_name, name, room_number, start_time, end_time, date, recurrence_id, rect.description as description FROM reservation res JOIN room r ON res.conference_room_id = r._id JOIN location l ON r.location_id = l._id JOIN user u ON res.user_id = u._id JOIN time_slot t ON res.time_slot_id = t._id JOIN recurrence rec on res.recurrence_id = rec._id JOIN recurrence_type rect on rec.recurrence_type_id = rect._id WHERE date >= CURDATE()" . " ORDER BY date";
+            echo "<h3>All User's Reservations</h3>";
+            $query = "SELECT user_id AS _id 
+                      FROM reservation r JOIN user u ON r.user_id = u._id 
+                      WHERE date >= CURDATE() 
+                      ORDER BY date 
+                      GROUP BY user_id";
         }
-        echo "</h3>" . "\r\n";
+
+        try {
+            $stmt = $db->prepare($query);
+            $result = $stmt->execute();
+
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                $this->buildTable($db, $row['_id']);
+            }
+        } catch(Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+
+	function buildTable($db, $userId) {
+        $query = "SELECT res._id AS _id, first_name, last_name, name, room_number, start_time, end_time, date, recurrence_id, rect.description as description FROM reservation res JOIN room r ON res.conference_room_id = r._id JOIN location l ON r.location_id = l._id JOIN user u ON res.user_id = u._id JOIN time_slot t ON res.time_slot_id = t._id JOIN recurrence rec on res.recurrence_id = rec._id JOIN recurrence_type rect on rec.recurrence_type_id = rect._id WHERE date >= CURDATE() AND user_id = " . $userId . " ORDER BY date";
 
         try {
             $stmt = $db->prepare($query);
