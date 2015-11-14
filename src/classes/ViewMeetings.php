@@ -18,15 +18,15 @@ class ViewMeetings {
             $query = "SELECT user_id AS _id 
                       FROM reservation r JOIN user u ON r.user_id = u._id 
                       WHERE date >= CURDATE() AND created_by_id = " . $userId . ' ' .
-                      "ORDER BY date " .
-                      "GROUP BY user_id";
+                      "GROUP BY user_id "  .
+                      "ORDER BY date";
         } else { // all users
             echo "<h3>All User's Reservations</h3>";
             $query = "SELECT user_id AS _id 
                       FROM reservation r JOIN user u ON r.user_id = u._id 
                       WHERE date >= CURDATE() 
-                      ORDER BY date 
-                      GROUP BY user_id";
+                      GROUP BY user_id 
+                      ORDER BY date";
         }
 
         try {
