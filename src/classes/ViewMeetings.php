@@ -35,6 +35,7 @@ class ViewMeetings {
 
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 $this->buildTable($db, $row['_id']);
+                echo "<br/><br/>";
             }
         } catch(Exception $e) {
             echo $e->getMessage();
@@ -47,12 +48,6 @@ class ViewMeetings {
         try {
             $stmt = $db->prepare($query);
             $result = $stmt->execute();
-
-            // todo: we want to create a table here from our room data
-            // here is the page for material design table:
-            // http://www.getmdl.io/components/index.html#tables-section
-
-            // the .\r\n just creates
 
             echo '<table class="mdl-data-table mdl-js-data-table mdl-data-table mdl-shadow--2dp">' . "\r\n";
             echo '  <thead>' . "\r\n";

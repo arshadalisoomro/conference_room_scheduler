@@ -82,7 +82,7 @@
                     <?php
                         if ($userType == "user") {
                             echo "<a class='home_page_link' href='search_rooms.php'>Schedule New Reservation</a><br/>";
-                            echo "<a class='home_page_link' href='view_meetings.php?type=me'>View Your Meetings</a><br/>";
+                            echo "<a class='home_page_link' href='view_meetings.php?type=me'>View Your Reservations</a><br/>";
                         } else if ($userType == "manager") {
                             echo "<a class='home_page_link' href='add_user_form.php?type=3'>Add a New User</a><br/><br/>";
 
