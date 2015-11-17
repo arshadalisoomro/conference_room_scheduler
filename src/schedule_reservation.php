@@ -4,6 +4,7 @@ include_once('../AutoLoader.php');
 AutoLoader::registerDirectory('../src/classes');
 
 require("config.php");
+require("MailFiles/PHPMailerAutoload.php");
 
 $insertStatement = "INSERT INTO reservation 
                     (`user_id`, `conference_room_id`, `time_slot_id`, `recurrence_id`, `date`) 
