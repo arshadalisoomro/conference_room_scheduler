@@ -23,6 +23,12 @@ if (empty($_GET['recurrence'])) {
         $stmt = $db->prepare($insertStatement);
         $result = $stmt->execute($insertParams);
 
+        $mailer = new SendEmail();
+        $mailer->SendEmail($_SESSION['user']['email'],
+            "Conference Room Scheduler",
+            "A new reservation has been scheduled for you!\nTo view your reservations, please use the following link:\n\nhttp://dbsystems-engproject.rhcloud.com/src/view_meetings.php?type=me",
+            false);
+
         header("Location: home.php");
         die("Redirecting to home.php");
     } catch(PDOException $ex) {
@@ -74,6 +80,12 @@ if (empty($_GET['recurrence'])) {
     }
 
     if (!$error) {
+        $mailer = new SendEmail();
+        $mailer->SendEmail($_SESSION['user']['email'],
+            "Conference Room Scheduler",
+            "A new reservation has been scheduled for you!\nTo view your reservations, please use the following link:\n\nhttp://dbsystems-engproject.rhcloud.com/src/view_meetings.php?type=me",
+            false);
+
         header("Location: home.php");
         die("Redirecting to home.php");
     }
