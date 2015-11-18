@@ -100,7 +100,7 @@
                             echo "<a class='home_page_link' href='search_rooms.php'>Schedule New Reservation</a><br/>";
                             echo "<a class='home_page_link' href='view_meetings.php?type=me'>View Your Reservations</a><br/><br/>";
                             
-                            echo "<a class='home_page_link' href='edit_resources.php'>Edit Conference Room Resources</a><br/>";
+                            //echo "<a class='home_page_link' href='edit_resources.php'>Edit Conference Room Resources</a><br/>";
                         }
 							
 						echo "<br/><a class='home_page_link' href='view_room.php?type=all'>View Equipment Details for Rooms</a><br/>";
