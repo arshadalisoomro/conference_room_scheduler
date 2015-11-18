@@ -27,7 +27,7 @@ if (empty($_GET['recurrence'])) {
         $mailer = new SendEmail();
         $mailer->SendEmail($_SESSION['user']['email'],
             "Conference Room Scheduler",
-            "A new reservation has been scheduled for you!\nTo view your reservations, please use the following link:\n\nhttp://dbsystems-engproject.rhcloud.com/src/view_meetings.php?type=me",
+            "A new reservation has been scheduled for you!<br/>To view your reservations, please use the following link:<br/><br/>http://dbsystems-engproject.rhcloud.com/src/view_meetings.php?type=me",
             false);
 
         header("Location: home.php");
