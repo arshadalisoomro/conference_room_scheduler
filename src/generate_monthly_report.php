@@ -27,7 +27,7 @@ try {
             "Hello Manager!<br/>
             Below is a link to the monthly report for your created users reservations. If anything looks out of place, feel free to contact the system administrator for help.<br/><br/>" .
 
-            '<a href="http://dbsystems-engproject.rhcloud.com/src/monthly_report.php?user_id=' . $row['_id'] . '">Monthly Usage Report</a',
+            '<a href="http://dbsystems-engproject.rhcloud.com/src/monthly_report.php?user_id=' . $row['_id'] . '">Monthly Usage Report</a>',
             false);
     }
 } catch(PDOException $ex) {
