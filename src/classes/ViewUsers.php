@@ -43,6 +43,7 @@ class ViewUsersManager {
             echo $e->getMessage();
         }
     }
+}
 
 class ViewUsersAdmin {
     function buildTable($db, $post, $userId) {
@@ -89,5 +90,4 @@ class ViewUsersAdmin {
             echo $e->getMessage();
         }
     }
-}
 }
