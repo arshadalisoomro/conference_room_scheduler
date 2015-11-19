@@ -77,7 +77,13 @@ class ViewMeetings {
     	        echo '         <td>' . $row['name'] . ' #' . $row['room_number'] . '</td>' . "\r\n";
                 echo '         <td>' . $row['date'] . '</td>' . "\r\n";
      	        echo '         <td>' . $row['start_time'] . ' - ' . $row['end_time'] . '</td>' . "\r\n";
-                echo '         <td>' . $row['description'] . '</td>' . "\r\n";
+                
+                if ($row['description'] != "None") {
+                    echo '<td>' . $row['description'] . '</td>' . "\r\n";
+                } else {
+                    echo '<td></td>';
+                }
+
                 if ($row['recurrence_id'] != 1) {
                     echo '<td>' . "<a class='home_page_link' onclick='return confirm(\"Are you sure?\")'href='cancel_reservation.php?reservation_id=" . $row['_id']  . "'>Delete</a>" . ' [' ."<a class='home_page_link' onclick='return confirm(\"This will remove all reservations in the recurrence. Are you sure this is what you want?\")'href='cancel_reservation.php?recurrence_id=" . $row['recurrence_id']  . "'>All</a>". ']</td>' . "\r\n";
                 } else {
