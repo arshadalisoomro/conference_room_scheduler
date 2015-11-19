@@ -11,6 +11,23 @@ if(empty($_SESSION['user'])) {
 } else if (isset($_GET['to_delete_id'])) {
     $query = "
         DELETE
+        FROM reservation
+        WHERE
+          user_id = :id
+    ";
+    $query_params = array(
+        ':id' => $_GET['to_delete_id']
+    );
+
+    try {
+        $stmt = $db->prepare($query);
+        $result = $stmt->execute($query_params);
+    } catch(PDOException $ex) {
+        die("Failed to run query: " . $ex->getMessage());
+    }
+
+    $query = "
+        DELETE
         FROM user
         WHERE
           _id = :id
