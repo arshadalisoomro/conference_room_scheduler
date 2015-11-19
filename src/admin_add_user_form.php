@@ -4,7 +4,7 @@
     
     require("config.php");
     
-    if(empty($_SESSION['user']) || empty($_GET['type'])) {
+    if(empty($_SESSION['user'])) {
         header("Location: ../index.php");
         die("Redirecting to index.php"); 
     }
