@@ -7,7 +7,7 @@ class ProvideFeedback {
         $query = "SELECT user_id AS _id 
                   FROM reservation r JOIN user u ON r.user_id = u._id 
                   WHERE date <= CURDATE()
-                  AND created_by_id = " . $thisUserId . " 
+                  AND user_id = " . $thisUserId . " 
                   GROUP BY user_id 
                   ORDER BY date";
 
