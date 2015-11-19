@@ -11,6 +11,10 @@
     }
 
     $users = new ViewUsers();
+
+    if ($_SESSION['user']['user_type_id'] == 1) {
+        $users = new AdminViewUsers();
+    }
 ?>
 
 <!doctype html>
