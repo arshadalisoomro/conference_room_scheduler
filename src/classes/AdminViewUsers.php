@@ -17,7 +17,7 @@ class AdminViewUsers {
             echo '      <tr>' . "\r\n";
             echo '          <th class="mdl-data-table__cell--non-numeric">Type</th>' . "\r\n";
             echo '          <th>Name</th>' . "\r\n";
-            echo '          <th>Managed By</th' . "\r\n";
+            echo '          <th>Managed By</th>' . "\r\n";
             echo '          <th>Email</th>' . "\r\n";
             echo '          <th>Delete?</th>' . "\r\n";
             echo '      </tr>' . "\r\n";
