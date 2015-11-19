@@ -12,7 +12,7 @@
 
     $users = new ViewUsersManager();
 
-    if ($_SESSION['user']['user_type_id'] == 1) {
+    if ($_GET['type'] == 'all') {
         $users = new ViewUsersAdmin();
     }
 ?>
