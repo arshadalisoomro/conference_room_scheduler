@@ -39,7 +39,7 @@ class ViewMeetingsAdmin {
 
             try {
                 $stmt = $db->prepare($query);
-                $result = $stmt->execute(array(':id' => $id)));
+                $result = $stmt->execute(array(':id' => $id));
 
                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     $this->buildTable($db, $row['_id']);
