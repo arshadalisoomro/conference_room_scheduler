@@ -60,7 +60,7 @@ class ProvideFeedback {
     	        echo '         <td>' . $row['name'] . ' #' . $row['room_number'] . '</td>' . "\r\n";
                 echo '         <td>' . $row['date'] . '</td>' . "\r\n";
      	        echo '         <td>' . $row['start_time'] . ' - ' . $row['end_time'] . '</td>' . "\r\n";
-                echo '         <td><a class="home_page_link" href="provide_feedback.php?reservation_id=' . $row['_id'] . '</td>' . "\r\n";
+                echo '         <td><a class="home_page_link" href="provide_feedback.php?reservation_id=' . $row['_id'] . '">Feedback</td>' . "\r\n";
                 
      	        echo '      </tr>' . "\r\n";
             }

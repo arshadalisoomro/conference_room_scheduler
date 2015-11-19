@@ -31,7 +31,7 @@
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
         <header class="mdl-layout__header mdl-layout__header--waterfall">
             <div class="mdl-layout__header-row">
-                <span class="mdl-layout-title">View Reservations</span>
+                <span class="mdl-layout-title">Available for Feedback</span>
             </div>
         </header>
         <div class="mdl-layout__drawer">
