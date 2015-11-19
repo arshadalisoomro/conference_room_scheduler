@@ -56,22 +56,28 @@ class ViewMeetings {
             echo '              <th>Building</th>' . "\r\n";
             echo '              <th>Room</th>' . "\r\n";
             echo '              <th>Date</th>' . "\r\n";
-            echo '              <th>Start Time</th>' . "\r\n";
-            echo '              <th>End Time</th>' . "\r\n";
+            echo '              <th>Time</th>' . "\r\n";
             echo '              <th>Recurring</th>' . "\r\n";
             echo '              <th>Delete?</th>' . "\r\n";
             echo '      </tr>' . "\r\n";
             echo '  </thead>' . "\r\n";
             echo '  <tbody>' . "\r\n";
 
+            $i = 0;
     	    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 echo '      <tr>' . "\r\n";
-                echo '         <td>' . $row['first_name'] . ' ' . $row['last_name'] . '</td>' . "\r\n";
+
+                // only show the name for the first row for each user
+                if (i == 0) {
+                    echo '<td>' . $row['first_name'] . ' ' . $row['last_name'] . '</td>' . "\r\n";
+                } else {
+                    echo '<td></td>';
+                }
+                
     	        echo '         <td>' . $row['name'] . '</td>' . "\r\n";
     	        echo '         <td>' . $row['room_number'] . '</td>' . "\r\n";
                 echo '         <td>' . $row['date'] . '</td>' . "\r\n";
-     	        echo '         <td>' . $row['start_time'] . '</td>' . "\r\n";
-                echo '         <td>' . $row['end_time'] . '</td>' . "\r\n";
+     	        echo '         <td>' . $row['start_time'] . ' - ' . $row['end_time'] . '</td>' . "\r\n";
                 echo '         <td>' . $row['description'] . '</td>' . "\r\n";
                 if ($row['recurrence_id'] != 1) {
                     echo '<td>' . "<a class='home_page_link' onclick='return confirm(\"Are you sure?\")'href='cancel_reservation.php?reservation_id=" . $row['_id']  . "'>Delete</a>" . ' [' ."<a class='home_page_link' onclick='return confirm(\"This will remove all reservations in the recurrence. Are you sure this is what you want?\")'href='cancel_reservation.php?recurrence_id=" . $row['recurrence_id']  . "'>All</a>". ']</td>' . "\r\n";
@@ -80,6 +86,8 @@ class ViewMeetings {
 
                 }
      	        echo '      </tr>' . "\r\n";
+
+                $i = $i + 1;
             }
 
             echo '  </tbody>' . "\r\n";
