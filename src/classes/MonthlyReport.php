@@ -1,11 +1,8 @@
 <?php
 
-class ViewMeetingsManager {
+class MonthlyReport {
     function buildTables($db, $post) {
         $thisUserId = $post['user_id'];
-
-        // you will have to join reservation with location, room, user, and time slot
-        $query;
 
         echo "<h3>Usage Report for Created Users</h3>";
         $query = "SELECT user_id AS _id 
