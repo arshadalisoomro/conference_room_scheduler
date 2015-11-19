@@ -5,22 +5,49 @@ class ViewMeetingsAdmin {
         $thisUserId = $_SESSION['user']['_id'];
 
         echo "<h3>Reservations by Managers</h3>";
-        $query = "SELECT user_id AS _id 
+        $query = "SELECT user_id AS _id, first_name, last_name
                   FROM reservation r JOIN user u ON r.user_id = u._id 
-                  WHERE date >= CURDATE() AND u.user_type_id = 2
+                  WHERE date >= CURDATE() AND u.user_type_id = 2 
                   GROUP BY user_id 
                   ORDER BY date";
 
+        $managerIds = array();
         try {
             $stmt = $db->prepare($query);
             $result = $stmt->execute();
 
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 $this->buildTable($db, $row['_id']);
+                array_push($managerIds, array($row['_id'], $row['first_name'] . ' ' . $row['last_name']);
                 echo "<br/><br/>";
             }
         } catch(Exception $e) {
             echo $e->getMessage();
+        }
+
+        foreach($managerIds as $manager) {
+            $name = $manager[1];
+            $id = $manager[0];
+
+            echo "<h5>Users created by: " . $name . "</h5>";
+
+            $query = "SELECT user_id AS _id
+                  FROM reservation r JOIN user u ON r.user_id = u._id 
+                  WHERE date >= CURDATE() AND u.created_by_id = :id
+                  GROUP BY user_id 
+                  ORDER BY date";
+
+            try {
+                $stmt = $db->prepare($query, {':id' => $id});
+                $result = $stmt->execute();
+
+                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    $this->buildTable($db, $row['_id']);
+                    echo "<br/><br/>";
+                }
+            } catch(Exception $e) {
+                echo $e->getMessage();
+            }
         }
     }
 
