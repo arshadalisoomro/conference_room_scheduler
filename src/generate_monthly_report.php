@@ -15,6 +15,7 @@ $query = "SELECT _id, email
           FROM user
           WHERE user_type_id = 2";
 
+$error = false;
 try {
     $stmt = $db->prepare($query);
     $result = $stmt->execute();
@@ -30,6 +31,7 @@ try {
             false);
     }
 } catch(PDOException $ex) {
+    $error = true;
     echo $e->getMessage();
 }
 ?>
@@ -67,30 +69,11 @@ try {
             <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
               <div class="mdl-card mdl-cell mdl-cell--12-col">
                 <div class="mdl-card__supporting-text">
-                    <h1><?php echo $userProfile['first_name'] . " " . $userProfile['last_name'] ?></h1> <br/>
-                    <?php echo "<b>Email:</b> " . $userProfile['email'] . "<br/>"; ?>
-                    <br><b>User Type: </b>
                     <?php
-                        $query = "
-                                SELECT *
-                                FROM user_type
-                                WHERE
-                                    _id = :id
-                                ";
-                        $query_params = array(
-                            ':id' => $_SESSION['user']['user_type_id']
-                        );
-
-                        try {
-                            $stmt = $db->prepare($query);
-                            $result = $stmt->execute($query_params);
-                        } catch(PDOException $ex) {
-                            die("Failed to run query: " . $ex->getMessage());
-                        }
-
-                        $row = $stmt->fetch();
-                        if ($row) {
-                            echo $row['description'];
+                        if ($error) {
+                            echo "Error generating monthly report.";
+                        } else {
+                            echo "Monthly report sent successfully!";
                         }
                     ?>
                 </div>
