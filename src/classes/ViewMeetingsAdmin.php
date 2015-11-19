@@ -18,7 +18,7 @@ class ViewMeetingsAdmin {
 
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 $this->buildTable($db, $row['_id']);
-                array_push($managerIds, array($row['_id'], $row['first_name'] . ' ' . $row['last_name']);
+                array_push($managerIds, array($row['_id'], $row['first_name'] . ' ' . $row['last_name']));
                 echo "<br/><br/>";
             }
         } catch(Exception $e) {
