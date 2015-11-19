@@ -24,9 +24,14 @@ class ViewUsersAdmin {
             echo '  </thead>' . "\r\n";
             echo '  <tbody>' . "\r\n";
 
+            $last_description = "";
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 echo '      <tr>' . "\r\n";
-                echo '         <td>' . $row['description'] . '</td>' . "\r\n";
+                if ($last_description != $row['description']) {
+                    echo '<td>' . $row['description'] . '</td>' . "\r\n";
+                } else {
+                    echo '<td></td>';
+                }
                 echo '         <td>' . "<a class='home_page_link' href='user_page.php?id=" . $row['_id']  . "'>" . $row['first_name'] . ' ' . $row['last_name'] . "</a>" . '</td>' . "\r\n";
                 if ($row['description'] == "Manager") {
                     echo '<td></td>' . "\r\n";
