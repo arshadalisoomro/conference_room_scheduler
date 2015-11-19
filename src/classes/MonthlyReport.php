@@ -1,7 +1,7 @@
 <?php
 
 class MonthlyReport {
-    function buildTables($db, $post) {
+    function buildReport($db, $post) {
         $thisUserId = $post['user_id'];
 
         echo "<h3>Usage Report for Created Users</h3>";

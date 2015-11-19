@@ -41,7 +41,7 @@
               <div class="mdl-card mdl-cell mdl-cell--12-col">
                 <div class="mdl-card__supporting-text">
                     <div id="content">
-                        <?php $report->build($db, $_GET) ?>
+                        <?php $report->buildReport($db, $_GET) ?>
                     </div>
                 </div>
               </div>
