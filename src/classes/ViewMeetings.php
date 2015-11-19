@@ -53,8 +53,7 @@ class ViewMeetings {
             echo '  <thead>' . "\r\n";
             echo '      <tr>' . "\r\n";
             echo '          <th class="mdl-data-table__cell--non-numeric">Name</th>' . "\r\n";
-            echo '              <th>Building</th>' . "\r\n";
-            echo '              <th>Room</th>' . "\r\n";
+            echo '              <th>Place</th>' . "\r\n";
             echo '              <th>Date</th>' . "\r\n";
             echo '              <th>Time</th>' . "\r\n";
             echo '              <th>Recurring</th>' . "\r\n";
@@ -75,8 +74,7 @@ class ViewMeetings {
                     echo '<td></td>';
                 }
                 
-    	        echo '         <td>' . $row['name'] . '</td>' . "\r\n";
-    	        echo '         <td>' . $row['room_number'] . '</td>' . "\r\n";
+    	        echo '         <td>' . $row['name'] . ' #' . $row['room_number'] . '</td>' . "\r\n";
                 echo '         <td>' . $row['date'] . '</td>' . "\r\n";
      	        echo '         <td>' . $row['start_time'] . ' - ' . $row['end_time'] . '</td>' . "\r\n";
                 echo '         <td>' . $row['description'] . '</td>' . "\r\n";

@@ -32,7 +32,7 @@ class ViewUsersManager {
                 echo '      <tr>' . "\r\n";
                 if ($last_description != $row['description']) {
                     $last_description = $row['description'];
-                    echo '<td>' . $row['description'] . '</td>' . "\r\n";
+                    echo '<td>' . $row['description'] . 's</td>' . "\r\n";
                 } else {
                     echo '<td></td>';
                 }
