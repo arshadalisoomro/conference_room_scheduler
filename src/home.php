@@ -105,9 +105,9 @@
                             
                             //echo "<a class='home_page_link' href='edit_resources.php'>Edit Conference Room Resources</a><br/>";
                         }
-							
+						
 						echo "<br/><a class='home_page_link' href='view_room.php?type=all'>View Equipment Details for Rooms</a><br/>";
-
+                        echo "<a class='home_page_link' href='previous_reservations.php'>Provide Feedback on Past Reservations</a>";
                     ?> 
                     
                 </div>
