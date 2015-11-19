@@ -26,7 +26,9 @@ class MonthlyReport {
     }
 
 	function buildTable($db, $userId) {
-        $query = "SELECT res._id AS _id, first_name, last_name, name, room_number, start_time, end_time, date, recurrence_id, rect.description as description FROM reservation res JOIN room r ON res.conference_room_id = r._id JOIN location l ON r.location_id = l._id JOIN user u ON res.user_id = u._id JOIN time_slot t ON res.time_slot_id = t._id JOIN recurrence rec on res.recurrence_id = rec._id JOIN recurrence_type rect on rec.recurrence_type_id = rect._id WHERE date >= CURDATE() AND user_id = " . $userId . " ORDER BY date";
+        $query = "SELECT res._id AS _id, first_name, last_name, name, room_number, start_time, end_time, date, recurrence_id, rect.description as description 
+                FROM reservation res JOIN room r ON res.conference_room_id = r._id JOIN location l ON r.location_id = l._id JOIN user u ON res.user_id = u._id JOIN time_slot t ON res.time_slot_id = t._id JOIN recurrence rec on res.recurrence_id = rec._id JOIN recurrence_type rect on rec.recurrence_type_id = rect._id 
+                WHERE date BETWEEN CURDATE() - INTERVAL 1 MONTH AND CURDATE() AND user_id = " . $userId . " ORDER BY date";
 
         try {
             $stmt = $db->prepare($query);
@@ -40,7 +42,6 @@ class MonthlyReport {
             echo '              <th>Date</th>' . "\r\n";
             echo '              <th>Time</th>' . "\r\n";
             echo '              <th>Recurring</th>' . "\r\n";
-            echo '              <th>Delete?</th>' . "\r\n";
             echo '      </tr>' . "\r\n";
             echo '  </thead>' . "\r\n";
             echo '  <tbody>' . "\r\n";
@@ -65,13 +66,6 @@ class MonthlyReport {
                     echo '<td>' . $row['description'] . '</td>' . "\r\n";
                 } else {
                     echo '<td></td>';
-                }
-
-                if ($row['recurrence_id'] != 1) {
-                    echo '<td>' . "<a class='home_page_link' onclick='return confirm(\"Are you sure?\")'href='cancel_reservation.php?reservation_id=" . $row['_id']  . "'>Delete</a>" . ' [' ."<a class='home_page_link' onclick='return confirm(\"This will remove all reservations in the recurrence. Are you sure this is what you want?\")'href='cancel_reservation.php?recurrence_id=" . $row['recurrence_id']  . "'>All</a>". ']</td>' . "\r\n";
-                } else {
-                    echo '<td>' . "<a class='home_page_link' onclick='return confirm(\"Are you sure?\")'href='cancel_reservation.php?reservation_id=" . $row['_id']  . "'>Delete</a>" . '</td>' . "\r\n";
-
                 }
      	        echo '      </tr>' . "\r\n";
             }
