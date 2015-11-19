@@ -10,10 +10,10 @@
         die("Redirecting to index.php"); 
     }
 
-    $users = new ViewUsers();
+    $users = new ViewUsersManager();
 
     if ($_SESSION['user']['user_type_id'] == 1) {
-        $users = new AdminViewUsers();
+        $users = new ViewUsersAdmin();
     }
 ?>
 
