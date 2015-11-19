@@ -63,12 +63,13 @@ class ViewMeetings {
             echo '  </thead>' . "\r\n";
             echo '  <tbody>' . "\r\n";
 
-            $i = 0;
+            $print_name = true;
     	    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 echo '      <tr>' . "\r\n";
 
                 // only show the name for the first row for each user
-                if (i == 0) {
+                if ($print_name) {
+                    $print_name = false;
                     echo '<td>' . $row['first_name'] . ' ' . $row['last_name'] . '</td>' . "\r\n";
                 } else {
                     echo '<td></td>';
@@ -86,8 +87,6 @@ class ViewMeetings {
 
                 }
      	        echo '      </tr>' . "\r\n";
-
-                $i = $i + 1;
             }
 
             echo '  </tbody>' . "\r\n";
