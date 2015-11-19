@@ -11,6 +11,10 @@ $passwordSalt = PasswordUtils::generatePasswordSalt();
 $hashedPassword = PasswordUtils::hashPassword($realPassword, $passwordSalt);
 
 $email = $_POST['email'];
+$created_by_id = $_SESSION['user']['_id'];
+if (!empty($_POST['manager'])) {
+    $created_by_id = $_POST['manager'];
+}
 
 $insertStatement = "INSERT INTO user
 					(`user_type_id`, `created_by_id`, `password`, `password_salt`, `first_name`, `last_name`, `email`, `picture_url`) 
@@ -18,7 +22,7 @@ $insertStatement = "INSERT INTO user
 
 $insertParams = array(
             ':user_type_id' => $_POST['user_type_id'],
-            ':created_by_id' => $_SESSION['user']['_id'],
+            ':created_by_id' => $created_by_id,
             ':password' => $hashedPassword,
             ':password_salt' => $passwordSalt,
             ':first_name' => $_POST['first'],

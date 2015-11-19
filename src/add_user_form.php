@@ -50,15 +50,15 @@
                     <form action="insert_new_user.php" method="post">
                         <input type="hidden" value="<?php echo $_GET['type'] ?>" name="user_type_id" />
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield">
-                            <input class="mdl-textfield__input" type="text" id="first" name="first" />
+                            <input class="mdl-textfield__input" type="text" id="first" name="first" required/>
                             <label class="mdl-textfield__label" for="first">First Name</label>
                         </div>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield">
-                            <input class="mdl-textfield__input" type="text" id="last" name="last" />
+                            <input class="mdl-textfield__input" type="text" id="last" name="last" required/>
                             <label class="mdl-textfield__label" for="last">Last Name</label>
                         </div><br/>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield">
-                            <input class="mdl-textfield__input" type="text" id="email" name="email" />
+                            <input class="mdl-textfield__input" type="text" id="email" name="email" required/>
                             <label class="mdl-textfield__label" for="email">Email</label>
                         </div><br/>
                         <br/> 
