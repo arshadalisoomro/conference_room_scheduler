@@ -4,9 +4,6 @@ class ViewMeetingsAdmin {
     function buildTables($db, $post) {
         $thisUserId = $_SESSION['user']['_id'];
 
-        // you will have to join reservation with location, room, user, and time slot
-        $query;
-
         echo "<h3>Reservations by Managers</h3>";
         $query = "SELECT user_id AS _id 
                   FROM reservation r JOIN user u ON r.user_id = u._id 
