@@ -6,89 +6,48 @@ AutoLoader::registerDirectory('../src/classes');
 require("config.php");
 require("MailFiles/PHPMailerAutoload.php");
 
-print_r($_GET);
-/*$insertStatement = "INSERT INTO reservation 
-                    (`user_id`, `conference_room_id`, `time_slot_id`, `recurrence_id`, `date`) 
-                    VALUES (:user_id,:conference_room_id,:time_slot_id,:recurrence_id,:date_val)";
-$insertParams;
+$query = "SELECT _id
+          FROM reservation 
+          WHERE room_id = :room_id 
+               AND date = :get_date
+               AND timeslot = :timeslot";
 
-if (empty($_GET['recurrence'])) {
-    $insertParams = array(
-                ':user_id' => $_GET['user_id'],
-                ':conference_room_id' => $_GET['room_id'],
-                ':time_slot_id' => $_GET['time_slot'],
-                ':recurrence_id' => '1',
-                ':date_val' => $_GET['date']
+$query_params = array(
+    ':room_id' => $_GET['room_id'],
+    ':get_date' => $_GET['date'],
+    ':timeslot' => $_GET['timeslot']
+);
+
+try {
+    $stmt = $db->prepare($query);
+    $result = $stmt->execute($query_params);
+} catch(PDOException $ex) {
+    die("Failed to run query: " . $ex->getMessage());
+}
+
+$row = $stmt->fetch();
+
+$insertStatement = "INSERT INTO waitlist (`reservation_id`, `user_id`) 
+                    VALUES (:reservation_id, :user_id)";
+$insertParams = array(
+                ':reservation_id' => $row['_id'],
+                ':user_id' => $_SESSION['user']['_id']
             );
 
-    try {
-        $stmt = $db->prepare($insertStatement);
-        $result = $stmt->execute($insertParams);
+try {
+    $stmt = $db->prepare($insertStatement);
+    $result = $stmt->execute($insertParams);
 
-        $mailer = new SendEmail();
-        $mailer->SendEmail($_SESSION['user']['email'],
-            "Conference Room Scheduler",
-            "A new reservation has been scheduled for you!<br/>To view your reservations, please use the following link:<br/><br/>http://dbsystems-engproject.rhcloud.com/src/view_meetings.php?type=me",
-            false);
+    $mailer = new SendEmail();
+    $mailer->SendEmail($_SESSION['user']['email'],
+        "Conference Room Scheduler",
+        "You have been added to a waitlist.<br/>If the room becomes available, you will be notified immediately.",
+        false);
 
-        header("Location: home.php");
-        die("Redirecting to home.php");
-    } catch(PDOException $ex) {
-        echo "query: " . $insertStatement . "</br>";
-        print_r($insertParams);
-        echo "<br/>exception: " . $ex->getMessage();
-    }
-} else {
-    $error = false;
-
-    $createRecurrence = "INSERT INTO recurrence (`recurrence_type_id`) VALUES (:_id)";
-    $createParams = array(':_id' => $_GET['recurrence']);
-    $stmt = $db->prepare($createRecurrence);
-    $result = $stmt->execute($createParams);
-    
-    $recurrenceId = $db->lastInsertId();
-
-    $typeId = "SELECT increment_string FROM recurrence r JOIN recurrence_type rt ON r.recurrence_type_id = rt._id WHERE r._id = " . $recurrenceId;
-    $stmt = $db->prepare($typeId);
-    $result = $stmt->execute();
-    $row = $stmt->fetch();
-
-    $incrementString = $row['increment_string'];
-
-    $currentDate = strtotime($_GET['date']);
-    $recurrenceEndDate = strtotime($_GET['rec_end']);
-
-    while ($currentDate <= $recurrenceEndDate) {
-        $insertParams = array(
-                ':user_id' => $_GET['user_id'],
-                ':conference_room_id' => $_GET['room_id'],
-                ':time_slot_id' => $_GET['time_slot'],
-                ':recurrence_id' => $recurrenceId,
-                ':date_val' => date("Y-n-d", $currentDate)
-            );
-
-        try {
-            $stmt = $db->prepare($insertStatement);
-            $result = $stmt->execute($insertParams);
-        } catch(PDOException $ex) {
-            $error = true;
-
-            echo "query: " . $insertStatement . "</br>";
-            print_r($insertParams);
-            echo "<br/>exception: " . $ex->getMessage();
-        }
-
-        $currentDate = strtotime($incrementString, $currentDate);
-    }
-
-    if (!$error) {
-        $mailer = new SendEmail();
-        $mailer->SendEmail($_SESSION['user']['email'],
-            "Conference Room Scheduler",
-            "A new reservation has been scheduled for you!<br/>To view your reservations, please use the following link:<br/><br/>http://dbsystems-engproject.rhcloud.com/src/view_meetings.php?type=me",
-            false);
-
-        header("Location: home.php");
-        die("Redirecting to home.php");
-    }
-}*/
+    header("Location: home.php");
+    die("Redirecting to home.php");
+} catch(PDOException $ex) {
+    echo "query: " . $insertStatement . "</br>";
+    print_r($insertParams);
+    echo "<br/>exception: " . $ex->getMessage();
+}
