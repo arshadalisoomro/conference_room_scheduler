@@ -34,7 +34,7 @@ if (!$shouldUpdate) {
                         VALUES (:reservation_id, :feedback)";
 } else {
     $insertStatement = "UPDATE feedback 
-                        SET feedback = :feedback
+                        SET `feedback` = :feedback
                         WHERE reservation_id = :reservation_id";
 }
 
@@ -47,8 +47,10 @@ try {
     $stmt = $db->prepare($insertStatement);
     $result = $stmt->execute($insertParams);
 
-	header("Location: home.php");
-	die("Redirecting to home.php");
+    echo "should update: " . $shouldUpdate;
+
+	//header("Location: home.php");
+	//die("Redirecting to home.php");
 } catch(PDOException $ex) {
 	echo "query: " . $insertStatement . "</br>";
 	print_r($insertParams);
