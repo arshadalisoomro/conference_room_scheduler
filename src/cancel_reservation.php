@@ -40,10 +40,10 @@ if (!empty($_GET["recurrence_id"])) {
             );
 
             try {
-                $stmt = $db->prepare($query);
-                $result = $stmt->execute($query_params);
+                $stmt2 = $db->prepare($query);
+                $result2 = $stmt2->execute($query_params);
 
-                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                while ($row = $stmt2->fetch(PDO::FETCH_ASSOC)) {
                     $mailer = new SendEmail();
                     $mailer->SendEmail($row['email'],
                         "Conference Room Scheduler",
