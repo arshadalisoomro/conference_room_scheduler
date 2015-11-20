@@ -69,6 +69,36 @@ class Scheduler {
         }
     }
 
+    function buildUnavailableTimes($db, $post) {
+        $whereClause = $this->buildUnavailableWhereClause($db, $post);
+        $query;
+        if ($whereClause != "") {
+            $query = "SELECT * FROM time_slot WHERE " . $whereClause;
+        } else {
+            $query = "SELECT * FROM time_slot";
+        }
+
+        try {
+            $stmt = $db->prepare($query);
+            $result = $stmt->execute();
+
+            echo '<br/><b>Timeslots available for waitlisting:</b> <select onchange="timeChange()" name="time_slot">';
+            $i = 0;
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                if ($row['_id'] == $post['time_slot'] || (empty($post['time_slot']) && i == 0)) {
+                    echo '<option selected="selected" value="' . $row['_id'] . '">' . $this->buildTimeDisplay($row) . '</option>';
+                } else {
+                    echo '<option value="' . $row['_id'] . '">' . $this->buildTimeDisplay($row) . '</option>';
+                }
+                $i = $i + 1;
+            }
+
+            echo '</select>';
+        } catch(Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+
     function buildTimeDisplay($timeSlot) {
     	return $timeSlot['start_time'] . ' - ' . $timeSlot['end_time'];
     }
@@ -87,6 +117,31 @@ class Scheduler {
                     $whereClause = "_id <> " . $row['time_slot_id'];
                 } else {
                     $whereClause = $whereClause . " and _id <> " . $row['time_slot_id'];
+                }
+
+                $i++;
+            }
+        } catch(Exception $e) { }
+
+        return $whereClause;
+    }
+
+    function buildUnavailableWhereClause($db, $post) {
+        $whereClause = "";
+        $query = "SELECT time_slot_id 
+                  FROM reservation 
+                  WHERE date = '" . $post['date'] . "' and conference_room_id = " . $post['room_id'];
+
+        try {
+            $stmt = $db->prepare($query);
+            $result = $stmt->execute();
+
+            $i = 0;
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                if ($i == 0) {
+                    $whereClause = "_id = " . $row['time_slot_id'];
+                } else {
+                    $whereClause = $whereClause . " or _id = " . $row['time_slot_id'];
                 }
 
                 $i++;

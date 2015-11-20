@@ -15,15 +15,9 @@
         header("Location: search_rooms.php");
         die("Redirecting to search_rooms.php"); 
     } else if (isset($_GET['submitted']) && $_GET['submitted'] == "true") {
-        $getParams;
+        $getParams = "room_id=" . $_GET['room_id'] . "&date=" . $_GET['date'] . "&time_slot=" . $_GET['time_slot'];
 
-        if ($_GET['recurring'] == 'on') {
-            $getParams = "room_id=" . $_GET['room_id'] . "&date=" . $_GET['date'] . "&time_slot=" . $_GET['time_slot'] . "&user_id=" . $_SESSION['user']['_id'] . "&recurrence=" . $_GET['recurrence'] . "&rec_end=" . $_GET['recurrence_end'];
-        } else {
-            $getParams = "room_id=" . $_GET['room_id'] . "&date=" . $_GET['date'] . "&time_slot=" . $_GET['time_slot'] . "&user_id=" . $_SESSION['user']['_id'];
-        }
-
-        header("Location: schedule_reservation.php?" . $getParams);
+        header("Location: insert_waitlist.php?" . $getParams);
         die("Redirecting to schedule_reservation.php"); 
     }
 ?>
@@ -46,11 +40,6 @@
     <script type="text/javascript">
     $(function() {
         $("#datepicker").datepicker({
-                minDate: "+1D", 
-                maxDate: "+6M",
-                dateFormat: "yy-mm-dd"
-            });
-        $("#datepicker2").datepicker({
                 minDate: "+1D", 
                 maxDate: "+6M",
                 dateFormat: "yy-mm-dd"
@@ -95,21 +84,10 @@
 
                     if (!empty($_GET['date'])) {
                         // we want to show the time selector and a submit button
-                        $scheduler->buildAvailableTimes($db, $_GET);
-                        if (!empty($_GET['recurring']) && $_GET['recurring'] == 'on') {
-                            echo '</br><br/><input checked type="checkbox" name="recurring" onchange="dateUpdated()"> Recurring Reservation</br>';
-                            $scheduler->buildRecurrenceOptions($db);
-                            if (empty($_GET['recurrence_end'])) {
-                                echo '</br><b>Recurrence End Date:</b> <input type="text" id="datepicker2" name="recurrence_end" readonly="readonly" value="' . $_GET['date'] . '"/>';
-                            } else {
-                                echo '</br><b>Recurrence End Date:</b> <input type="text" id="datepicker2" name="recurrence_end" readonly="readonly" value="' . $_GET['recurrence_end'] . '"/>';
-                            }
-                        } else {
-                            echo '</br><br/><input type="checkbox" name="recurring" onchange="dateUpdated()"> Recurring Reservation</br>';
-                        }
-
+                        $scheduler->buildUnavailableTimes($db, $_GET);
+                        
                         echo '<br/><br/><input onclick="submitButton();" type="submit" value="Schedule Reservation" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"/>' . "\r\n";
-                        echo '<br/>Can\'t find the time you want? Looks like it is taken...<br/>Click <a class="home_screen_link" href="add_to_waitlist.php?room_id=' . $_GET['room_id'] . '">here</a> to sign up for the waitlist.';
+                        echo '<br/>Can\'t find the time you want? Looks like it is taken...<br/>Click <a class="home_screen_link" href="add_to_waitlist.php">here</a> to sign up for the waitlist.';
                     }
 
                     ?>
