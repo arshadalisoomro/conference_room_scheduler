@@ -10,12 +10,12 @@ $query = "SELECT _id
           FROM reservation 
           WHERE conference_room_id = :room_id 
                AND date = :get_date
-               AND timeslot = :timeslot";
+               AND time_slot = :timeslot";
 
 $query_params = array(
     ':room_id' => $_GET['room_id'],
     ':get_date' => $_GET['date'],
-    ':timeslot' => $_GET['timeslot']
+    ':timeslot' => $_GET['time_slot']
 );
 
 try {
