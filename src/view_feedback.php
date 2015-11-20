@@ -46,6 +46,7 @@
               <div class="mdl-card mdl-cell mdl-cell--12-col">
                 <div class="mdl-card__supporting-text">
                     <div id="content">
+                        <h3>Feedback</h3>
                         <?php $feedback->build($db) ?>
                     </div>
                 </div>
