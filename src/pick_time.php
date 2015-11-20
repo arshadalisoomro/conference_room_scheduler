@@ -8,7 +8,7 @@
     $user = $_SESSION['user'];
     $scheduler = new Scheduler();
 
-    if(empty($_SESSION['user'])) {
+    if(empty($_SESSION['user']) && empty($_GET['user_id'])) {
         header("Location: ../index.php");
         die("Redirecting to index.php"); 
     } else if (empty($_GET['room_id'])) {
@@ -17,11 +17,20 @@
     } else if (isset($_GET['submitted']) && $_GET['submitted'] == "true") {
         $getParams;
 
-        if ($_GET['recurring'] == 'on') {
-            $getParams = "room_id=" . $_GET['room_id'] . "&date=" . $_GET['date'] . "&time_slot=" . $_GET['time_slot'] . "&user_id=" . $_SESSION['user']['_id'] . "&recurrence=" . $_GET['recurrence'] . "&rec_end=" . $_GET['recurrence_end'];
+        if (empty($_GET['user_id'])) {
+            if ($_GET['recurring'] == 'on') {
+                $getParams = "room_id=" . $_GET['room_id'] . "&date=" . $_GET['date'] . "&time_slot=" . $_GET['time_slot'] . "&user_id=" . $_SESSION['user']['_id'] . "&recurrence=" . $_GET['recurrence'] . "&rec_end=" . $_GET['recurrence_end'];
+            } else {
+                $getParams = "room_id=" . $_GET['room_id'] . "&date=" . $_GET['date'] . "&time_slot=" . $_GET['time_slot'] . "&user_id=" . $_SESSION['user']['_id'];
+            }
         } else {
-            $getParams = "room_id=" . $_GET['room_id'] . "&date=" . $_GET['date'] . "&time_slot=" . $_GET['time_slot'] . "&user_id=" . $_SESSION['user']['_id'];
+            if ($_GET['recurring'] == 'on') {
+                $getParams = "room_id=" . $_GET['room_id'] . "&date=" . $_GET['date'] . "&time_slot=" . $_GET['time_slot'] . "&user_id=" . $_GET['user_id'] . "&recurrence=" . $_GET['recurrence'] . "&rec_end=" . $_GET['recurrence_end'];
+            } else {
+                $getParams = "room_id=" . $_GET['room_id'] . "&date=" . $_GET['date'] . "&time_slot=" . $_GET['time_slot'] . "&user_id=" . $_GET['user_id'];
+            }
         }
+        
 
         header("Location: schedule_reservation.php?" . $getParams);
         die("Redirecting to schedule_reservation.php"); 

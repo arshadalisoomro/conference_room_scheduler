@@ -4,14 +4,10 @@ include_once('../AutoLoader.php');
 AutoLoader::registerDirectory('../src/classes');
 
 require("config.php");
+require("MailFiles/PHPMailerAutoload.php");
 
-
-$deleteStatement = "DELETE FROM reservation 
-                    WHERE _id = :reservation_id";
-
-$deleteParams = array(
-            ':reservation_id' => $_GET['reservation_id']
-        );
+$deleteStatement;
+$deleteParams;
 
 if (!empty($_GET["recurrence_id"])) {
     $deleteStatement = "DELETE FROM reservation 
@@ -20,6 +16,37 @@ if (!empty($_GET["recurrence_id"])) {
     $deleteParams = array(
             ':recurrence_id' => $_GET['recurrence_id']
         );
+} else {
+    $deleteStatement = "DELETE FROM reservation 
+                    WHERE _id = :reservation_id";
+
+    $deleteParams = array(
+            ':reservation_id' => $_GET['reservation_id']
+    );
+
+    $query = "SELECT email, conference_room_id, w.user_id AS user_id
+              FROM waitlist w 
+                    JOIN user u ON w.user_id = u._id 
+                    JOIN reservation res ON w.blcoking_reservation_id = res._id
+              WHERE blocking_reservation_id = :id";
+    $query_params = array(
+        ':id' => $_GET['reservation_id']
+    );
+
+    try {
+        $stmt = $db->prepare($query);
+        $result = $stmt->execute($query_params);
+
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $mailer = new SendEmail();
+            $mailer->SendEmail($row['email'],
+                "Conference Room Scheduler",
+                'One of your waitlisted rooms is now available. To claim it, visit <a href="http://dbsystems-engproject.rhcloud.com/src/pick_time.php?room_id="' . $row['conference_room_id'] . '&user_id=' . $row['user_id'] . '">here</a>',
+                false);
+        }
+    } catch(PDOException $ex) {
+        die("Failed to run query: " . $ex->getMessage());
+    }
 }
 
 try {
