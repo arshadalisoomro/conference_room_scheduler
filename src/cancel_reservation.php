@@ -27,7 +27,7 @@ if (!empty($_GET["recurrence_id"])) {
     $query = "SELECT email, conference_room_id, w.user_id AS user_id
               FROM waitlist w 
                     JOIN user u ON w.user_id = u._id 
-                    JOIN reservation res ON w.blcoking_reservation_id = res._id
+                    JOIN reservation res ON w.blocking_reservation_id = res._id
               WHERE blocking_reservation_id = :id";
     $query_params = array(
         ':id' => $_GET['reservation_id']
