@@ -4,7 +4,7 @@ class ViewFeedback {
 	function build($db) {
         $query = "SELECT feedback, name, room_number, first_name, last_name
                   FROM feedback f JOIN reservation res ON f.reservation_id = res._id
-                        JOIN room r ON res.room_id = r._id
+                        JOIN room r ON res.conference_room_id = r._id
                         JOIN location l ON r.location_id = l._id
                         JOIN user u ON res.user_id = u._id";
 
