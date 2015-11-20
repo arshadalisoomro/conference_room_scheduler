@@ -27,7 +27,7 @@ try {
 
 $row = $stmt->fetch();
 
-$insertStatement = "INSERT INTO waitlist (`reservation_id`, `user_id`) 
+$insertStatement = "INSERT INTO waitlist (`blocking_reservation_id`, `user_id`) 
                     VALUES (:reservation_id, :user_id)";
 $insertParams = array(
                 ':reservation_id' => $row['_id'],
