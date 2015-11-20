@@ -26,8 +26,8 @@ class ViewFeedback {
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 echo '      <tr>' . "\r\n";
                 if ($last_room != ($row['name'] . ' #' . $row['room_number'])) {
-                    $last_description = $row['name'] . ' #' . $row['room_number']
-                    echo '<td>' . $row['name'] . ' #' . $row['room_number'] . 's</td>' . "\r\n";
+                    $last_description = $row['name'] . ' #' . $row['room_number'];
+                    echo '<td>' . $row['name'] . ' #' . $row['room_number'] . '</td>' . "\r\n";
                 } else {
                     echo '<td></td>';
                 }
