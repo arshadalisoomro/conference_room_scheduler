@@ -61,7 +61,7 @@
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
         <header class="mdl-layout__header mdl-layout__header--waterfall">
             <div class="mdl-layout__header-row">
-                <span class="mdl-layout-title">Schedule a Reservation</span>
+                <span class="mdl-layout-title">Waitlist</span>
             </div>
         </header>
         <div class="mdl-layout__drawer">
@@ -75,7 +75,7 @@
               <div class="mdl-card mdl-cell mdl-cell--12-col">
                 <div class="mdl-card__supporting-text">
                 <?php $scheduler->buildRoomTitle($db, $_GET['room_id']) ?>
-                <form id="time_form" action="pick_time.php" method="get">
+                <form id="time_form" action="add_to_waitlist.php" method="get">
                     <input id="submitted" type="hidden" name="submitted" value="false" />
                     <input type="hidden" name="room_id" value="<?php echo $_GET['room_id'] ?>" />
                     <b>Reservation Date:</b> <input type="text" id="datepicker" name="date" readonly="readonly" value="<?php echo $_GET['date'] ?>" onchange="dateUpdated()"/>

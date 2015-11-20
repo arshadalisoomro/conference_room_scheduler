@@ -109,7 +109,7 @@
                         }
 
                         echo '<br/><br/><input onclick="submitButton();" type="submit" value="Schedule Reservation" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"/>' . "\r\n";
-                        echo '<br/>Can\'t find the time you want? Looks like it is taken...<br/>Click <a class="home_screen_link" href="add_to_waitlist.php?room_id=' . $_GET['room_id'] . '">here</a> to sign up for the waitlist.';
+                        echo '<br/><br/>Can\'t find the time you want? Looks like it is taken...<br/>Click <a class="home_screen_link" href="add_to_waitlist.php?room_id=' . $_GET['room_id'] . '">here</a> to sign up for the waitlist.';
                     }
 
                     ?>
