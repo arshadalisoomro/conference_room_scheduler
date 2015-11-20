@@ -11,7 +11,8 @@ $deleteParams;
 
 if (!empty($_GET["recurrence_id"])) {
     $deleteStatement = "DELETE FROM reservation 
-                    WHERE recurrence_id = :recurrence_id";
+                    WHERE recurrence_id = :recurrence_id 
+                         AND date > CURDATE()";
 
     $deleteParams = array(
             ':recurrence_id' => $_GET['recurrence_id']
