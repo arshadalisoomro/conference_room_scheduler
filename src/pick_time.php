@@ -97,6 +97,7 @@
                 <?php $scheduler->buildRoomTitle($db, $_GET['room_id']) ?>
                 <form id="time_form" action="pick_time.php" method="get">
                     <input id="submitted" type="hidden" name="submitted" value="false" />
+                    <input type="hidden" name="user_id" value="<?php echo $_GET['user_id'] ?>" />
                     <input type="hidden" name="room_id" value="<?php echo $_GET['room_id'] ?>" />
                     <b>Reservation Date:</b> <input type="text" id="datepicker" name="date" readonly="readonly" value="<?php echo $_GET['date'] ?>" onchange="dateUpdated()"/>
 

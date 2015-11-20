@@ -30,7 +30,7 @@ if (!empty($_GET["recurrence_id"])) {
         $result = $stmt->execute($query_params);
 
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $query = "SELECT email, conference_room_id, w.user_id AS user_id
+            $query = "SELECT email, conference_room_id, w.user_id AS user_id, date
                       FROM waitlist w 
                             JOIN user u ON w.user_id = u._id 
                             JOIN reservation res ON w.blocking_reservation_id = res._id
@@ -47,7 +47,7 @@ if (!empty($_GET["recurrence_id"])) {
                     $mailer = new SendEmail();
                     $mailer->SendEmail($row['email'],
                         "Conference Room Scheduler",
-                        'One of your waitlisted rooms is now available. To claim it, visit <a href="http://dbsystems-engproject.rhcloud.com/src/pick_time.php?room_id=' . $row['conference_room_id'] . '&user_id=' . $row['user_id'] . '">here</a>',
+                        'One of your waitlisted rooms is now available. To claim it, visit <a href="http://dbsystems-engproject.rhcloud.com/src/pick_time.php?submitted=false&date=' . $row['date'] . '&room_id=' . $row['conference_room_id'] . '&user_id=' . $row['user_id'] . '">here</a>',
                         false);
                 }
             } catch(PDOException $ex) {
@@ -65,7 +65,7 @@ if (!empty($_GET["recurrence_id"])) {
             ':reservation_id' => $_GET['reservation_id']
     );
 
-    $query = "SELECT email, conference_room_id, w.user_id AS user_id
+    $query = "SELECT email, conference_room_id, w.user_id AS user_id, date
               FROM waitlist w 
                     JOIN user u ON w.user_id = u._id 
                     JOIN reservation res ON w.blocking_reservation_id = res._id
@@ -82,7 +82,7 @@ if (!empty($_GET["recurrence_id"])) {
             $mailer = new SendEmail();
             $mailer->SendEmail($row['email'],
                 "Conference Room Scheduler",
-                'One of your waitlisted rooms is now available. To claim it, visit <a href="http://dbsystems-engproject.rhcloud.com/src/pick_time.php?room_id=' . $row['conference_room_id'] . '&user_id=' . $row['user_id'] . '">here</a>',
+                'One of your waitlisted rooms is now available. To claim it, visit <a href="http://dbsystems-engproject.rhcloud.com/src/pick_time.php?submitted=false&date=' . $row['date'] . '&room_id=' . $row['conference_room_id'] . '&user_id=' . $row['user_id'] . '">here</a>',
                 false);
         }
     } catch(PDOException $ex) {
