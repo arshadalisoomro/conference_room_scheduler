@@ -82,7 +82,9 @@
                     <?php
                         if ($userType == "user") {
                             echo "<a class='home_page_link' href='search_rooms.php'>Schedule New Reservation</a><br/>";
-                            echo "<a class='home_page_link' href='view_meetings.php?type=me'>View Your Reservations</a><br/>";
+                            echo "<a class='home_page_link' href='view_meetings.php?type=me'>View Your Reservations</a><br/><br/>";
+
+                            echo "<a class='home_page_link' href='previous_reservations.php'>Provide Feedback on Past Reservations</a><br/><br/>";
                         } else if ($userType == "manager") {
                             echo "<a class='home_page_link' href='add_user_form.php?type=3'>Add a New User</a><br/><br/>";
 
@@ -90,7 +92,10 @@
                             echo "<a class='home_page_link' href='view_meetings.php?type=users'>View Created Users' Reservations</a><br/><br/>";
 
                             echo "<a class='home_page_link' href='search_rooms.php'>Schedule New Reservation</a><br/>";
-                            echo "<a class='home_page_link' href='view_meetings.php?type=me'>View Your Reservations</a><br/>";
+                            echo "<a class='home_page_link' href='view_meetings.php?type=me'>View Your Reservations</a><br/><br/>";
+
+                            echo "<a class='home_page_link' href='previous_reservations.php'>Provide Feedback on Past Reservations</a><br/><br/>";
+
                         } else if ($userType == "admin") {
                             echo "<a class='home_page_link' href='add_user_form.php?type=2'>Add a New Manager</a><br/>";
                             echo "<a class='home_page_link' href='admin_add_user_form.php'>Add a New User</a><br/><br/>";
@@ -102,12 +107,14 @@
 
                             echo "<a class='home_page_link' href='search_rooms.php'>Schedule New Reservation</a><br/>";
                             echo "<a class='home_page_link' href='view_meetings.php?type=me'>View Your Reservations</a><br/><br/>";
-                            
+                                                    
+                            echo "<a class='home_page_link' href='view_feedback.php'>View Reservation Feedback</a><br/><br/>";
+                            echo "<a class='home_page_link' href='previous_reservations.php'>Provide Feedback on Past Reservations</a><br/><br/>";
+
                             //echo "<a class='home_page_link' href='edit_resources.php'>Edit Conference Room Resources</a><br/>";
                         }
 						
 						echo "<br/><a class='home_page_link' href='view_room.php?type=all'>View Equipment Details for Rooms</a><br/>";
-                        echo "<a class='home_page_link' href='previous_reservations.php'>Provide Feedback on Past Reservations</a>";
                     ?> 
                     
                 </div>
