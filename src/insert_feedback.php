@@ -18,7 +18,7 @@ try {
     $stmt = $db->prepare($insertStatement);
     $result = $stmt->execute($insertParams);
 
-    $row = $stmt->fetch()
+    $row = $stmt->fetch();
     if (!empty($row['_id'])) {
         $shouldUpdate = true;
     }
