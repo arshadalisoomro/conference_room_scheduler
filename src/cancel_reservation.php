@@ -41,7 +41,7 @@ if (!empty($_GET["recurrence_id"])) {
             $mailer = new SendEmail();
             $mailer->SendEmail($row['email'],
                 "Conference Room Scheduler",
-                'One of your waitlisted rooms is now available. To claim it, visit <a href="http://dbsystems-engproject.rhcloud.com/src/pick_time.php?room_id="' . $row['conference_room_id'] . '&user_id=' . $row['user_id'] . '">here</a>',
+                'One of your waitlisted rooms is now available. To claim it, visit <a href="http://dbsystems-engproject.rhcloud.com/src/pick_time.php?room_id=' . $row['conference_room_id'] . '&user_id=' . $row['user_id'] . '">here</a>',
                 false);
         }
     } catch(PDOException $ex) {
