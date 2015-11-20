@@ -8,7 +8,7 @@ require("MailFiles/PHPMailerAutoload.php");
 
 $query = "SELECT _id
           FROM reservation 
-          WHERE room_id = :room_id 
+          WHERE conference_room_id = :room_id 
                AND date = :get_date
                AND timeslot = :timeslot";
 
