@@ -22,9 +22,6 @@ try {
     if (!empty($row['_id'])) {
         $shouldUpdate = true;
     }
-    
-    header("Location: home.php");
-    die("Redirecting to home.php");
 } catch(PDOException $ex) {
 
 }
@@ -49,8 +46,8 @@ try {
 
     echo "should update: " . $shouldUpdate;
 
-	//header("Location: home.php");
-	//die("Redirecting to home.php");
+	header("Location: home.php");
+	die("Redirecting to home.php");
 } catch(PDOException $ex) {
 	echo "query: " . $insertStatement . "</br>";
 	print_r($insertParams);
