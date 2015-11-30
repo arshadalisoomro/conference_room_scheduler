@@ -1,2 +1,2 @@
-- edit reservations from the view reservation table
+- link to edit reservation times/dates from the view reservation table
 - admins can edit the conference room resources (add, delete, edit their quality)
