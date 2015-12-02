@@ -1,107 +1,41 @@
-<?php 
-error_reporting(E_ALL);
+<?php
+    error_reporting(E_ALL);
 
-include_once('../AutoLoader.php');
-AutoLoader::registerDirectory('../src/classes');
+    include_once('../AutoLoader.php');
+    AutoLoader::registerDirectory('../src/classes');
 
-require("config.php");
-require("MailFiles/PHPMailerAutoload.php");
+    require("config.php");
 
-$editStatement;
-$editParams;
+    $user = $_SESSION['user'];
+    $scheduler = new Scheduler();
 
-if (!empty($_GET["submitted"])) {
-    $editStatement = "UPDATE reservation
-		      SET * = :submitted
-		      WHERE _id = :_id";
+    if(empty($_SESSION['user']) && empty($_GET['user_id'])) {
+        header("Location: ../index.php");
+        die("Redirecting to index.php"); 
+    } else if (empty($_GET['room_id'])) {
+        header("Location: search_rooms.php");
+        die("Redirecting to search_rooms.php"); 
+    } else if (isset($_GET['submitted']) && $_GET['submitted'] == "true") {
+        $getParams;
 
-    $editParams = array(
-            ':submitted' => $_GET['submitted']
-        );
-
-    $query = "SELECT _id
-              FROM reservation
-              WHERE _id = :id";******
-    $query_params = array(
-        ':id' => $_GET['conference_room_id']*******
-    );
-
-    try {
-        $stmt = $db->prepare($query);
-        $result = $stmt->execute($query_params);
-
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $query = "SELECT email, conference_room_id, w.user_id AS user_id, date
-                      FROM waitlist w 
-                            JOIN user u ON w.user_id = u._id 
-                            JOIN reservation res ON w.blocking_reservation_id = res._id
-                      WHERE blocking_reservation_id = :id";
-            $query_params = array(
-                ':id' => $row['_id']
-            );
-
-            try {
-                $stmt2 = $db->prepare($query);
-                $result2 = $stmt2->execute($query_params);
-
-                while ($row = $stmt2->fetch(PDO::FETCH_ASSOC)) {
-                    $mailer = new SendEmail();
-                    $mailer->SendEmail($row['email'],
-                        "Conference Room Scheduler",
-                        'One of your waitlisted rooms is now available. To claim it, visit <a href="http://dbsystems-engproject.rhcloud.com/src/pick_time.php?submitted=false&date=' . $row['date'] . '&room_id=' . $row['conference_room_id'] . '&user_id=' . $row['user_id'] . '">here</a>',
-                        false);
-                }
-            } catch(PDOException $ex) {
-                die("Failed to run query: " . $ex->getMessage());
+        if (empty($_GET['user_id'])) {
+            if ($_GET['recurring'] == 'on') {
+                $getParams = "room_id=" . $_GET['room_id'] . "&date=" . $_GET['date'] . "&time_slot=" . $_GET['time_slot'] . "&user_id=" . $_SESSION['user']['_id'] . "&recurrence=" . $_GET['recurrence'] . "&rec_end=" . $_GET['recurrence_end'];
+            } else {
+                $getParams = "room_id=" . $_GET['room_id'] . "&date=" . $_GET['date'] . "&time_slot=" . $_GET['time_slot'] . "&user_id=" . $_SESSION['user']['_id'];
+            }
+        } else {
+            if ($_GET['recurring'] == 'on') {
+                $getParams = "room_id=" . $_GET['room_id'] . "&date=" . $_GET['date'] . "&time_slot=" . $_GET['time_slot'] . "&user_id=" . $_GET['user_id'] . "&recurrence=" . $_GET['recurrence'] . "&rec_end=" . $_GET['recurrence_end'];
+            } else {
+                $getParams = "room_id=" . $_GET['room_id'] . "&date=" . $_GET['date'] . "&time_slot=" . $_GET['time_slot'] . "&user_id=" . $_GET['user_id'];
             }
         }
-    } catch(PDOException $ex) {
-        die("Failed to run query: " . $ex->getMessage());
+        
+
+        header("Location: schedule_reservation.php?" . $getParams);
+        die("Redirecting to schedule_reservation.php"); 
     }
-} else {
-    $deleteStatement = "DELETE FROM reservation ***
-                    WHERE _id = :reservation_id";***
-
-    $deleteParams = array(
-            ':reservation_id' => $_GET['reservation_id']****
-    );
-
-    $query = "SELECT email, conference_room_id, w.user_id AS user_id, date
-              FROM waitlist w 
-                    JOIN user u ON w.user_id = u._id 
-                    JOIN reservation res ON w.blocking_reservation_id = res._id
-              WHERE blocking_reservation_id = :id";
-    $query_params = array(
-        ':id' => $_GET['reservation_id']
-    );
-
-    try {
-        $stmt = $db->prepare($query);
-        $result = $stmt->execute($query_params);
-
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $mailer = new SendEmail();
-            $mailer->SendEmail($row['email'],
-                "Conference Room Scheduler",
-                'One of your waitlisted rooms is now available. To claim it, visit <a href="http://dbsystems-engproject.rhcloud.com/src/pick_time.php?submitted=false&date=' . $row['date'] . '&room_id=' . $row['conference_room_id'] . '&user_id=' . $row['user_id'] . '">here</a>',
-                false);
-        }
-    } catch(PDOException $ex) {
-        die("Failed to run query: " . $ex->getMessage());
-    }
-}
-
-try {
-    $stmt = $db->prepare($deleteStatement);
-    $result = $stmt->execute($deleteParams);
-
-	header("Location: home.php");
-	die("Redirecting to home.php");
-} catch(PDOException $ex) {
-	echo "query: " . $deleteStatement . "</br>";
-	print_r($deleteParams);
-    echo "<br/>exception: " . $ex->getMessage();
-}
 ?>
 
 <!doctype html>
