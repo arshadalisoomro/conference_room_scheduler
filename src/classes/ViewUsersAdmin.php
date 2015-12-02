@@ -6,7 +6,7 @@ class ViewUsersAdmin {
         $query;
 
         echo "<h3>All Users</h3>";
-        $query = "SELECT u._id AS _id, u.first_name AS first_name, u.last_name AS last_name, description, u.email AS email, created.first_name AS created_first_name, created.last_name AS created_last_name , u.created_by_id AS created_by_id FROM user u JOIN user_type ut ON u.user_type_id = ut._id JOIN user created ON u.created_by_id = created._id WHERE u._id <> " . $userId . " ORDER BY ut._id";
+        $query = "SELECT u._id AS _id, u.first_name AS first_name, u.last_name AS last_name, description, u.email AS email, created.first_name AS created_first_name, created.last_name AS created_last_name , u.created_by_id AS created_by_id FROM user u JOIN user_type ut ON u.user_type_id = ut._id JOIN user created ON u.created_by_id = created._id WHERE u._id <> " . $userId . " ORDER BY ut._id, u.created_by_id";
 
         try {
             $stmt = $db->prepare($query);
