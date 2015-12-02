@@ -1,4 +1,5 @@
 <?php 
+error_reporting(E_ALL);
 
 include_once('../AutoLoader.php');
 AutoLoader::registerDirectory('../src/classes');
@@ -107,8 +108,8 @@ try {
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Reservation Changes</title>
-    <meta name="description" content="Edit reservation management system for Database Systems">
+    <title>Edit Reservation</title>
+    <meta name="description" content="Reservation editing management system for Database Systems">
     <meta name="author" content="Team 6">
 
     <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.indigo-pink.min.css">
@@ -151,7 +152,7 @@ try {
             </div>
         </header>
         <div class="mdl-layout__drawer">
-            <span class="mdl-layout-title">Scheduler</span>
+            <span class="mdl-layout-title">Editor</span>
             <nav class="mdl-navigation">
                 <?php AccountDropdownBuilder::buildDropdown($db, $_SESSION); ?>
             </nav>
@@ -160,7 +161,7 @@ try {
             <br/><section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
               <div class="mdl-card mdl-cell mdl-cell--12-col">
                 <div class="mdl-card__supporting-text">
-                <?php $scheduler->buildRoomTitle($db, $_GET['submitted']) ?>
+                <?php $scheduler->buildRoomTitle($db, $_GET['room_id']) ?>
                 <form id="time_form" action="pick_time.php" method="get">
                     <input id="submitted" type="hidden" name="submitted" value="false" />
                     <input type="hidden" name="user_id" value="<?php echo $_GET['user_id'] ?>" />
