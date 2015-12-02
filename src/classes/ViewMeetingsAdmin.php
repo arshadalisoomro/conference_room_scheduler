@@ -37,7 +37,6 @@ class ViewMeetingsAdmin {
 
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 array_push($managerIds, array($row['_id'], $row['first_name'] . ' ' . $row['last_name']));
-                echo "<br/><br/>";
             }
         } catch(Exception $e) {
             echo $e->getMessage();
@@ -46,8 +45,6 @@ class ViewMeetingsAdmin {
         foreach($managerIds as $manager) {
             $name = $manager[1];
             $id = $manager[0];
-
-            echo "<h5>Users created by: " . $name . "</h5>";
 
             $query = "SELECT user_id AS _id
                   FROM reservation r JOIN user u ON r.user_id = u._id 
@@ -59,7 +56,12 @@ class ViewMeetingsAdmin {
                 $stmt = $db->prepare($query);
                 $result = $stmt->execute(array(':id' => $id));
 
+                $first = true;
                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    if ($first) {
+                        echo "<h5>Users created by: " . $name . "</h5>";
+                        $first = false;
+                    }
                     $this->buildTable($db, $row['_id']);
                     echo "<br/><br/>";
                 }
