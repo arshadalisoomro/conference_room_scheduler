@@ -2,7 +2,7 @@
 
 class ViewFeedback {
 	function build($db) {
-        $query = "SELECT feedback, name, room_number, first_name, last_name
+        $query = "SELECT feedback, name, room_number, first_name, last_name, date
                   FROM feedback f JOIN reservation res ON f.reservation_id = res._id
                         JOIN room r ON res.conference_room_id = r._id
                         JOIN location l ON r.location_id = l._id
@@ -16,6 +16,7 @@ class ViewFeedback {
             echo '  <thead>' . "\r\n";
             echo '      <tr>' . "\r\n";
             echo '          <th class="mdl-data-table__cell--non-numeric">Location</th>' . "\r\n";
+            echo '          <th>Date</th>' . "\r\n";
             echo '          <th>User</th>' . "\r\n";
             echo '          <th>Feedback</th>' . "\r\n";
             echo '      </tr>' . "\r\n";
@@ -31,6 +32,7 @@ class ViewFeedback {
                 } else {
                     echo '<td></td>';
                 }
+                echo '         <td>' . $row['date'] . '</td>' . "\r\n";
                 echo '         <td>' . $row['first_name'] . ' ' . $row['last_name'] . '</td>' . "\r\n";
     	        echo '         <td>' . $row['feedback'] . '</td>' . "\r\n";                
      	        echo '      </tr>' . "\r\n";

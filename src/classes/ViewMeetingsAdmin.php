@@ -12,14 +12,31 @@ class ViewMeetingsAdmin {
                   ORDER BY date";
 
         $managerIds = array();
+        array_push($managerIds, array($row['_id'], $row['first_name'] . ' ' . $row['last_name']));
+
         try {
             $stmt = $db->prepare($query);
             $result = $stmt->execute();
 
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 $this->buildTable($db, $row['_id']);
-                array_push($managerIds, array($row['_id'], $row['first_name'] . ' ' . $row['last_name']));
                 echo "<br/><br/>";
+            }
+        } catch(Exception $e) {
+            echo $e->getMessage();
+        }
+
+        $query = "SELECT _id, first_name, last_name
+                  FROM user
+                  WHERE user_type_id = 2";
+
+        $managerIds = array();
+        try {
+            $stmt = $db->prepare($query);
+            $result = $stmt->execute();
+
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                array_push($managerIds, array($row['_id'], $row['first_name'] . ' ' . $row['last_name']));
             }
         } catch(Exception $e) {
             echo $e->getMessage();
@@ -28,8 +45,6 @@ class ViewMeetingsAdmin {
         foreach($managerIds as $manager) {
             $name = $manager[1];
             $id = $manager[0];
-
-            echo "<h5>Users created by: " . $name . "</h5>";
 
             $query = "SELECT user_id AS _id
                   FROM reservation r JOIN user u ON r.user_id = u._id 
@@ -41,7 +56,12 @@ class ViewMeetingsAdmin {
                 $stmt = $db->prepare($query);
                 $result = $stmt->execute(array(':id' => $id));
 
+                $first = true;
                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    if ($first) {
+                        echo "<h5>Users created by: " . $name . "</h5>";
+                        $first = false;
+                    }
                     $this->buildTable($db, $row['_id']);
                     echo "<br/><br/>";
                 }
