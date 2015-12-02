@@ -28,8 +28,7 @@ class ViewMeetingsAdmin {
 
         $query = "SELECT _id, first_name, last_name
                   FROM user
-                  WHERE user_type_id = 2 
-                  ORDER BY date";
+                  WHERE user_type_id = 2";
 
         $managerIds = array();
         try {
