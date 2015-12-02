@@ -12,12 +12,31 @@ class ViewMeetingsAdmin {
                   ORDER BY date";
 
         $managerIds = array();
+        array_push($managerIds, array($row['_id'], $row['first_name'] . ' ' . $row['last_name']));
+
         try {
             $stmt = $db->prepare($query);
             $result = $stmt->execute();
 
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 $this->buildTable($db, $row['_id']);
+                echo "<br/><br/>";
+            }
+        } catch(Exception $e) {
+            echo $e->getMessage();
+        }
+
+        $query = "SELECT _id, first_name, last_name
+                  FROM user
+                  WHERE user_type_id = 2 
+                  ORDER BY date";
+
+        $managerIds = array();
+        try {
+            $stmt = $db->prepare($query);
+            $result = $stmt->execute();
+
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 array_push($managerIds, array($row['_id'], $row['first_name'] . ' ' . $row['last_name']));
                 echo "<br/><br/>";
             }
