@@ -11,6 +11,7 @@ $insertStatement = "INSERT INTO reservation
                     VALUES (:user_id,:conference_room_id,:time_slot_id,:recurrence_id,:date_val)";
 
 $maxReservations = "SELECT COUNT(_id) FROM reservation WHERE user_id = :user_id";
+
 $insertParams;
 
 if (empty($_GET['recurrence'])) {
@@ -40,8 +41,7 @@ if (empty($_GET['recurrence'])) {
         echo "<br/>exception: " . $ex->getMessage();
     }
 } 
- echo "<script>console.log( 'Debug Objects: " . $maxReservations . "' );</script>";
-if ($maxReservations > 3) {
+if ($maxReservations > 10) {
     $error = true;
     echo '<script>alert("You exceeded the maximum number of reservations")</script>';
 } else {
