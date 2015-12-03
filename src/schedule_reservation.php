@@ -39,6 +39,10 @@ if (empty($_GET['recurrence'])) {
         print_r($insertParams);
         echo "<br/>exception: " . $ex->getMessage();
     }
+} 
+if ($maxReservations < 10) {
+	echo '<script>alert("You exceeded the maximum number of reservations")</script>';
+
 } else {
     $error = false;
 
@@ -58,7 +62,6 @@ if (empty($_GET['recurrence'])) {
 
     $currentDate = strtotime($_GET['date']);
     $recurrenceEndDate = strtotime($_GET['rec_end']);
-if ($maxReservations < 10) {
     while ($currentDate <= $recurrenceEndDate) {
         $insertParams = array(
                 ':user_id' => $_GET['user_id'],
@@ -81,7 +84,7 @@ if ($maxReservations < 10) {
 
         $currentDate = strtotime($incrementString, $currentDate);
     }
-  }else { echo '<script>alert("You exceeded the maximum number of reservations")</script>';}
+
     if (!$error) {
         $mailer = new SendEmail();
         $mailer->SendEmail($_SESSION['user']['email'],
