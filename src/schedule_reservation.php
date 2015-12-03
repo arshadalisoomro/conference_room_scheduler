@@ -40,7 +40,8 @@ if (empty($_GET['recurrence'])) {
         echo "<br/>exception: " . $ex->getMessage();
     }
 } 
-if ($maxReservations > 10) {
+ echo "<script>console.log( 'Debug Objects: " . $maxReservations . "' );</script>";
+if ($maxReservations > 3) {
     $error = true;
     echo '<script>alert("You exceeded the maximum number of reservations")</script>';
 } else {
