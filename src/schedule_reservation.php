@@ -14,6 +14,9 @@ $maxReservations = "SELECT COUNT(_id) FROM reservation WHERE user_id = :user_id"
 
 $insertParams;
 
+if ($maxReservations > 10) {
+    echo '<script>alert("You exceeded the maximum number of reservations")</script>';
+}
 if (empty($_GET['recurrence'])) {
     $insertParams = array(
                 ':user_id' => $_GET['user_id'],
@@ -40,10 +43,6 @@ if (empty($_GET['recurrence'])) {
         print_r($insertParams);
         echo "<br/>exception: " . $ex->getMessage();
     }
-} 
-if ($maxReservations > 10) {
-    $error = true;
-    echo '<script>alert("You exceeded the maximum number of reservations")</script>';
 } else {
     $error = false;
 
