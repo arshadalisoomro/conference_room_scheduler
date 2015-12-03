@@ -10,7 +10,7 @@ $insertStatement = "INSERT INTO reservation
                     (`user_id`, `conference_room_id`, `time_slot_id`, `recurrence_id`, `date`) 
                     VALUES (:user_id,:conference_room_id,:time_slot_id,:recurrence_id,:date_val)";
 
-$maxReservations = "SELECT COUNT(_id) FROM reservation r JOIN user u ON u._id = r.user_id";
+$maxReservations = "SELECT COUNT(_id) FROM reservation WHERE user_id = :user_id";
 $insertParams;
 
 if (empty($_GET['recurrence'])) {
