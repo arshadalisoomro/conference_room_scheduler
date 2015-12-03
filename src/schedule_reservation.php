@@ -9,6 +9,8 @@ require("MailFiles/PHPMailerAutoload.php");
 $insertStatement = "INSERT INTO reservation 
                     (`user_id`, `conference_room_id`, `time_slot_id`, `recurrence_id`, `date`) 
                     VALUES (:user_id,:conference_room_id,:time_slot_id,:recurrence_id,:date_val)";
+
+$maxReservations = "SELECT COUNT(_id) FROM reservation r JOIN user u ON u._id = r.user_id"
 $insertParams;
 
 if (empty($_GET['recurrence'])) {
@@ -56,7 +58,7 @@ if (empty($_GET['recurrence'])) {
 
     $currentDate = strtotime($_GET['date']);
     $recurrenceEndDate = strtotime($_GET['rec_end']);
-
+if ($maxReservations < 10) {
     while ($currentDate <= $recurrenceEndDate) {
         $insertParams = array(
                 ':user_id' => $_GET['user_id'],
@@ -79,7 +81,7 @@ if (empty($_GET['recurrence'])) {
 
         $currentDate = strtotime($incrementString, $currentDate);
     }
-
+  }else { echo '<script>alert("You exceeded the maximum number of reservations")</script>';}
     if (!$error) {
         $mailer = new SendEmail();
         $mailer->SendEmail($_SESSION['user']['email'],
