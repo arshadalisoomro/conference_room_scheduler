@@ -41,6 +41,7 @@ if (empty($_GET['recurrence'])) {
     }
 } 
 if ($maxReservations > 10) {
+    $error = true;
     echo '<script>alert("You exceeded the maximum number of reservations")</script>';
 } else {
     $error = false;
