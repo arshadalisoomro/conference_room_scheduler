@@ -16,12 +16,6 @@ $insertParams;
 
 
 
-
-
-
-if ($maxReservations > 10) {
-    echo '<script>alert("You exceeded the maximum number of reservations")</script>";
-}
 if (empty($_GET['recurrence'])) {
     $insertParams = array(
                 ':user_id' => $_GET['user_id'],
