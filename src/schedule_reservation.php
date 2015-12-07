@@ -10,15 +10,18 @@ $insertStatement = "INSERT INTO reservation
                     (`user_id`, `conference_room_id`, `time_slot_id`, `recurrence_id`, `date`) 
                     VALUES (:user_id,:conference_room_id,:time_slot_id,:recurrence_id,:date_val)";
 
-$resParams = array(
-	':user_id => $_GET['user_id']
-    ); 
+$resParams;
 
 $maxReservations = "SELECT COUNT(_id) FROM reservation WHERE user_id = :user_id";
 
 $insertParams;
 
+
+$resParams= array(
+	':user_id => $_GET['user_id']
+     );
 try {
+	 
 	$stmt = $db->prepare($maxReservations);
 	$result = $stmt->execute($resParams);	
 }
