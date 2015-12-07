@@ -84,13 +84,13 @@ class ViewMeetingsManager {
                     echo '<td>' . "<a class='home_page_link' onclick='return confirm(\"Are you sure?\")'href='cancel_reservation.php?reservation_id=" . $row['_id']  . "'>Delete</a>" . '</td>' . "\r\n";
 	
                 }
-		echo '<td>' . "<a class='home_page_link' href='edit_reservation.php'>Edit</a>" . '</td>' . "\r\n";
+		echo '<td>' . "<a class='home_page_link' href='edit_reservation.html'>Edit</a>" . '</td>' . "\r\n";
 		//echo '<td>' . "<a class='home_page_link' href='edit_reservation.php?reservation_id=". $row['_id']."'>Edit</a>" . '</td>' . "\r\n";
      	        echo '      </tr>' . "\r\n";
 
             }
 
-            echo '  </tbody>' . "\r\n";
+            echo '</tbody>' . "\r\n";
             echo '</table>' . "\r\n";
 
         } catch(Exception $e) {
