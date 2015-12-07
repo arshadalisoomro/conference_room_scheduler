@@ -101,3 +101,4 @@ if (empty($_GET['recurrence'])) {
         die("Redirecting to home.php");
     }
 }
+?>
