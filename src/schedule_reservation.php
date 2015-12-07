@@ -6,40 +6,20 @@ AutoLoader::registerDirectory('../src/classes');
 require("config.php");
 require("MailFiles/PHPMailerAutoload.php");
 
+
+// 1.) get the max number of reservations for this user
+$max_reservations = SELECT max_number_reservations FROM user WHERE _id = $_GET['_id'];
+// 2.) get the current number for this user
+$curr_reservations = SELECT COUNT(_id) AS COUNT FROM reservation ORDER BY (user_id) WHERE user_id = $_GET['user_id'];
+
+if ($max_reservations > $curr_reservations) {
+
 $insertStatement = "INSERT INTO reservation 
                     (`user_id`, `conference_room_id`, `time_slot_id`, `recurrence_id`, `date`) 
                     VALUES (:user_id,:conference_room_id,:time_slot_id,:recurrence_id,:date_val)";
 
 $insertParams;
 
-$maxReservations = "UPDATE user SET max_number_reservations= (SELECT COUNT(_id)
-		    FROM reservation r
-		    WHERE r.user_id = :user_id)
-		    WHERE _id = :id";
-
-$resParams;
-
-
-if ($_GET['max_number_reservations'] < 10) {
-     $resParams= array(
-		':user_id => $_GET['user_id'],
-		':_id => $_GET['_id']
-            );
-     try {
-	 
-	$stmt = $db->prepare($maxReservations);
-	$result = $stmt->execute($resParams);	
-	} catch(PDOException $ex) {
-            echo "query: " . $maxReservations . "</br>";
-            print_r($resParams);
-            echo "<br/>exception: " . $ex->getMessage();
-	 }
-}
-if ($_GET['max_number_reservations'] > 10) {
-	echo '<script type="text/jscript"> alert("You have exceded the maximum number of reservations") </script>';
-        header("Location: home.php");
-        die("Redirecting to home.php");
-}
 if (empty($_GET['recurrence'])) {
     $insertParams = array(
                 ':user_id' => $_GET['user_id'],
@@ -118,5 +98,8 @@ if (empty($_GET['recurrence'])) {
         header("Location: home.php");
         die("Redirecting to home.php");
     }
+}
+} else {
+	echo "You have hit the max number of reservations! Unable to schedule another.";
 }
 ?>
