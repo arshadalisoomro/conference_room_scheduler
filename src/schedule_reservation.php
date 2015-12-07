@@ -22,7 +22,7 @@ $resParams;
 
 if ($_GET['max_number_reservations'] < 10) {
      $resParams= array(
-		':user_id => $_GET['user_id']
+		':user_id => $_GET['user_id'],
 		':_id => $_GET['_id']
             );
      try {
