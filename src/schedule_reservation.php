@@ -14,7 +14,9 @@ $maxReservations = "SELECT COUNT(_id) FROM reservation WHERE user_id = :user_id"
 
 $insertParams;
 
-if ($maxReservations > 10) {
+$MR = $db->execute($maxReservations);
+
+if ($MR > 10) {
     echo '<script> alert("You have exceded the maximum number of reservations") </script>';
 }
 
