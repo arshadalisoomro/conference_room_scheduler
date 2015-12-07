@@ -12,13 +12,34 @@ $insertStatement = "INSERT INTO reservation
 
 $resParams;
 
-$maxReservations = "SELECT COUNT(_id) FROM reservation WHERE user_id = :user_id";
+$maxReservations = "UPDATE user SET max_number_reservations= (SELECT COUNT(_id)
+		    FROM reservation r
+		    WHERE r.user_id = :user_id)
+		    WHERE _id = :id";
 
 $insertParams;
 
 
-
-
+if ($_GET['max_number_reservations'] < 10) {
+     $resParams= array(
+		':user_id => $_GET['user_id']
+		':_id => %_GET['_id']
+            );
+     try {
+	 
+	$stmt = $db->prepare($maxReservations);
+	$result = $stmt->execute($resParams);	
+	} catch(PDOException $ex) {
+            echo "query: " . $maxReservations . "</br>";
+            print_r($resParams);
+            echo "<br/>exception: " . $ex->getMessage();
+	 }
+}
+if ($_GET['max_number_reservations'] > 10) {
+	echo '<script type="text/jscript"> alert("You have exceded the maximum number of reservations") </script>';
+        header("Location: home.php");
+        die("Redirecting to home.php");
+}
 if (empty($_GET['recurrence'])) {
     $insertParams = array(
                 ':user_id' => $_GET['user_id'],
@@ -27,19 +48,6 @@ if (empty($_GET['recurrence'])) {
                 ':recurrence_id' => '1',
                 ':date_val' => $_GET['date']
             );
-
-     $resParams= array(
-		':user_id => $_GET['user_id']
-            );
-     try {
-	 
-	$stmt = $db->prepare($maxReservations);
-	$result = $stmt->execute($resParams);	
-	}
-
-	if ($result > 10) {
-    		echo '<script type="text/jscript"> alert("You have exceded the maximum number of reservations") </script>';
-	}
 
     try {
         $stmt = $db->prepare($insertStatement);
