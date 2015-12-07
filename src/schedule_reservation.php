@@ -6,10 +6,8 @@ AutoLoader::registerDirectory('../src/classes');
 require("config.php");
 require("MailFiles/PHPMailerAutoload.php");
 
-
-// 1.) get the max number of reservations for this user
 $max_reservations = SELECT max_number_reservations FROM user WHERE _id = $_GET['_id'];
-// 2.) get the current number for this user
+
 $curr_reservations = SELECT COUNT(_id) AS COUNT FROM reservation ORDER BY (user_id) WHERE user_id = $_GET['user_id'];
 
 if ($max_reservations > $curr_reservations) {
