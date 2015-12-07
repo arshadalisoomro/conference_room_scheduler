@@ -10,20 +10,20 @@ $insertStatement = "INSERT INTO reservation
                     (`user_id`, `conference_room_id`, `time_slot_id`, `recurrence_id`, `date`) 
                     VALUES (:user_id,:conference_room_id,:time_slot_id,:recurrence_id,:date_val)";
 
-$resParams;
+$insertParams;
 
 $maxReservations = "UPDATE user SET max_number_reservations= (SELECT COUNT(_id)
 		    FROM reservation r
 		    WHERE r.user_id = :user_id)
 		    WHERE _id = :id";
 
-$insertParams;
+$resParams;
 
 
 if ($_GET['max_number_reservations'] < 10) {
      $resParams= array(
 		':user_id => $_GET['user_id']
-		':_id => %_GET['_id']
+		':_id => $_GET['_id']
             );
      try {
 	 
