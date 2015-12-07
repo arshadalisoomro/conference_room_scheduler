@@ -36,7 +36,7 @@ class ViewMeetingsManager {
     }
 
 	function buildTable($db, $userId) {
-        $query = "SELECT res._id AS _id, first_name, last_name, name, room_number, start_time, end_time, date, recurrence_id, rect.description as description FROM reservation res JOIN room r ON res.conference_room_id = r._id JOIN location l ON r.location_id = l._id JOIN user u ON res.user_id = u._id JOIN time_slot t ON res.time_slot_id = t._id JOIN recurrence rec on res.recurrence_id = rec._id JOIN recurrence_type rect on rec.recurrence_type_id = rect._id WHERE date >= CURDATE() AND user_id = " . $userId . " ORDER BY date";
+        $query = "SELECT res._id AS _id, first_name, last_name, name, room_number, start_time, end_time, date, recurrence_id, rect.description as description£¬res.conference_room_id as room_id FROM reservation res JOIN room r ON res.conference_room_id = r._id JOIN location l ON r.location_id = l._id JOIN user u ON res.user_id = u._id JOIN time_slot t ON res.time_slot_id = t._id JOIN recurrence rec on res.recurrence_id = rec._id JOIN recurrence_type rect on rec.recurrence_type_id = rect._id WHERE date >= CURDATE() AND user_id = " . $userId . " ORDER BY date";
 
         try {
             $stmt = $db->prepare($query);
@@ -84,8 +84,8 @@ class ViewMeetingsManager {
                     echo '<td>' . "<a class='home_page_link' onclick='return confirm(\"Are you sure?\")'href='cancel_reservation.php?reservation_id=" . $row['_id']  . "'>Delete</a>" . '</td>' . "\r\n";
 	
                 }
-		echo '<td>' . "<a class='home_page_link' href='edit_reservation.html'>Edit</a>" . '</td>' . "\r\n";
-		//echo '<td>' . "<a class='home_page_link' href='edit_reservation.php?reservation_id=". $row['_id']."'>Edit</a>" . '</td>' . "\r\n";
+		//echo '<td>' . "<a class='home_page_link' href='edit_reservation.php'>Edit</a>" . '</td>' . "\r\n";
+		echo '<td>' . "<a class='home_page_link'  href='edit_reservation.php?reservation_id=". $row['_id']."&room_id=".$row['room_id']."'>Edit</a>" . '</td>' . "\r\n";
      	        echo '      </tr>' . "\r\n";
 
             }
