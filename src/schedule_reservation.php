@@ -13,11 +13,14 @@ $insertStatement = "INSERT INTO reservation
 $maxReservations = "SELECT COUNT(_id) FROM reservation WHERE user_id = :user_id";
 
 $insertParams;
+
+try {
 $ree = $db->prepare($maxReservations);
 $MR = $ree->execute($maxReservations);
 
-if ($MR > 10) {
-    echo '<script> alert("You have exceded the maximum number of reservations") </script>';
+    if ($MR > 10) {
+	echo '<script> alert("You have exceded the maximum number of reservations") </script>';
+    }
 }
 
 if (empty($_GET['recurrence'])) {
