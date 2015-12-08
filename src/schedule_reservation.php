@@ -6,14 +6,11 @@ AutoLoader::registerDirectory('../src/classes');
 require("config.php");
 require("MailFiles/PHPMailerAutoload.php");
 
-$maxRes = "SELECT max_number_reservations
-	   FROM user 
-	   WHERE user_id=:user_id";
-$curRes = "SELECT COUNT(_id) AS COUNT
-	   FROM reservation 
-	   WHERE user_id=:user_id 
-	   GROUP BY user_id";
-if ($maxRes > $curRes) {
+$maxRes = "UPDATE user SET max_number_reservations = (SELECT COUNT(_id) FROM reservation WHERE user_id = :user_id) WHERE _id = :user_id";
+$curRes = "SELECT max_number_reservations
+	   FROM user
+	   WHERE _id=:user_id";
+if ($curRes<10) {
 
 $insertStatement = "INSERT INTO reservation 
                    (`user_id`, `conference_room_id`, `time_slot_id`, `recurrence_id`, `date`) 
