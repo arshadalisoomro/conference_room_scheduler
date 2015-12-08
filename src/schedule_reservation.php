@@ -15,14 +15,14 @@ $curRes = "SELECT COUNT (_id)
 	   GROUP BY user_id";
 if ('$maxRes' > '$curRes') {
 
-$insertStatement = "INSERT INTO reservation 
+ $insertStatement = "INSERT INTO reservation 
                    (`user_id`, `conference_room_id`, `time_slot_id`, `recurrence_id`, `date`) 
                    VALUES (:user_id,:conference_room_id,:time_slot_id,:recurrence_id,:date_val)";
 
-$insertParams;
+ $insertParams;
 
-if (empty($_GET['recurrence'])) {
-    $insertParams = array(
+ if (empty($_GET['recurrence'])) {
+     $insertParams = array(
                 ':user_id' => $_GET['user_id'],
                 ':conference_room_id' => $_GET['room_id'],
                 ':time_slot_id' => $_GET['time_slot'],
