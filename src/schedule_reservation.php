@@ -19,7 +19,7 @@ $insertStatement = "INSERT INTO reservation
 $insertParams;
 
  if (empty($_GET['recurrence'])) {
-    $insertParams = array(
+       $insertParams = array(
                 ':user_id' => $_GET['user_id'],
                 ':conference_room_id' => $_GET['room_id'],
                 ':time_slot_id' => $_GET['time_slot'],
@@ -96,6 +96,7 @@ $insertParams;
         header("Location: home.php");
         die("Redirecting to home.php");
     }
+  }
 } else {
 	echo "You have hit the max number of reservations! Unable to schedule another.";
   }
