@@ -6,7 +6,7 @@ AutoLoader::registerDirectory('../src/classes');
 require("config.php");
 require("MailFiles/PHPMailerAutoload.php");
 $idr = $_GET["user_id"];
-$idu = $_GET["_id"]
+$idu = $_GET["_id"];
 $maxRes = "SELECT max_number_reservations
 	   FROM user
 	   WHERE _id='$idu'";
