@@ -44,7 +44,7 @@ $insertParams;
         print_r($insertParams);
         echo "<br/>exception: " . $ex->getMessage();
     }
- }  else {
+ } else {
     $error = false;
 
     $createRecurrence = "INSERT INTO recurrence (`recurrence_type_id`) VALUES (:_id)";
@@ -96,8 +96,7 @@ $insertParams;
         header("Location: home.php");
         die("Redirecting to home.php");
     }
- }
 } else {
 	echo "You have hit the max number of reservations! Unable to schedule another.";
-}
+  }
 ?>
