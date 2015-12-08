@@ -59,7 +59,7 @@ class ViewMeetingsAdmin {
                 $first = true;
                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     if ($first) {
-                        echo "<h5>Users created by: " . $name . "</h5>";
+                        echo "<h5>Users created by " . $name . "</h5>";
                         $first = false;
                     }
                     $this->buildTable($db, $row['_id']);
