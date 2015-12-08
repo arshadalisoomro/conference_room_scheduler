@@ -12,11 +12,11 @@ $curr_reservations = "SELECT COUNT(_id) AS COUNT FROM reservation WHERE user_id 
 
 if ($max_reservations > $curr_reservations) {
 
-$insertStatement = "INSERT INTO reservation 
+ $insertStatement = "INSERT INTO reservation 
                     (`user_id`, `conference_room_id`, `time_slot_id`, `recurrence_id`, `date`) 
                     VALUES (:user_id,:conference_room_id,:time_slot_id,:recurrence_id,:date_val)";
 
-$insertParams;
+ $insertParams;
 
  if (empty($_GET['recurrence'])) {
        $insertParams = array(
@@ -96,7 +96,7 @@ $insertParams;
         header("Location: home.php");
         die("Redirecting to home.php");
     }
-  }
+   }
 } else {
 	echo "You have hit the max number of reservations! Unable to schedule another.";
   }
