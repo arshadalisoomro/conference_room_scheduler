@@ -32,18 +32,21 @@
             }
         }
         
-		$deleteParams = array(
-            ':reservation_id' => $_GET['reservation_id']
-        );
-		
-		$deleteOldStatement = "DELETE FROM reservation WHERE _id =:reservation_id";
-		$stmt = $db->prepare($deleteOldStatement);
-        $result = $stmt->execute($deleteParams);
+
 		
 
         header("Location: schedule_reservation.php?" . $getParams);
         die("Redirecting to schedule_reservation.php"); 
     }
+	if (empty($_GET['reservation_id'])==False) {
+		echo "trydeleting";
+			$deleteParams = array(
+            ':reservation_id' => $_GET['reservation_id']
+        );		
+		$deleteOldStatement = "DELETE FROM reservation WHERE _id =:reservation_id";
+		$stmt = $db->prepare($deleteOldStatement);
+        $result = $stmt->execute($deleteParams);
+	}
 ?>
 
 <!doctype html>
