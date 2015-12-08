@@ -87,7 +87,7 @@
         <header class="mdl-layout__header mdl-layout__header--waterfall">
             <div class="mdl-layout__header-row">
                 <span class="mdl-layout-title">
-				<?php if (empty($_GET['reservation_id'])){ echo "Schedule a Reservation"} else { echo "Update Reservation"          }			?>
+				<?php if (empty($_GET['reservation_id'])){ echo "Schedule a Reservation";} else { echo "Update Reservation";          }			?>
 				</span>
             </div>
         </header>
