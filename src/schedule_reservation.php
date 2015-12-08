@@ -26,9 +26,9 @@ try {
  }
 
 
-$query = "SELECT COUNT (_id) as count
+$query = "SELECT COUNT(_id) as count
 	   FROM reservation
-	   WHERE user_id=" . $_GET['user_id'] . 
+	   WHERE user_id=" . $_GET['user_id'] . " AND date > CURDATE()"
        " GROUP BY user_id";
 
 $curRes;
