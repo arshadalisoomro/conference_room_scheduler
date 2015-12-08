@@ -30,6 +30,11 @@
                 $getParams = "room_id=" . $_GET['room_id'] . "&date=" . $_GET['date'] . "&time_slot=" . $_GET['time_slot'] . "&user_id=" . $_GET['user_id'];
             }
         }
+		
+		if (empty($_GET['edit_room'])){
+			
+			
+		}
         
 
         header("Location: schedule_reservation.php?" . $getParams);
@@ -81,7 +86,9 @@
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
         <header class="mdl-layout__header mdl-layout__header--waterfall">
             <div class="mdl-layout__header-row">
-                <span class="mdl-layout-title">Schedule a Reservation</span>
+                <span class="mdl-layout-title">
+				<?php if (empty($_GET['reservation_id'])){ echo "Schedule a Reservation"} else { echo "Update Reservation"          }			?>
+				</span>
             </div>
         </header>
         <div class="mdl-layout__drawer">
