@@ -6,7 +6,7 @@ AutoLoader::registerDirectory('../src/classes');
 require("config.php");
 require("MailFiles/PHPMailerAutoload.php");
 
-$max_reservations = "SELECT max_number_reservations FROM user WHERE _id = $_GET['_id']";
+$max_reservations = "SELECT max_number_reservations FROM user WHERE user_id = $_GET['user_id']";
 
 $curr_reservations = "SELECT COUNT(_id) AS COUNT FROM reservation WHERE user_id = $_GET['user_id']";
 
