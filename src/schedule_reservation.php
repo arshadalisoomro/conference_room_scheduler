@@ -1,35 +1,34 @@
 <?php 
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 include_once('../AutoLoader.php');
 AutoLoader::registerDirectory('../src/classes');
 
 require("config.php");
 require("MailFiles/PHPMailerAutoload.php");
 
-$maxReservations = "SELECT max_number_reservations FROM user WHERE user_id = $_GET['user_id']";
+$maxRes = "SELECT max_number_reservations
+	   FROM user 
+	   WHERE user_id=$_GET[user_id]";
+$curRes = "SELECT COUNT(_id) AS COUNT
+	   FROM reservation 
+	   WHERE user_id=$_GET[user_id] 
+	   GROUP BY user_id";
+if ($maxRes > $curRes) {
 
-$currReservations = "SELECT COUNT(_id) AS COUNT FROM reservation WHERE user_id = $_GET['user_id'] GROUP BY user_id";
+$insertStatement = "INSERT INTO reservation 
+                   (`user_id`, `conference_room_id`, `time_slot_id`, `recurrence_id`, `date`) 
+                   VALUES (:user_id,:conference_room_id,:time_slot_id,:recurrence_id,:date_val)";
 
-if ($maxReservations > $currReservations) {
+$insertParams;
 
- $insertStatement = "INSERT INTO reservation 
-                    (`user_id`, `conference_room_id`, `time_slot_id`, `recurrence_id`, `date`) 
-                    VALUES (:user_id,:conference_room_id,:time_slot_id,:recurrence_id,:date_val)";
-
- $insertParams;
-
- if (empty($_GET['recurrence'])) {
-     $insertParams = array(
-                 ':user_id' => $_GET['user_id'],
-                 ':conference_room_id' => $_GET['room_id'],
-                 ':time_slot_id' => $_GET['time_slot'],
-                 ':recurrence_id' => '1',
-                 ':date_val' => $_GET['date']
-             );
+if (empty($_GET['recurrence'])) {
+    $insertParams = array(
+                ':user_id' => $_GET['user_id'],
+                ':conference_room_id' => $_GET['room_id'],
+                ':time_slot_id' => $_GET['time_slot'],
+                ':recurrence_id' => '1',                
+	        ':date_val' => $_GET['date']
+            );
 
      try {
          $stmt = $db->prepare($insertStatement);
