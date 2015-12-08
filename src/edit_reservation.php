@@ -35,6 +35,7 @@
 		$deleteParams = array(
             ':reservation_id' => $_GET['reservation_id']
         );
+		
 		$deleteOldStatement = "DELETE FROM reservation WHERE _id =:reservation_id";
 		$stmt = $db->prepare($deleteOldStatement);
         $result = $stmt->execute($deleteParams);
