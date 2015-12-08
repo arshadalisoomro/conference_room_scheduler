@@ -43,7 +43,7 @@ if ($maxReservations > $currReservations) {
          echo "query: " . $insertStatement . "</br>";
          print_r($insertParams);
          echo "<br/>exception: " . $ex->getMessage();
-      }
+     }
   } else {
      $error = false;
 
@@ -80,7 +80,7 @@ if ($maxReservations > $currReservations) {
              echo "query: " . $insertStatement . "</br>";
              print_r($insertParams);
              echo "<br/>exception: " . $ex->getMessage();
-          }
+         }
 
          $currentDate = strtotime($incrementString, $currentDate);
      }
