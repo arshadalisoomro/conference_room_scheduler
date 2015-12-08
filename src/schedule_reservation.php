@@ -5,13 +5,13 @@ AutoLoader::registerDirectory('../src/classes');
 
 require("config.php");
 require("MailFiles/PHPMailerAutoload.php");
-
+$id = $_GET["user_id"];
 $maxRes = "SELECT max_number_reservations
 	   FROM user
-	   WHERE _id=:user_id";
+	   WHERE _id='$id'";
 $curRes = "SELECT COUNT (_id)
 	   FROM reservation
-	   WHERE user_id=:user_id
+	   WHERE user_id='$id'
 	   GROUP BY user_id";
 if ($maxRes > $curRes) {
 
