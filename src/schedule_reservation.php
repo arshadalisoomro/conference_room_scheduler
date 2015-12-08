@@ -28,7 +28,8 @@ try {
 
 $query = "SELECT COUNT (_id) as count
 	   FROM reservation
-	   WHERE user_id=" . $_GET['user_id'];
+	   WHERE user_id=" . $_GET['user_id'] . 
+       " GROUP BY user_id";
 
 $curRes;
 
