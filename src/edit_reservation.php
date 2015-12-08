@@ -96,7 +96,7 @@
               <div class="mdl-card mdl-cell mdl-cell--12-col">
                 <div class="mdl-card__supporting-text">
                 <?php $scheduler->buildRoomTitle($db, $_GET['room_id']) ?>
-                <form id="time_form" action="pick_time.php" method="get">
+                <form id="time_form" action="pick_time.php? reservation_id=<?php echo $_GET['reservation_id'] ?>" method="get">
                     <input id="submitted" type="hidden" name="submitted" value="false" />
                     <input type="hidden" name="user_id" value="<?php echo $_GET['user_id'] ?>" />
                     <input type="hidden" name="room_id" value="<?php echo $_GET['room_id'] ?>" />
