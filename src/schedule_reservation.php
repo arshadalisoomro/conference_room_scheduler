@@ -13,7 +13,7 @@ $curRes = "SELECT COUNT (_id)
 	   FROM reservation
 	   WHERE user_id='$id'
 	   GROUP BY user_id";
-if ($maxRes > $curRes) {
+if ('$maxRes' > '$curRes') {
 
 $insertStatement = "INSERT INTO reservation 
                    (`user_id`, `conference_room_id`, `time_slot_id`, `recurrence_id`, `date`) 
