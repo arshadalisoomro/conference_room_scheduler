@@ -8,10 +8,10 @@ require("MailFiles/PHPMailerAutoload.php");
 
 $maxRes = "SELECT max_number_reservations
 	   FROM user 
-	   WHERE user_id=$_GET[user_id]";
+	   WHERE user_id=:user_id";
 $curRes = "SELECT COUNT(_id) AS COUNT
 	   FROM reservation 
-	   WHERE user_id=$_GET[user_id] 
+	   WHERE user_id=:user_id 
 	   GROUP BY user_id";
 if ($maxRes > $curRes) {
 
