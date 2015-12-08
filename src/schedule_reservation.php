@@ -96,8 +96,8 @@ if ($maxReservations > $currReservations) {
          die("Redirecting to home.php");
 
      }
-    }
-}else {
+ }
+} else {
     echo "You have hit the max number of reservations! Unable to schedule another.";
 }
 ?>
